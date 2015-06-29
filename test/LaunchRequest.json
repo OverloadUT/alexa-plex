@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "session": {
+    "new": true,
+    "application": {
+      "applicationId": "amzn1.echo-sdk-ams.app.MOCHATESTS"
+    },
+    "sessionId": "session1234",
+    "attributes": {},
+    "user": {
+      "userId": null
+    }
+  },
+  "request": {
+    "type": "LaunchRequest",
+    "requestId": "request5678"
+  }
+}
