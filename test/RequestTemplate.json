@@ -12,7 +12,11 @@
     }
   },
   "request": {
-    "type": "LaunchRequest",
-    "requestId": "request5678"
+    "type": "TemplateRequest",
+    "requestId": "request5678",
+    "intent": {
+      "name": "TemplateIntent",
+      "slots": {}
+    }
   }
 }

@@ -2,3 +2,6 @@ Gruntfile.js
 dist
 *.bat
 docs
+.idea
+coverage
+test

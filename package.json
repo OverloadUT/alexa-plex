@@ -28,10 +28,13 @@
     "mocha": "^2.2.5",
     "npm": "^2.12.0",
     "sinon": "^1.15.4",
+    "sinon-as-promised": "^4.0.0",
     "sinon-chai": "^2.8.0"
   },
   "dependencies": {
     "alexa-app": "^2.0.0",
-    "dotenv": "^1.2.0"
+    "dotenv": "^1.2.0",
+    "plex-api": "OverloadUT/node-plex-api",
+    "plex-control": "^1.0.1"
   }
 }
