@@ -4,7 +4,7 @@
   "description": "Alexa (Amazon Echo) app for interacting with a Plex Server and controlling client playback",
   "main": "index.js",
   "scripts": {
-    "test": "grunt coveralls"
+    "test": "grunt coveralls --force"
   },
   "repository": {
     "type": "git",
