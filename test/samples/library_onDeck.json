@@ -1,0 +1,717 @@
+{
+  "_elementType": "MediaContainer",
+  "allowSync": "0",
+  "identifier": "com.plexapp.plugins.library",
+  "mediaTagPrefix": "/system/bundle/media/flags/",
+  "mediaTagVersion": "1434993722",
+  "mixedParents": "1",
+  "_children": [
+    {
+      "_elementType": "Video",
+      "allowSync": "1",
+      "librarySectionID": "1",
+      "librarySectionTitle": "TV Shows",
+      "librarySectionUUID": "466bc145-a10e-4bd1-93fd-e6bebe14f30b",
+      "ratingKey": 4079,
+      "key": "/library/metadata/4079",
+      "parentRatingKey": 4076,
+      "grandparentRatingKey": 4075,
+      "type": "episode",
+      "title": "Resurrection",
+      "grandparentKey": "/library/metadata/4075",
+      "parentKey": "/library/metadata/4076",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "Dr. Frankenstein is confronted by the consequences of his past. Vanessa has a vision of Mina, which leads her, Sir Malcolm, Ethan and Sembene to a strange discovery at the London Zoo.",
+      "index": 3,
+      "parentIndex": 1,
+      "rating": "7.6",
+      "viewOffset": 379418,
+      "lastViewedAt": 1435823276,
+      "year": 2014,
+      "thumb": "/library/metadata/4079/thumb/1435550491",
+      "art": "/library/metadata/4075/art/1435550492",
+      "grandparentThumb": "/library/metadata/4075/thumb/1435550492",
+      "grandparentArt": "/library/metadata/4075/art/1435550492",
+      "duration": 2869888,
+      "originallyAvailableAt": "2014-05-25",
+      "addedAt": 1421300837,
+      "updatedAt": 1435550491,
+      "chapterSource": "media",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 3588,
+          "duration": 2869888,
+          "bitrate": 6530,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "3632",
+              "key": "/library/parts/3632/file.mkv",
+              "duration": 2869888,
+              "file": "C:\\Media\\Penny Dreadful s01e03.mkv",
+              "size": 2342662994,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Dearbhla Walsh"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "allowSync": "1",
+      "librarySectionID": "1",
+      "librarySectionTitle": "TV Shows",
+      "librarySectionUUID": "466bc145-a10e-4bd1-93fd-e6bebe14f30b",
+      "ratingKey": 4882,
+      "key": "/library/metadata/4882",
+      "parentRatingKey": 4639,
+      "grandparentRatingKey": 923,
+      "type": "episode",
+      "title": "Mother’s Mercy",
+      "grandparentKey": "/library/metadata/923",
+      "parentKey": "/library/metadata/4639",
+      "grandparentTitle": "Game of Thrones",
+      "contentRating": "TV-MA",
+      "summary": "Dany is surrounded by strangers. Cersei seeks forgiveness. Jon is challenged.",
+      "index": 10,
+      "parentIndex": 5,
+      "year": 2015,
+      "thumb": "/library/metadata/4882/thumb/1434337133",
+      "art": "/library/metadata/923/art/1434337133",
+      "parentThumb": "/library/metadata/4639/thumb/1434337133",
+      "grandparentThumb": "/library/metadata/923/thumb/1434337133",
+      "grandparentArt": "/library/metadata/923/art/1434337133",
+      "grandparentTheme": "/library/metadata/923/theme/1434337133",
+      "duration": 3724000,
+      "originallyAvailableAt": "2015-06-14",
+      "addedAt": 1434337121,
+      "updatedAt": 1434337133,
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 4165,
+          "duration": 3724000,
+          "bitrate": 2507,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4225",
+              "key": "/library/parts/4225/file.mkv",
+              "duration": 3724000,
+              "file": "C:\\Media\\Game of Thrones s05e10.mkv",
+              "size": 1166854341,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "David Benioff"
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "D.B. Weiss"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "David Nutter"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "allowSync": "1",
+      "librarySectionID": "1",
+      "librarySectionTitle": "TV Shows",
+      "librarySectionUUID": "466bc145-a10e-4bd1-93fd-e6bebe14f30b",
+      "ratingKey": 4357,
+      "key": "/library/metadata/4357",
+      "parentRatingKey": 4165,
+      "grandparentRatingKey": 4101,
+      "type": "episode",
+      "title": "Stakeout",
+      "grandparentKey": "/library/metadata/4101",
+      "parentKey": "/library/metadata/4165",
+      "grandparentTitle": "Brooklyn Nine-Nine",
+      "contentRating": "TV-14",
+      "summary": "Jake and Charles’ bro-mance starts to crack when they volunteer for an eight-day stakeout in very close quarters. Meanwhile, Captain Holt’s nephew, Marcus, comes to Brooklyn and captures Rosa’s attention.",
+      "index": 11,
+      "parentIndex": 2,
+      "rating": "7.8",
+      "viewOffset": 774873,
+      "lastViewedAt": 1435728587,
+      "year": 2014,
+      "thumb": "/library/metadata/4357/thumb/1431913895",
+      "art": "/library/metadata/4101/art/1431913896",
+      "grandparentThumb": "/library/metadata/4101/thumb/1431913896",
+      "grandparentArt": "/library/metadata/4101/art/1431913896",
+      "duration": 1299592,
+      "originallyAvailableAt": "2014-12-14",
+      "addedAt": 1424651426,
+      "updatedAt": 1431913895,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 3772,
+          "duration": 1299592,
+          "bitrate": 4340,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "3816",
+              "key": "/library/parts/3816/file.mkv",
+              "duration": 1299592,
+              "file": "C:\\Media\\Brooklyn Nine-Nine s02e11.mkv",
+              "size": 704991087,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "Laura McCreary"
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "Tricia McAlpin"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Tristram Shapeero"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "allowSync": "1",
+      "librarySectionID": "1",
+      "librarySectionTitle": "TV Shows",
+      "librarySectionUUID": "466bc145-a10e-4bd1-93fd-e6bebe14f30b",
+      "ratingKey": 4905,
+      "key": "/library/metadata/4905",
+      "parentRatingKey": 4239,
+      "grandparentRatingKey": 3780,
+      "type": "episode",
+      "title": "Episode 43",
+      "grandparentKey": "/library/metadata/3780",
+      "parentKey": "/library/metadata/4239",
+      "grandparentTitle": "Last Week Tonight with John Oliver",
+      "summary": "",
+      "index": 19,
+      "parentIndex": 2,
+      "year": 2015,
+      "thumb": "/library/metadata/4905/thumb/1435550064",
+      "art": "/library/metadata/3780/art/1435550064",
+      "parentThumb": "/library/metadata/4239/thumb/1435550064",
+      "grandparentThumb": "/library/metadata/3780/thumb/1435550064",
+      "grandparentArt": "/library/metadata/3780/art/1435550064",
+      "duration": 1792128,
+      "originallyAvailableAt": "2015-06-28",
+      "addedAt": 1435550049,
+      "updatedAt": 1435550064,
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 4182,
+          "duration": 1792128,
+          "bitrate": 3376,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 2,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "NTSC",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4242",
+              "key": "/library/parts/4242/file.mkv",
+              "duration": 1792128,
+              "file": "C:\\Media\\Last Week Tonight with John Oliver s02e19.mkv",
+              "size": 756167620,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "allowSync": "1",
+      "librarySectionID": "1",
+      "librarySectionTitle": "TV Shows",
+      "librarySectionUUID": "466bc145-a10e-4bd1-93fd-e6bebe14f30b",
+      "ratingKey": 4715,
+      "key": "/library/metadata/4715",
+      "parentRatingKey": 4704,
+      "grandparentRatingKey": 4041,
+      "type": "episode",
+      "title": "A New Day",
+      "titleSort": "New Day",
+      "grandparentKey": "/library/metadata/4041",
+      "parentKey": "/library/metadata/4704",
+      "grandparentTitle": "The Wire",
+      "contentRating": "TV-MA",
+      "summary": "\"You play in dirt, you get dirty.\" - McNulty\n\nRandy has trouble with his friends at school, while Carcetti faces a huge dilemma. Meanwhile, Omar visits Proposition Joe, while Freamon reveals a secret.\n",
+      "index": 11,
+      "parentIndex": 4,
+      "rating": "8.0",
+      "year": 2006,
+      "thumb": "/library/metadata/4715/thumb/1430775785",
+      "art": "/library/metadata/4041/art/1430775785",
+      "parentThumb": "/library/metadata/4704/thumb/1430775785",
+      "grandparentThumb": "/library/metadata/4041/thumb/1430775785",
+      "grandparentArt": "/library/metadata/4041/art/1430775785",
+      "duration": 3513824,
+      "originallyAvailableAt": "2006-11-26",
+      "addedAt": 1430775768,
+      "updatedAt": 1430775785,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 4028,
+          "duration": 3513824,
+          "bitrate": 4496,
+          "width": 1280,
+          "height": 718,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4088",
+              "key": "/library/parts/4088/file.mkv",
+              "duration": 3513824,
+              "file": "C:\\Media\\The Wire s04e11.mkv",
+              "size": 1974979092,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "Edward Burns (III)"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Brad Anderson"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "allowSync": "1",
+      "librarySectionID": "1",
+      "librarySectionTitle": "TV Shows",
+      "librarySectionUUID": "466bc145-a10e-4bd1-93fd-e6bebe14f30b",
+      "ratingKey": 4852,
+      "key": "/library/metadata/4852",
+      "parentRatingKey": 4847,
+      "grandparentRatingKey": 4846,
+      "type": "episode",
+      "title": "Adventure",
+      "grandparentKey": "/library/metadata/4846",
+      "parentKey": "/library/metadata/4847",
+      "grandparentTitle": "Halt and Catch Fire",
+      "contentRating": "TV-14",
+      "summary": "Cameron bristles under a new manager as Joe and Gordon attempt to procure a key piece of new technology for the computer.",
+      "index": 5,
+      "parentIndex": 1,
+      "rating": "7.6",
+      "year": 2014,
+      "thumb": "/library/metadata/4852/thumb/1435550626",
+      "art": "/library/metadata/4846/art/1435550627",
+      "parentThumb": "/library/metadata/4847/thumb/1435550627",
+      "grandparentThumb": "/library/metadata/4846/thumb/1435550627",
+      "grandparentArt": "/library/metadata/4846/art/1435550627",
+      "duration": 2579584,
+      "originallyAvailableAt": "2014-06-29",
+      "addedAt": 1433235397,
+      "updatedAt": 1435550626,
+      "chapterSource": "media",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 4141,
+          "duration": 2579584,
+          "bitrate": 4841,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4201",
+              "key": "/library/parts/4201/file.mkv",
+              "duration": 2579584,
+              "file": "C:\\Media\\Halt and Catch Fire s01e05.mkv",
+              "size": 1560816737,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "Dahvi Waller"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Ed Bianchi"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "allowSync": "1",
+      "librarySectionID": "1",
+      "librarySectionTitle": "TV Shows",
+      "librarySectionUUID": "466bc145-a10e-4bd1-93fd-e6bebe14f30b",
+      "ratingKey": 4381,
+      "key": "/library/metadata/4381",
+      "parentRatingKey": 4373,
+      "grandparentRatingKey": 1397,
+      "type": "episode",
+      "title": "First Date",
+      "grandparentKey": "/library/metadata/1397",
+      "parentKey": "/library/metadata/4373",
+      "grandparentTitle": "New Girl",
+      "contentRating": "TV-14",
+      "summary": "Jess and Nick, who are caught between friendship and something more, try to break out of relationship-limbo by going on a First Date. Once Schmidt and Winston realize a full-on Jess/Nick romance might be happening, they swoop in to try to sabotage the date",
+      "index": 21,
+      "parentIndex": 2,
+      "rating": "7.5",
+      "year": 2013,
+      "thumb": "/library/metadata/4381/thumb/1428295708",
+      "art": "/library/metadata/1397/art/1428295709",
+      "parentThumb": "/library/metadata/4373/thumb/1428295709",
+      "grandparentThumb": "/library/metadata/1397/thumb/1428295709",
+      "grandparentArt": "/library/metadata/1397/art/1428295709",
+      "grandparentTheme": "/library/metadata/1397/theme/1428295709",
+      "duration": 1304555,
+      "originallyAvailableAt": "2013-04-04",
+      "addedAt": 1424658552,
+      "updatedAt": 1428295708,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 3791,
+          "duration": 1304555,
+          "bitrate": 3327,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "3835",
+              "key": "/library/parts/3835/file.mkv",
+              "duration": 1304555,
+              "file": "C:\\Media\\New Girl s02e21.mkv",
+              "size": 542524483,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "J.J.Philbin"
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "Berkley Johnson"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Lynn Shelton"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "allowSync": "1",
+      "librarySectionID": "1",
+      "librarySectionTitle": "TV Shows",
+      "librarySectionUUID": "466bc145-a10e-4bd1-93fd-e6bebe14f30b",
+      "ratingKey": 4868,
+      "key": "/library/metadata/4868",
+      "parentRatingKey": 4867,
+      "grandparentRatingKey": 2638,
+      "type": "episode",
+      "title": "Antipasto",
+      "grandparentKey": "/library/metadata/2638",
+      "parentKey": "/library/metadata/4867",
+      "grandparentTitle": "Hannibal",
+      "contentRating": "TV-MA",
+      "summary": "After the devastating bloodbath at Lecters home Hannibal establishes a new life for himself in Italy along with the company of his own psychiatrist Bedelia.",
+      "index": 1,
+      "parentIndex": 3,
+      "rating": "8.3",
+      "viewOffset": 534658,
+      "lastViewedAt": 1434257074,
+      "year": 2015,
+      "thumb": "/library/metadata/4868/thumb/1435290871",
+      "art": "/library/metadata/2638/art/1435290871",
+      "grandparentThumb": "/library/metadata/2638/thumb/1435290871",
+      "grandparentArt": "/library/metadata/2638/art/1435290871",
+      "duration": 2587936,
+      "originallyAvailableAt": "2015-06-04",
+      "addedAt": 1433476182,
+      "updatedAt": 1435290871,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 4154,
+          "duration": 2587936,
+          "bitrate": 2626,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4214",
+              "key": "/library/parts/4214/file.mkv",
+              "duration": 2587936,
+              "file": "C:\\Media\\Hannibal s03e01.mkv",
+              "size": 849426858,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "Bryan Fuller"
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "Steve Lightfoot"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Vincenzo Natali"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "allowSync": "1",
+      "librarySectionID": "1",
+      "librarySectionTitle": "TV Shows",
+      "librarySectionUUID": "466bc145-a10e-4bd1-93fd-e6bebe14f30b",
+      "ratingKey": 4880,
+      "key": "/library/metadata/4880",
+      "parentRatingKey": 4859,
+      "grandparentRatingKey": 4858,
+      "type": "episode",
+      "title": "Arabella",
+      "grandparentKey": "/library/metadata/4858",
+      "parentKey": "/library/metadata/4859",
+      "grandparentTitle": "Jonathan Strange & Mr Norrell",
+      "summary": "Strange returns home a hero after helping to win the Battle of Waterloo, and resolves to write a book on ancient magic - to Norrell's horror. Strange's hopes for the future are shattered by a tragedy in his life, and following a confrontation with Norrell, he flees the country, determined to learn the truth about the fairy world - even if doing so costs him his sanity.",
+      "index": 5,
+      "parentIndex": 1,
+      "year": 2015,
+      "thumb": "/library/metadata/4880/thumb/1435528883",
+      "art": "/library/metadata/4858/art/1435528883",
+      "parentThumb": "/library/metadata/4859/thumb/1435528883",
+      "grandparentThumb": "/library/metadata/4858/thumb/1435528883",
+      "grandparentArt": "/library/metadata/4858/art/1435528883",
+      "duration": 3518640,
+      "originallyAvailableAt": "2015-06-14",
+      "addedAt": 1434322383,
+      "updatedAt": 1435528883,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 4163,
+          "duration": 3518640,
+          "bitrate": 2705,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 2,
+          "audioCodec": "aac",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "PAL",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4223",
+              "key": "/library/parts/4223/file.mkv",
+              "duration": 3518640,
+              "file": "C:\\Media\\Jonathan Strange & Mr Norrell s01e05.mkv",
+              "size": 1189760081,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "Susanna Clarke"
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "Peter Harness"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Toby Haynes"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "allowSync": "1",
+      "librarySectionID": "1",
+      "librarySectionTitle": "TV Shows",
+      "librarySectionUUID": "466bc145-a10e-4bd1-93fd-e6bebe14f30b",
+      "ratingKey": 4636,
+      "key": "/library/metadata/4636",
+      "parentRatingKey": 3637,
+      "grandparentRatingKey": 1296,
+      "type": "episode",
+      "title": "New Business",
+      "grandparentKey": "/library/metadata/1296",
+      "parentKey": "/library/metadata/3637",
+      "grandparentTitle": "Mad Men",
+      "contentRating": "TV-14",
+      "summary": "Roger gives Don some unwanted advice. Peggy and Stan disagree over an account's personnel. Harry asks for Don's blessing.",
+      "index": 9,
+      "parentIndex": 7,
+      "rating": "6.9",
+      "viewOffset": 1904537,
+      "lastViewedAt": 1430107117,
+      "year": 2015,
+      "thumb": "/library/metadata/4636/thumb/1432112614",
+      "art": "/library/metadata/1296/art/1431921207",
+      "grandparentThumb": "/library/metadata/1296/thumb/1431921207",
+      "grandparentArt": "/library/metadata/1296/art/1431921207",
+      "grandparentTheme": "/library/metadata/1296/theme/1431921207",
+      "duration": 2865199,
+      "originallyAvailableAt": "2015-04-12",
+      "addedAt": 1428896502,
+      "updatedAt": 1432112614,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 3971,
+          "duration": 2865199,
+          "bitrate": 9217,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4030",
+              "key": "/library/parts/4030/file.mkv",
+              "duration": 2865199,
+              "file": "C:\\Media\\Mad Men s07e09.mkv",
+              "size": 3300990034,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "Tom Smuts"
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "Matthew Weiner"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Michael Uppendahl"
+        }
+      ]
+    }
+  ]
+}

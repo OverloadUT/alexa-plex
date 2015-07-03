@@ -1,0 +1,147 @@
+{
+  "_elementType": "MediaContainer",
+  "allowSync": "1",
+  "identifier": "com.plexapp.plugins.library",
+  "librarySectionID": "1",
+  "librarySectionTitle": "TV Shows",
+  "librarySectionUUID": "466bc145-a10e-4bd1-93fd-e6bebe14f30b",
+  "mediaTagPrefix": "/system/bundle/media/flags/",
+  "mediaTagVersion": "1434993722",
+  "_children": [
+    {
+      "_elementType": "Video",
+      "ratingKey": 4357,
+      "key": "/library/metadata/4357",
+      "parentRatingKey": 4165,
+      "grandparentRatingKey": 4101,
+      "guid": "com.plexapp.agents.thetvdb://269586/2/11?lang=en",
+      "type": "episode",
+      "title": "Stakeout",
+      "grandparentKey": "/library/metadata/4101",
+      "parentKey": "/library/metadata/4165",
+      "grandparentTitle": "Brooklyn Nine-Nine",
+      "contentRating": "TV-14",
+      "summary": "Jake and Charles’ bro-mance starts to crack when they volunteer for an eight-day stakeout in very close quarters. Meanwhile, Captain Holt’s nephew, Marcus, comes to Brooklyn and captures Rosa’s attention.",
+      "index": 11,
+      "parentIndex": 2,
+      "rating": "7.8",
+      "viewOffset": 774873,
+      "lastViewedAt": 1435728587,
+      "year": 2014,
+      "thumb": "/library/metadata/4357/thumb/1431913895",
+      "art": "/library/metadata/4101/art/1431913896",
+      "parentThumb": "/library/metadata/4165/thumb/1431913896",
+      "grandparentThumb": "/library/metadata/4101/thumb/1431913896",
+      "grandparentArt": "/library/metadata/4101/art/1431913896",
+      "duration": 1299592,
+      "originallyAvailableAt": "2014-12-14",
+      "addedAt": 1424651426,
+      "updatedAt": 1431913895,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 3772,
+          "duration": 1299592,
+          "bitrate": 4340,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "3816",
+              "key": "/library/parts/3816/file.mkv",
+              "duration": 1299592,
+              "file": "C:\\Media\\Brooklyn Nine-Nine s02e11.mkv",
+              "size": 704991087,
+              "container": "mkv",
+              "indexes": "sd",
+              "_children": [
+                {
+                  "_elementType": "Stream",
+                  "id": 18636,
+                  "streamType": 1,
+                  "codec": "h264",
+                  "index": 0,
+                  "bitrate": 3869,
+                  "language": "English",
+                  "languageCode": "eng",
+                  "bitDepth": "8",
+                  "cabac": "0",
+                  "chromaSubsampling": "4:2:0",
+                  "codecID": "V_MPEG4/ISO/AVC",
+                  "colorSpace": "yuv",
+                  "duration": "1299591",
+                  "frameRate": "23.976",
+                  "frameRateMode": "cfr",
+                  "hasScalingMatrix": "1",
+                  "height": "720",
+                  "level": "31",
+                  "profile": "high",
+                  "refFrames": "2",
+                  "scanType": "progressive",
+                  "title": "",
+                  "width": "1280"
+                },
+                {
+                  "_elementType": "Stream",
+                  "id": 18637,
+                  "streamType": 2,
+                  "selected": true,
+                  "codec": "ac3",
+                  "index": 1,
+                  "channels": 6,
+                  "bitrate": 384,
+                  "language": "English",
+                  "languageCode": "eng",
+                  "bitDepth": "16",
+                  "bitrateMode": "cbr",
+                  "codecID": "A_AC3",
+                  "dialogNorm": "-27",
+                  "duration": "1299592",
+                  "samplingRate": "48000",
+                  "title": ""
+                },
+                {
+                  "_elementType": "Stream",
+                  "id": 18638,
+                  "streamType": 3,
+                  "default": true,
+                  "codec": "srt",
+                  "index": 2,
+                  "language": "English",
+                  "languageCode": "eng",
+                  "codecID": "S_TEXT/UTF8",
+                  "format": "srt",
+                  "title": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "id": 1881,
+          "tag": "Laura McCreary"
+        },
+        {
+          "_elementType": "Writer",
+          "id": 2004,
+          "tag": "Tricia McAlpin"
+        },
+        {
+          "_elementType": "Director",
+          "id": 257,
+          "tag": "Tristram Shapeero"
+        }
+      ]
+    }
+  ]
+}

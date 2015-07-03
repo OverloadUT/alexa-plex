@@ -3,18 +3,25 @@ var dice = require('clj-fuzzy').metrics.dice;
 var alexa = require('alexa-app');
 var app = new alexa.app('plex');
 var plexAPI = require('plex-api');
+
+
+var plexOptions = {
+    product: process.env.APP_PRODUCT,
+    version: process.env.APP_VERSION,
+    device: process.env.APP_DEVICE,
+    deviceName: process.env.APP_DEVICE_NAME,
+    identifier: process.env.APP_IDENTIFIER
+}
 var plex = new plexAPI({
     hostname: process.env.PMS_HOSTNAME,
     username: process.env.PMS_USERNAME,
     port: process.env.PMS_PORT,
-    password: process.env.PMS_PASSWORD
+    password: process.env.PMS_PASSWORD,
+    options: plexOptions
 });
 
 // Connect the alexa-app to AWS Lambda
 exports.handler = app.lambda();
-
-// TODO remove for production - this is only exported for tests at the moment
-exports.plex = plex;
 
 // TODO there is no way to do any pre-logic in alexa-app to validate the appID.
 // Need to hack something in or wait for next release.
@@ -25,7 +32,7 @@ app.launch(function(request,response) {
 
 app.error = function(error, request, response) {
     console.log(error);
-    response.say("There was an error in the Plex App.");
+    response.say("There was an error in the Plex App: " + error);
     response.send();
 };
 
@@ -45,6 +52,9 @@ app.intent('OnDeckIntent', function(request,response) {
         response.say("On deck you've got " + showsPhraseHyphenized + '.');
         response.card('Plex', showsPhrase + '.', 'On Deck');
         response.send();
+    }).catch(function(err) {
+        response.say("Error on library onDeck request: " + err);
+        response.send();
     });
 
     return false; // This is how you tell alexa-app that this intent is async.
@@ -52,10 +62,11 @@ app.intent('OnDeckIntent', function(request,response) {
 
 app.intent('ShowInfoIntent', function(request,response) {
     plex.query('/library/metadata/4357').then(function(result) {
-        console.log(result);
-
-        response.say("Temp probably");
+        response.say(result._children[0].summary);
         response.card('Plex', '', 'ShowInfoIntent');
+        response.send();
+    }).catch(function(err) {
+        response.say("Error on library metadata request: " + err);
         response.send();
     });
 
@@ -63,17 +74,12 @@ app.intent('ShowInfoIntent', function(request,response) {
 });
 
 app.intent('StartShowIntent', function(request,response) {
-    // If a show and episode was specified: play it
-    // If a show was specified, check if there are any unwatched
-    //   If unwatched exists, play oldest one
-    //   If unwatched does not exist, play random one (ask to confirm?)
 
     var showName = request.slot('showName', null);
 
     if(showName) {
         // Get all TV shows
         plex.query('/library/sections/1/all').then(function(libraryResults) {
-            //console.log(shows);
 
             var show = findBestMatch(showName, libraryResults._children, function(show) {
                 return show.title
@@ -84,8 +90,8 @@ app.intent('StartShowIntent', function(request,response) {
                 if(show.viewedLeafCount >= show.leafCount) {
                     // We've seen them all, so pick a random one
                     episode = showResults._children[randomInt(0, showResults._children.length-1)];
-                    console.log(episode);
-                    playMedia(episode.key, process.env.PLEXCLIENT_NAME, function(err, success) {
+
+                    playMedia(episode.key, process.env.PLEXPLAYER_NAME, function(err, success) {
                         if(err || !success) {
                             response.say("Error: " + err);
                             response.send();
@@ -116,7 +122,7 @@ app.intent('StartShowIntent', function(request,response) {
                         response.send();
                     } else {
                         //console.log(episode);
-                        playMedia(episode.key, process.env.PLEXCLIENT_NAME, function(err, success) {
+                        playMedia(episode.key, process.env.PLEXPLAYER_NAME, function(err, success) {
                             if(err || !success) {
                                 response.say("Error: " + err);
                                 response.send();
@@ -141,7 +147,7 @@ app.intent('StartShowIntent', function(request,response) {
     }
 
 
-    //playMedia(4905, process.env.PLEXCLIENT_NAME, function(err, success) {
+    //playMedia(4905, process.env.PLEXPLAYER_NAME, function(err, success) {
     //    if(err) {
     //        response.say("There was an error trying to start your show");
     //        response.card('Plex', '', 'StartShowError');
@@ -177,11 +183,7 @@ function findBestMatch(phrase, items, mapfunc) {
     return items[bestmatch.index];
 }
 
-function getShow(showName) {
-
-}
-
-function playMedia(mediaKey, client, callback) {
+function playMedia(mediaKey, clientName, callback) {
     // We need the server machineIdentifier for the final playMedia request
     getMachineIdentifier(function(err, serverMachineIdentifier) {
         if(err) {
@@ -189,8 +191,8 @@ function playMedia(mediaKey, client, callback) {
         } else {
             // We need the client's address. Could skip this entire call if we already had it
             // TODO see about having the IP address already on hand
-            getClient('Aphrodite', function(err, client) {
-                clientIP = client.address;
+            getClient(clientName, function(err, client) {
+                var clientIP = client.address;
 
                 var keyURI = encodeURIComponent('/library/metadata/' + mediaKey);
                 // Yes, there is a double-nested URI encode here. Wacky Plex API!
@@ -198,27 +200,28 @@ function playMedia(mediaKey, client, callback) {
 
                 // To play something on a client, we need to add it to a new "Play Queue"
                 plex.postQuery('/playQueues?type=video&uri='+libraryURI+'&shuffle=0').then(function(result) {
-
                     var playQueueID = result.playQueueID;
                     var containerKeyURI=encodeURIComponent('/playQueues/' + playQueueID + '?own=1&window=200');
 
                     // Finally, the call to actually start playing the video
-                    plex.perform('/system/players/'+clientIP+'/playback/playMedia?key=' + keyURI + ' +' +
-                        '&offset=0'+
-                        '&machineIdentifier=' + serverMachineIdentifier+
+                    plex.perform('/system/players/'+clientIP+'/playback/playMedia' +
+                        '?key=' + keyURI +
+                        '&offset=0' +
+                        '&machineIdentifier=' + serverMachineIdentifier +
                         //'&address=' + process.env.PMS_HOSTNAME + // Address and port aren't needed. Leaving here in case that changes...
                         //'&port=' + process.env.PMS_PORT +
                         '&protocol=http'+
                         '&containerKey=' + containerKeyURI +
+                        '&token=transient-9f630d06-956e-410a-847c-ef81962578d4' +
                         '&commandID=1'+
                         ''
                     ).then(function() {
                         callback(null, true);
                     }).catch(function(error) {
-                        callback(new Error('Error executing the client playMedia request'));
+                        callback(new Error('Error executing the client playMedia request: ' + error));
                     });
                 }).catch(function(error) {
-                    callback(new Error('Error executing the playQueues POST request'));
+                    callback(new Error('Error executing the playQueues POST request: ' + error));
                 })
             });
         }
@@ -245,6 +248,7 @@ function getMachineIdentifier(callback) {
             process.env.PMS_IDENTIFIER = res.machineIdentifier;
             callback(null, process.env.PMS_IDENTIFIER);
         }).catch(function(error) {
+            console.log('error in getMachineIdentifier ' + error);
             callback(error);
         });
     } else {

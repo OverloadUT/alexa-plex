@@ -1,0 +1,614 @@
+{
+  "_elementType": "MediaContainer",
+  "allowSync": "1",
+  "art": "/:/resources/show-fanart.jpg",
+  "identifier": "com.plexapp.plugins.library",
+  "librarySectionID": "1",
+  "librarySectionTitle": "TV Shows",
+  "librarySectionUUID": "466bc145-a10e-4bd1-93fd-e6bebe14f30b",
+  "mediaTagPrefix": "/system/bundle/media/flags/",
+  "mediaTagVersion": "1434993722",
+  "nocache": "1",
+  "sortAsc": "1",
+  "thumb": "/:/resources/show.png",
+  "title1": "TV Shows",
+  "title2": "All Shows",
+  "viewGroup": "show",
+  "viewMode": "458810",
+  "_children": [
+    {
+      "_elementType": "Directory",
+      "ratingKey": 1,
+      "key": "/library/metadata/1/children",
+      "studio": "NBC",
+      "type": "show",
+      "title": "30 Rock",
+      "contentRating": "TV-14",
+      "summary": "Emmy Award Winner Tina Fey writes, executive produces and stars as Liz Lemon, the head writer of a live variety programme in New York City. Liz's life is turned upside down when brash new network executive Jack Donaghy (Alec Baldwin in his Golden Globe winning role) interferes with her show, bringing the wildly unpredictable Tracy Jordan (Tracy Morgan) into the cast. Now its up to Liz to manage the mayhem and still try to have a life.\n",
+      "index": 1,
+      "rating": "8.6",
+      "viewCount": 127,
+      "lastViewedAt": 1400650602,
+      "year": 2006,
+      "thumb": "/library/metadata/1/thumb/1358405185",
+      "art": "/library/metadata/1/art/1358405185",
+      "banner": "/library/metadata/1/banner/1358405185",
+      "theme": "/library/metadata/1/theme/1358405185",
+      "duration": 1200000,
+      "originallyAvailableAt": "2006-10-11",
+      "leafCount": 12,
+      "viewedLeafCount": 3,
+      "childCount": 1,
+      "addedAt": 1358402135,
+      "updatedAt": 1358405185,
+      "_children": [
+        {
+          "_elementType": "Genre",
+          "tag": "Comedy"
+        }
+      ],
+      "uri": "/library/metadata/1/children"
+    },
+    {
+      "_elementType": "Directory",
+      "ratingKey": 143,
+      "key": "/library/metadata/143/children",
+      "studio": "Cartoon Network",
+      "type": "show",
+      "title": "Adventure Time",
+      "contentRating": "TV-PG",
+      "summary": "Adventure Time (originally titled 'Adventure Time with Finn & Jake') follows two best friends: Finn (a 12-year old boy) and Jake (a wise 28-year-old dog with magical powers), and the surreal adventures undertaken by the duo as they traverse the mystical Land of Ooo. A world built for adventure, Ooo is filled to the brim with various landscapes for the two buddies to explore and bizarre characters to assist.",
+      "index": 1,
+      "rating": "9.6",
+      "viewCount": 732,
+      "lastViewedAt": 1434167710,
+      "year": 2010,
+      "thumb": "/library/metadata/143/thumb/1433548125",
+      "art": "/library/metadata/143/art/1433548125",
+      "banner": "/library/metadata/143/banner/1433548125",
+      "theme": "/library/metadata/143/theme/1433548125",
+      "duration": 900000,
+      "originallyAvailableAt": "2010-04-05",
+      "leafCount": 191,
+      "viewedLeafCount": 191,
+      "childCount": 7,
+      "addedAt": 1358402146,
+      "updatedAt": 1433548125,
+      "_children": [
+        {
+          "_elementType": "Genre",
+          "tag": "Adventure"
+        },
+        {
+          "_elementType": "Genre",
+          "tag": "Animation"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Jeremy Shada"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "John DiMaggio"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Hynden Walch"
+        }
+      ],
+      "uri": "/library/metadata/143/children"
+    },
+    {
+      "_elementType": "Directory",
+      "ratingKey": 3754,
+      "key": "/library/metadata/3754/children",
+      "studio": "FX",
+      "type": "show",
+      "title": "The Americans (2013)",
+      "titleSort": "Americans (2013)",
+      "contentRating": "TV-MA",
+      "summary": "The Americans is a period drama about the complex marriage of two KGB spies posing as Americans in suburban Washington D.C. shortly after Ronald Reagan is elected President. The arranged marriage of Philip and Elizabeth Jennings, who have two children - 13-year-old Paige and 10-year-old Henry, who know nothing about their parents' true identity - grows more passionate and genuine by the day, but is constantly tested by the escalation of the Cold War and the intimate, dangerous and darkly funny relationships they must maintain with a network of spies and informants under their control.",
+      "index": 1,
+      "rating": "8.6",
+      "viewCount": 58,
+      "lastViewedAt": 1430069773,
+      "year": 2013,
+      "thumb": "/library/metadata/3754/thumb/1429760751",
+      "art": "/library/metadata/3754/art/1429760751",
+      "banner": "/library/metadata/3754/banner/1429760751",
+      "duration": 2700000,
+      "originallyAvailableAt": "2013-01-30",
+      "leafCount": 39,
+      "viewedLeafCount": 39,
+      "childCount": 3,
+      "addedAt": 1402206307,
+      "updatedAt": 1429760751,
+      "_children": [
+        {
+          "_elementType": "Genre",
+          "tag": "Crime"
+        },
+        {
+          "_elementType": "Genre",
+          "tag": "Drama"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Matthew Rhys"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Keri Russell"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Annet Mahendru"
+        }
+      ],
+      "uri": "/library/metadata/3754/children"
+    },
+    {
+      "_elementType": "Directory",
+      "ratingKey": 259,
+      "key": "/library/metadata/259/children",
+      "studio": "FX",
+      "type": "show",
+      "title": "Archer (2009)",
+      "contentRating": "TV-MA",
+      "summary": "At ISIS, an international spy agency, global crises are merely opportunities for its highly trained employees to confuse, undermine, betray and royally screw each other. At the center of it all is suave master spy Sterling Archer, whose less-than-masculine code name is \"Duchess.\" Archer works with his domineering mother Malory, who is also his boss. Drama revolves around Archer's ex-girlfriend, Agent Lana Kane and her new boyfriend, ISIS comptroller Cyril Figgis, as well as Malory's lovesick secretary, Cheryl.",
+      "index": 1,
+      "rating": "9.2",
+      "viewCount": 124,
+      "lastViewedAt": 1428188517,
+      "year": 2009,
+      "thumb": "/library/metadata/259/thumb/1428030446",
+      "art": "/library/metadata/259/art/1428030446",
+      "banner": "/library/metadata/259/banner/1428030446",
+      "theme": "/library/metadata/259/theme/1428030446",
+      "duration": 1200000,
+      "originallyAvailableAt": "2009-09-17",
+      "leafCount": 75,
+      "viewedLeafCount": 75,
+      "childCount": 7,
+      "addedAt": 1358402161,
+      "updatedAt": 1428030446,
+      "_children": [
+        {
+          "_elementType": "Genre",
+          "tag": "Action"
+        },
+        {
+          "_elementType": "Genre",
+          "tag": "Adventure"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "H. Jon Benjamin"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Aisha Tyler"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Jessica Walter"
+        }
+      ],
+      "uri": "/library/metadata/259/children"
+    },
+    {
+      "_elementType": "Directory",
+      "ratingKey": 298,
+      "key": "/library/metadata/298/children",
+      "studio": "FOX",
+      "type": "show",
+      "title": "Arrested Development",
+      "contentRating": "TV-14",
+      "summary": "Level-headed son Michael Bluth takes over family affairs after his father is imprisoned. But the rest of his spoiled, dysfunctional family are making his job unbearable.",
+      "index": 1,
+      "rating": "9.5",
+      "viewCount": 53,
+      "lastViewedAt": 1358497755,
+      "year": 2003,
+      "thumb": "/library/metadata/298/thumb/1358405195",
+      "art": "/library/metadata/298/art/1358405195",
+      "banner": "/library/metadata/298/banner/1358405195",
+      "theme": "/library/metadata/298/theme/1358405195",
+      "duration": 1800000,
+      "originallyAvailableAt": "2003-11-01",
+      "leafCount": 53,
+      "viewedLeafCount": 53,
+      "childCount": 3,
+      "addedAt": 1358402166,
+      "updatedAt": 1358405195,
+      "_children": [
+        {
+          "_elementType": "Genre",
+          "tag": "Comedy"
+        }
+      ],
+      "uri": "/library/metadata/298/children"
+    },
+    {
+      "_elementType": "Directory",
+      "ratingKey": 355,
+      "key": "/library/metadata/355/children",
+      "studio": "Nickelodeon",
+      "type": "show",
+      "title": "Avatar: The Last Airbender",
+      "contentRating": "TV-Y7",
+      "summary": "In a world where the four elements can be controlled by people known as Benders, Fire Nation is waging a war to control other nations. The only hope for stopping the brutal war led by them rests on the shoulders of a reluctant young boy named Aang. The last known survivor of the peaceful Air Nomads and the Airbenders, Aang is The Avatar, Bender of all elements. Aided by a Waterbender named Katara and her brother Sokka, Aang begins a perilous journey to restore balance to their war-torn world.",
+      "index": 1,
+      "rating": "9.0",
+      "viewCount": 8,
+      "lastViewedAt": 1428192193,
+      "year": 2005,
+      "thumb": "/library/metadata/355/thumb/1430965952",
+      "art": "/library/metadata/355/art/1430965952",
+      "banner": "/library/metadata/355/banner/1430965952",
+      "theme": "/library/metadata/355/theme/1430965952",
+      "duration": 1800000,
+      "originallyAvailableAt": "2005-02-21",
+      "leafCount": 61,
+      "viewedLeafCount": 6,
+      "childCount": 1,
+      "addedAt": 1358402170,
+      "updatedAt": 1430965952,
+      "_children": [
+        {
+          "_elementType": "Genre",
+          "tag": "Action"
+        },
+        {
+          "_elementType": "Genre",
+          "tag": "Adventure"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Zach Tyler Eisen"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Mae Whitman"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Jack DeSena"
+        }
+      ],
+      "uri": "/library/metadata/355/children"
+    },
+    {
+      "_elementType": "Directory",
+      "ratingKey": 4245,
+      "key": "/library/metadata/4245/children",
+      "studio": "AMC",
+      "type": "show",
+      "title": "Better Call Saul",
+      "contentRating": "TV-14",
+      "summary": "We meet him when the man who will become Saul Goodman is known as Jimmy McGill, a small-time lawyer searching for his destiny and, more immediately, hustling to make ends meet. Working alongside, and, often, against Jimmy, is ‘fixer’ Mike Erhmantraut. The series tracks Jimmy's transformation into the man who puts ‘criminal’ in ‘criminal lawyer’.",
+      "index": 1,
+      "rating": "8.6",
+      "viewCount": 13,
+      "lastViewedAt": 1428460368,
+      "year": 2015,
+      "thumb": "/library/metadata/4245/thumb/1428377679",
+      "art": "/library/metadata/4245/art/1428377679",
+      "banner": "/library/metadata/4245/banner/1428377679",
+      "duration": 2700000,
+      "originallyAvailableAt": "2015-02-08",
+      "leafCount": 10,
+      "viewedLeafCount": 10,
+      "childCount": 1,
+      "addedAt": 1423545466,
+      "updatedAt": 1428377679,
+      "_children": [
+        {
+          "_elementType": "Genre",
+          "tag": "Comedy"
+        },
+        {
+          "_elementType": "Genre",
+          "tag": "Crime"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Bob Odenkirk"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Jonathan Banks"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Michael McKean"
+        }
+      ],
+      "uri": "/library/metadata/4245/children"
+    },
+    {
+      "_elementType": "Directory",
+      "ratingKey": 4032,
+      "key": "/library/metadata/4032/children",
+      "studio": "Channel 4",
+      "type": "show",
+      "title": "Black Mirror",
+      "contentRating": "TV-14",
+      "summary": "Over the last ten years, technology has transformed almost every aspect of our lives before we've had time to stop and question it. In every home; on every desk; in every palm - a plasma screen; a monitor; a smartphone - a black mirror of our 21st Century existence.\nBlack Mirror is a contemporary British re-working of The Twilight Zone with stories that tap into the collective unease about our modern world.",
+      "index": 1,
+      "rating": "8.4",
+      "viewCount": 15,
+      "lastViewedAt": 1421025301,
+      "year": 2011,
+      "thumb": "/library/metadata/4032/thumb/1420600674",
+      "art": "/library/metadata/4032/art/1420600674",
+      "banner": "/library/metadata/4032/banner/1420600674",
+      "duration": 3600000,
+      "originallyAvailableAt": "2011-12-04",
+      "leafCount": 7,
+      "viewedLeafCount": 7,
+      "childCount": 3,
+      "addedAt": 1419747893,
+      "updatedAt": 1420600674,
+      "_children": [
+        {
+          "_elementType": "Genre",
+          "tag": "Drama"
+        },
+        {
+          "_elementType": "Genre",
+          "tag": "Science-Fiction"
+        }
+      ],
+      "uri": "/library/metadata/4032/children"
+    },
+    {
+      "_elementType": "Directory",
+      "ratingKey": 392,
+      "key": "/library/metadata/392/children",
+      "studio": "HBO",
+      "type": "show",
+      "title": "Boardwalk Empire",
+      "contentRating": "TV-MA",
+      "summary": "Boardwalk Empire is a period drama focusing on Enoch \"Nucky\" Thompson (based on the historical Enoch L. Johnson), a political figure who rose to prominence and controlled Atlantic City, New Jersey, during the Prohibition period of the 1920s and 1930s. Nucky interacts with several historical figures in both his personal and political life, including mobsters, politicians, government agents, and the common folk who look up to him. The federal government also takes an interest in the bootlegging and other illegal activities in the area, sending agents to investigate possible mob connections but also looking at Nucky's lifestyle—expensive and lavish for a county political figure.",
+      "index": 1,
+      "rating": "9.1",
+      "viewCount": 12,
+      "lastViewedAt": 1358573922,
+      "year": 2010,
+      "thumb": "/library/metadata/392/thumb/1384315080",
+      "art": "/library/metadata/392/art/1384315080",
+      "banner": "/library/metadata/392/banner/1384315080",
+      "theme": "/library/metadata/392/theme/1384315080",
+      "duration": 3600000,
+      "originallyAvailableAt": "2010-09-19",
+      "leafCount": 24,
+      "viewedLeafCount": 0,
+      "childCount": 2,
+      "addedAt": 1358402176,
+      "updatedAt": 1384315080,
+      "_children": [
+        {
+          "_elementType": "Genre",
+          "tag": "Crime"
+        },
+        {
+          "_elementType": "Genre",
+          "tag": "Drama"
+        }
+      ],
+      "uri": "/library/metadata/392/children"
+    },
+    {
+      "_elementType": "Directory",
+      "ratingKey": 419,
+      "key": "/library/metadata/419/children",
+      "studio": "Starz!",
+      "type": "show",
+      "title": "Boss (2011)",
+      "contentRating": "TV-MA",
+      "summary": "Ruthless politician Mayor Tom Kane (Kelsey Grammer) sits like a spider at the center of Chicago's web of power. But underneath it all, Kane hides a crushing secret. His trusted advisors Kitty O'Neill (Kathleen Robertson) and Ezra Stone (Martin Donovan) know better than to ask questions. Kane's wife Meredith (Connie Nielson) knows nothing. Only Emma (Hannah Ware), Kane's estranged daughter, has a chance of uncovering the truth. This is going to be the toughest term yet for the Boss.",
+      "index": 1,
+      "rating": "8.7",
+      "viewCount": 2,
+      "lastViewedAt": 1359183385,
+      "year": 2011,
+      "thumb": "/library/metadata/419/thumb/1359183364",
+      "art": "/library/metadata/419/art/1359183364",
+      "banner": "/library/metadata/419/banner/1359183364",
+      "duration": 3600000,
+      "originallyAvailableAt": "2011-10-21",
+      "leafCount": 8,
+      "viewedLeafCount": 2,
+      "childCount": 1,
+      "addedAt": 1358402182,
+      "updatedAt": 1359183364,
+      "_children": [
+        {
+          "_elementType": "Genre",
+          "tag": "Drama"
+        }
+      ],
+      "uri": "/library/metadata/419/children"
+    },
+    {
+      "_elementType": "Directory",
+      "ratingKey": 429,
+      "key": "/library/metadata/429/children",
+      "studio": "AMC",
+      "type": "show",
+      "title": "Breaking Bad",
+      "contentRating": "TV-MA",
+      "summary": "Walter White, a struggling high school chemistry teacher, is diagnosed with advanced lung cancer. He turns to a life of crime, producing and selling methamphetamine accompanied by a former student, Jesse Pinkman, with the aim of securing his family's financial future before he dies.",
+      "index": 1,
+      "rating": "9.3",
+      "viewCount": 62,
+      "lastViewedAt": 1380521304,
+      "year": 2008,
+      "thumb": "/library/metadata/429/thumb/1418884136",
+      "art": "/library/metadata/429/art/1418884136",
+      "banner": "/library/metadata/429/banner/1418884136",
+      "theme": "/library/metadata/429/theme/1418884136",
+      "duration": 3600000,
+      "originallyAvailableAt": "2008-01-20",
+      "leafCount": 62,
+      "viewedLeafCount": 62,
+      "childCount": 5,
+      "addedAt": 1358402184,
+      "updatedAt": 1418884136,
+      "_children": [
+        {
+          "_elementType": "Genre",
+          "tag": "Crime"
+        },
+        {
+          "_elementType": "Genre",
+          "tag": "Drama"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Bryan Cranston"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Aaron Paul"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Dean Norris"
+        }
+      ],
+      "uri": "/library/metadata/429/children"
+    },
+    {
+      "_elementType": "Directory",
+      "ratingKey": 4101,
+      "key": "/library/metadata/4101/children",
+      "studio": "FOX (US)",
+      "type": "show",
+      "title": "Brooklyn Nine-Nine",
+      "contentRating": "TV-14",
+      "summary": "A single-camera ensemble comedy following the lives of an eclectic group of detectives in a New York precinct, including one slacker who is forced to shape up when he gets a new boss.",
+      "index": 1,
+      "rating": "8.4",
+      "viewCount": 59,
+      "lastViewedAt": 1435728587,
+      "year": 2013,
+      "thumb": "/library/metadata/4101/thumb/1431913896",
+      "art": "/library/metadata/4101/art/1431913896",
+      "banner": "/library/metadata/4101/banner/1431913896",
+      "duration": 1800000,
+      "originallyAvailableAt": "2013-09-17",
+      "leafCount": 44,
+      "viewedLeafCount": 34,
+      "childCount": 2,
+      "addedAt": 1421542055,
+      "updatedAt": 1431913896,
+      "_children": [
+        {
+          "_elementType": "Genre",
+          "tag": "Comedy"
+        },
+        {
+          "_elementType": "Genre",
+          "tag": "Crime"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Andre Braugher"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Andy Samberg"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Terry Crews"
+        }
+      ],
+      "uri": "/library/metadata/4101/children"
+    },
+    {
+      "_elementType": "Directory",
+      "ratingKey": 489,
+      "key": "/library/metadata/489/children",
+      "studio": "HBO",
+      "type": "show",
+      "title": "Carnivàle",
+      "contentRating": "TV-MA",
+      "summary": "Set in the 1930s Dust Bowl, 18-year old Ben Hawkins finds himself all alone in this world when his mother passes on. But a travelling Carnivàle takes him in. We also see the story of Brother Justin, a priest who is trying to find his way in the world. Little do Ben and Justin know, but they are to fight in a biblical battle. With help on the side (Ben with the carnie folk (Sofie, Libby, Apollonia, Ruthie, Samson, Lila, Lodz, Management) and Justin with his sister, Iris) they find out which side each are on and try to battle with the other for what they believe.",
+      "index": 1,
+      "rating": "8.7",
+      "viewCount": 24,
+      "lastViewedAt": 1358497781,
+      "year": 2003,
+      "thumb": "/library/metadata/489/thumb/1358405302",
+      "art": "/library/metadata/489/art/1358405302",
+      "banner": "/library/metadata/489/banner/1358405302",
+      "theme": "/library/metadata/489/theme/1358405302",
+      "duration": 3600000,
+      "originallyAvailableAt": "2003-09-14",
+      "leafCount": 24,
+      "viewedLeafCount": 24,
+      "childCount": 2,
+      "addedAt": 1358402190,
+      "updatedAt": 1358405302,
+      "_children": [
+        {
+          "_elementType": "Genre",
+          "tag": "Drama"
+        },
+        {
+          "_elementType": "Genre",
+          "tag": "Fantasy"
+        }
+      ],
+      "uri": "/library/metadata/489/children"
+    },
+    {
+      "_elementType": "Directory",
+      "ratingKey": 528,
+      "key": "/library/metadata/528/children",
+      "studio": "Yahoo! Screen",
+      "type": "show",
+      "title": "Community",
+      "contentRating": "TV-PG",
+      "summary": "From Emmy Award-winner Dan Harmon comes \"Community\", a smart comedy series about higher education – and lower expectations. The student body at Greendale Community College is made up of high-school losers, newly divorced housewives, and old people who want to keep their minds active. Within these not-so-hallowed halls, Community focuses on a band of misfits, at the center of which is a fast-talking lawyer whose degree was found to be fake, who form a study group and end up learning a lot more about themselves than they do about their course work.",
+      "index": 1,
+      "rating": "8.8",
+      "viewCount": 99,
+      "lastViewedAt": 1426902909,
+      "year": 2009,
+      "thumb": "/library/metadata/528/thumb/1433259967",
+      "art": "/library/metadata/528/art/1433259967",
+      "banner": "/library/metadata/528/banner/1433259967",
+      "theme": "/library/metadata/528/theme/1433259967",
+      "duration": 1800000,
+      "originallyAvailableAt": "2009-09-17",
+      "leafCount": 110,
+      "viewedLeafCount": 97,
+      "childCount": 6,
+      "addedAt": 1358402195,
+      "updatedAt": 1433259967,
+      "_children": [
+        {
+          "_elementType": "Genre",
+          "tag": "Comedy"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Joel McHale"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Gillian Jacobs"
+        },
+        {
+          "_elementType": "Role",
+          "tag": "Danny Pudi"
+        }
+      ],
+      "uri": "/library/metadata/528/children"
+    }
+  ]
+}

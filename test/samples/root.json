@@ -1,0 +1,134 @@
+{
+  "_elementType": "MediaContainer",
+  "allowCameraUpload": "1",
+  "allowChannelAccess": "1",
+  "allowSync": "1",
+  "certificate": "1",
+  "friendlyName": "MOCHATEST_SERVERNAME",
+  "machineIdentifier": "MOCHATEST_SERVER_MACHINE_IDENTIFIER",
+  "multiuser": "1",
+  "myPlex": "1",
+  "myPlexMappingState": "mapped",
+  "myPlexSigninState": "ok",
+  "myPlexSubscription": "1",
+  "myPlexUsername": "MOCHATESTUSERNAME@null.com",
+  "platform": "Windows",
+  "platformVersion": "6.3 (Build 9600)",
+  "requestParametersInCookie": "1",
+  "sync": "1",
+  "transcoderActiveVideoSessions": "0",
+  "transcoderAudio": "1",
+  "transcoderVideo": "1",
+  "transcoderVideoBitrates": "64,96,208,320,720,1500,2000,3000,4000,8000,10000,12000,20000",
+  "transcoderVideoQualities": "0,1,2,3,4,5,6,7,8,9,10,11,12",
+  "transcoderVideoResolutions": "128,128,160,240,320,480,768,720,720,1080,1080,1080,1080",
+  "updatedAt": "1435879003",
+  "version": "0.9.12.4.1192-9a47d21",
+  "_children": [
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "butler",
+      "title": "butler",
+      "uri": "/butler"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "channels",
+      "title": "channels",
+      "uri": "/channels"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "clients",
+      "title": "clients",
+      "uri": "/clients"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "hubs",
+      "title": "hubs",
+      "uri": "/hubs"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "library",
+      "title": "library",
+      "uri": "/library"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "music",
+      "title": "music",
+      "uri": "/music"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "playQueues",
+      "title": "playQueues",
+      "uri": "/playQueues"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "player",
+      "title": "player",
+      "uri": "/player"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "playlists",
+      "title": "playlists",
+      "uri": "/playlists"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "search",
+      "title": "search",
+      "uri": "/search"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "servers",
+      "title": "servers",
+      "uri": "/servers"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "system",
+      "title": "system",
+      "uri": "/system"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "transcode",
+      "title": "transcode",
+      "uri": "/transcode"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "1",
+      "key": "updater",
+      "title": "updater",
+      "uri": "/updater"
+    },
+    {
+      "_elementType": "Directory",
+      "count": "8",
+      "key": "video",
+      "title": "video",
+      "uri": "/video"
+    }
+  ]
+}

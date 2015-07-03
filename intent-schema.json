@@ -3,6 +3,15 @@
     {
       "intent": "OnDeckIntent",
       "slots": []
+    },
+    {
+      "intent": "StartShowIntent",
+      "slots": [
+        {
+          "name": "showName",
+          "type": "LITERAL"
+        }
+      ]
     }
   ]
 }

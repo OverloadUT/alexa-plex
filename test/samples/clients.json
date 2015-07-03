@@ -1,0 +1,17 @@
+[
+  {
+    "_elementType": "Server",
+    "name": "MochaTestClient",
+    "host": "192.168.0.2",
+    "address": "192.168.0.2",
+    "port": 3005,
+    "machineIdentifier": "MOCHATEST_PLAYER_MACHINE_IDENTIFIER",
+    "version": "1.4.1.469-47a90f01",
+    "protocol": "plex",
+    "product": "Plex Home Theater",
+    "deviceClass": "HTPC",
+    "protocolVersion": "1",
+    "protocolCapabilities": "navigation,playback,timeline,mirror,playqueues",
+    "uri": "/system/players/192.168.0.2"
+  }
+]

@@ -27,6 +27,8 @@
     "istanbul": "^0.3.17",
     "mocha": "^2.2.5",
     "npm": "^2.12.0",
+    "proxyquire": "^1.5.0",
+    "q": "^1.4.1",
     "sinon": "^1.15.4",
     "sinon-as-promised": "^4.0.0",
     "sinon-chai": "^2.8.0"
@@ -35,6 +37,6 @@
     "alexa-app": "^2.0.0",
     "clj-fuzzy": "^0.2.1",
     "dotenv": "^1.2.0",
-    "plex-api": "OverloadUT/node-plex-api"
+    "plex-api": "OverloadUT/node-plex-api#develop"
   }
 }
