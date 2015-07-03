@@ -37,6 +37,6 @@
     "alexa-app": "^2.0.0",
     "clj-fuzzy": "^0.2.1",
     "dotenv": "^1.2.0",
-    "plex-api": "OverloadUT/node-plex-api#develop"
+    "plex-api": "OverloadUT/node-plex-api#master-backup"
   }
 }
