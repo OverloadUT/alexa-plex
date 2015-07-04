@@ -1,0 +1,1071 @@
+{
+  "_elementType": "MediaContainer",
+  "allowSync": "1",
+  "art": "/library/metadata/4075/art/1435550492",
+  "banner": "/library/metadata/4075/banner/1435550492",
+  "identifier": "com.plexapp.plugins.library",
+  "key": "4075",
+  "librarySectionID": "1",
+  "librarySectionTitle": "TV Shows",
+  "librarySectionUUID": "466bc145-a10e-4bd1-93fd-e6bebe14f30b",
+  "mediaTagPrefix": "/system/bundle/media/flags/",
+  "mediaTagVersion": "1434993722",
+  "mixedParents": "1",
+  "nocache": "1",
+  "parentIndex": "1",
+  "parentTitle": "Penny Dreadful",
+  "parentYear": "2014",
+  "sortAsc": "1",
+  "title1": "TV Shows",
+  "title2": "Penny Dreadful",
+  "viewGroup": "episode",
+  "viewMode": "458810",
+  "_children": [
+    {
+      "_elementType": "Video",
+      "ratingKey": 4077,
+      "key": "/library/metadata/4077",
+      "parentRatingKey": 4076,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "Night Work",
+      "parentKey": "/library/metadata/4076",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "London 1891. As the police investigate a series of gruesome murders, renowned explorer Sir Malcolm Murray and the strangely beautiful Vanessa Ives know there's something darker at play. In search of someone close to them who has been lost, they recruit American sharp-shooter Ethan Chandler and Dr. Victor Frankenstein to help them on their journey.",
+      "index": 1,
+      "parentIndex": 1,
+      "rating": "7.8",
+      "viewCount": 2,
+      "lastViewedAt": 1421308845,
+      "year": 2014,
+      "thumb": "/library/metadata/4077/thumb/1435550491",
+      "parentThumb": "/library/metadata/4076/thumb/1435550492",
+      "duration": 3181184,
+      "originallyAvailableAt": "2014-05-11",
+      "addedAt": 1421300837,
+      "updatedAt": 1435550491,
+      "chapterSource": "media",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 3586,
+          "duration": 3181184,
+          "bitrate": 5891,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "3630",
+              "key": "/library/parts/3630/file.mkv",
+              "duration": 3181184,
+              "file": "C:\\Media\\Penny Dreadful s01e01.mkv",
+              "size": 2342643118,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Juan Antonio Bayona"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4078,
+      "key": "/library/metadata/4078",
+      "parentRatingKey": 4076,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "Séance",
+      "parentKey": "/library/metadata/4076",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "In pursuit of answers, Vanessa and Sir Malcolm attend a party at Egyptologist Sir Ferdinand Lyle's home where they encounter the mysteriously beautiful Dorian Gray. The party takes a turn, however, when renowned medium Madame Kali hosts a séance. Meanwhile, Ethan befriends Ms. Brona Croft, a young Irish immigrant",
+      "index": 2,
+      "parentIndex": 1,
+      "rating": "7.6",
+      "viewCount": 2,
+      "lastViewedAt": 1421448522,
+      "year": 2014,
+      "thumb": "/library/metadata/4078/thumb/1435550491",
+      "parentThumb": "/library/metadata/4076/thumb/1435550492",
+      "duration": 3335377,
+      "originallyAvailableAt": "2014-05-18",
+      "addedAt": 1421300837,
+      "updatedAt": 1435550491,
+      "chapterSource": "media",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 3587,
+          "duration": 3335377,
+          "bitrate": 5619,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "3631",
+              "key": "/library/parts/3631/file.mkv",
+              "duration": 3335377,
+              "file": "C:\\Media\\Penny Dreadful s01e02.mkv",
+              "size": 2342655917,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Juan Antonio Bayona"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4079,
+      "key": "/library/metadata/4079",
+      "parentRatingKey": 4076,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "Resurrection",
+      "parentKey": "/library/metadata/4076",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "Dr. Frankenstein is confronted by the consequences of his past. Vanessa has a vision of Mina, which leads her, Sir Malcolm, Ethan and Sembene to a strange discovery at the London Zoo.",
+      "index": 3,
+      "parentIndex": 1,
+      "rating": "7.6",
+      "viewCount": 1,
+      "viewOffset": 379418,
+      "lastViewedAt": 1435823276,
+      "year": 2014,
+      "thumb": "/library/metadata/4079/thumb/1435550491",
+      "parentThumb": "/library/metadata/4076/thumb/1435550492",
+      "duration": 2869888,
+      "originallyAvailableAt": "2014-05-25",
+      "addedAt": 1421300837,
+      "updatedAt": 1435550491,
+      "chapterSource": "media",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 3588,
+          "duration": 2869888,
+          "bitrate": 6530,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "3632",
+              "key": "/library/parts/3632/file.mkv",
+              "duration": 2869888,
+              "file": "C:\\Media\\Penny Dreadful s01e03.mkv",
+              "size": 2342662994,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Dearbhla Walsh"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4080,
+      "key": "/library/metadata/4080",
+      "parentRatingKey": 4076,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "Demimonde",
+      "parentKey": "/library/metadata/4076",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "Vanessa's infatuation with Dorian Gray continues to grow. Professor Abraham Van Helsing is hired to work with Dr. Frankenstein. And Fenton draws his master to Sir Malcolm's mansion.",
+      "index": 4,
+      "parentIndex": 1,
+      "rating": "7.6",
+      "viewCount": 1,
+      "year": 2014,
+      "thumb": "/library/metadata/4080/thumb/1435550491",
+      "parentThumb": "/library/metadata/4076/thumb/1435550492",
+      "duration": 3567584,
+      "originallyAvailableAt": "2014-06-01",
+      "addedAt": 1421300837,
+      "updatedAt": 1435550491,
+      "chapterSource": "media",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 3589,
+          "duration": 3567584,
+          "bitrate": 5253,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "3633",
+              "key": "/library/parts/3633/file.mkv",
+              "duration": 3567584,
+              "file": "C:\\Media\\Penny Dreadful s01e04.mkv",
+              "size": 2342351531,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Dearbhla Walsh"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4081,
+      "key": "/library/metadata/4081",
+      "parentRatingKey": 4076,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "Closer Than Sisters",
+      "parentKey": "/library/metadata/4076",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "Vanessa recalls her past and the events that ultimately lead to Mina's disappearance.",
+      "index": 5,
+      "parentIndex": 1,
+      "rating": "7.7",
+      "viewCount": 1,
+      "year": 2014,
+      "thumb": "/library/metadata/4081/thumb/1435550491",
+      "parentThumb": "/library/metadata/4076/thumb/1435550492",
+      "duration": 3300320,
+      "originallyAvailableAt": "2014-06-08",
+      "addedAt": 1421300837,
+      "updatedAt": 1435550491,
+      "chapterSource": "media",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 3590,
+          "duration": 3300320,
+          "bitrate": 5678,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "3634",
+              "key": "/library/parts/3634/file.mkv",
+              "duration": 3300320,
+              "file": "C:\\Media\\Penny Dreadful s01e05.mkv",
+              "size": 2342534393,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Coky Giedroyc"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4082,
+      "key": "/library/metadata/4082",
+      "parentRatingKey": 4076,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "What Death Can Join Together",
+      "parentKey": "/library/metadata/4076",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "Vanessa's latest vision leads Sir Malcolm, Ethan and Sembene to explore a plague ship in search of Mina. Meanwhile, Van Helsing reveals to Dr. Frankenstein more details about the creature that has taken Mina. Later, Vanessa's night with Dorian unlocks something dark within her. ",
+      "index": 6,
+      "parentIndex": 1,
+      "rating": "7.6",
+      "viewCount": 1,
+      "year": 2014,
+      "thumb": "/library/metadata/4082/thumb/1435550491",
+      "parentThumb": "/library/metadata/4076/thumb/1435550492",
+      "duration": 3023040,
+      "originallyAvailableAt": "2014-06-15",
+      "addedAt": 1421300837,
+      "updatedAt": 1435550491,
+      "chapterSource": "media",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 3591,
+          "duration": 3023040,
+          "bitrate": 6200,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "3635",
+              "key": "/library/parts/3635/file.mkv",
+              "duration": 3023040,
+              "file": "C:\\Media\\Penny Dreadful s01e06.mkv",
+              "size": 2342776157,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Coky Giedroyc"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4083,
+      "key": "/library/metadata/4083",
+      "parentRatingKey": 4076,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "Possession",
+      "parentKey": "/library/metadata/4076",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "Sir Malcolm, Ethan and Sembene must deal with the aftermath of Vanessa's night of passion with Dorian, when she is possessed by the demon that haunts them... and who has ties to the Master who controls Mina.",
+      "index": 7,
+      "parentIndex": 1,
+      "rating": "7.9",
+      "viewCount": 1,
+      "year": 2014,
+      "thumb": "/library/metadata/4083/thumb/1435550492",
+      "parentThumb": "/library/metadata/4076/thumb/1435550492",
+      "duration": 3549568,
+      "originallyAvailableAt": "2014-06-22",
+      "addedAt": 1421300837,
+      "updatedAt": 1435550492,
+      "chapterSource": "media",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 3592,
+          "duration": 3549568,
+          "bitrate": 5279,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "3636",
+              "key": "/library/parts/3636/file.mkv",
+              "duration": 3549568,
+              "file": "C:\\Media\\Penny Dreadful s01e07.mkv",
+              "size": 2342406743,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "James Hawes"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4084,
+      "key": "/library/metadata/4084",
+      "parentRatingKey": 4076,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "Grand Guignol",
+      "parentKey": "/library/metadata/4076",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "After a vision of the Grand Guignol, Vanessa, Sir Malcolm, Ethan, Dr. Frankenstein and Sembene explore an empty theater - only to be confronted by their worst nightmares.",
+      "index": 8,
+      "parentIndex": 1,
+      "rating": "7.9",
+      "viewCount": 1,
+      "year": 2014,
+      "thumb": "/library/metadata/4084/thumb/1435550492",
+      "parentThumb": "/library/metadata/4076/thumb/1435550492",
+      "duration": 3379392,
+      "originallyAvailableAt": "2014-06-29",
+      "addedAt": 1421300837,
+      "updatedAt": 1435550492,
+      "chapterSource": "media",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 3593,
+          "duration": 3379392,
+          "bitrate": 5545,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "3637",
+              "key": "/library/parts/3637/file.mkv",
+              "duration": 3379392,
+              "file": "C:\\Media\\Penny Dreadful s01e08.mkv",
+              "size": 2342369359,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "James Hawes"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4663,
+      "key": "/library/metadata/4663",
+      "parentRatingKey": 4662,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "Fresh Hell",
+      "parentKey": "/library/metadata/4662",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "Vanessa Ives is barraged by an onslaught of disturbing occult images brought on by the mysterious Evelyn Poole. Because of the massacre he committed in the Mariner’s Inn, Ethan Chandler decides to leave London. Under pressure from The Creature, Dr. Frankenstein works to bring Brona back to life. After Mina’s funeral, Sir Malcolm returns to London to discover that a whole new evil is hunting Vanessa.",
+      "index": 1,
+      "parentIndex": 2,
+      "rating": "8.3",
+      "viewCount": 1,
+      "year": 2015,
+      "thumb": "/library/metadata/4663/thumb/1435550492",
+      "parentThumb": "/library/metadata/4662/thumb/1435550492",
+      "duration": 3289000,
+      "originallyAvailableAt": "2015-05-03",
+      "addedAt": 1429494261,
+      "updatedAt": 1435550492,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 3989,
+          "duration": 3289000,
+          "bitrate": 2768,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4048",
+              "key": "/library/parts/4048/file.mkv",
+              "duration": 3289000,
+              "file": "C:\\Media\\Penny Dreadful s02e01.mkv",
+              "size": 1138437941,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "James Hawes"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4811,
+      "key": "/library/metadata/4811",
+      "parentRatingKey": 4662,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "Verbis Diablo",
+      "parentKey": "/library/metadata/4662",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "Haunted by the witches, Vanessa seeks solace from Sir Malcolm. Scotland Yard Inspector Rusk searches for the sole survivor of the Mariner’s Inn Massacre. Evelyn Poole enchants Sir Malcolm. Dr. Frankenstein gives the re-born Brona a new identity. The Creature gets a new job. Dorian Gray meets an intriguing woman with a secret. Ferdinand Lyle reveals the disturbing backstory of the Verbis Diablo. Evelyn’s daughter, Hecate, hunts down a prize for her mother.",
+      "index": 2,
+      "parentIndex": 2,
+      "rating": "7.9",
+      "viewCount": 1,
+      "year": 2015,
+      "thumb": "/library/metadata/4811/thumb/1435550492",
+      "parentThumb": "/library/metadata/4662/thumb/1435550492",
+      "duration": 3174400,
+      "originallyAvailableAt": "2015-05-10",
+      "addedAt": 1431284561,
+      "updatedAt": 1435550492,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 4108,
+          "duration": 3174400,
+          "bitrate": 2431,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4168",
+              "key": "/library/parts/4168/file.mkv",
+              "duration": 3174400,
+              "file": "C:\\Media\\Penny Dreadful s02e02.mkv",
+              "size": 964811657,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "James Hawes"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4823,
+      "key": "/library/metadata/4823",
+      "parentRatingKey": 4662,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "The Nightcomers",
+      "titleSort": "Nightcomers",
+      "parentKey": "/library/metadata/4662",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "In a flashback, Vanessa meets The Cut-Wife, who teaches her how to harness her powers. Isolated at her lonely cottage on the moors, The Cut-Wife quickly realizes the extent of Vanessa’s powers and warns her of the danger that lies ahead and the evil that pursues her.",
+      "index": 3,
+      "parentIndex": 2,
+      "rating": "8.0",
+      "viewCount": 1,
+      "year": 2015,
+      "thumb": "/library/metadata/4823/thumb/1435550492",
+      "parentThumb": "/library/metadata/4662/thumb/1435550492",
+      "duration": 3494953,
+      "originallyAvailableAt": "2015-05-17",
+      "addedAt": 1431921186,
+      "updatedAt": 1435550492,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 4118,
+          "duration": 3494953,
+          "bitrate": 2555,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4178",
+              "key": "/library/parts/4178/file.mkv",
+              "duration": 3494953,
+              "file": "C:\\Media\\Penny Dreadful s02e03.mkv",
+              "size": 1116220920,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4834,
+      "key": "/library/metadata/4834",
+      "parentRatingKey": 4662,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "Evil Spirits in Heavenly Places",
+      "parentKey": "/library/metadata/4662",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "Lyle reveals that the Verbis Diablo relics tell a very dark and disturbing story that affects Vanessa; Rusk interviews the survivor of the attack at the Mariner's Inn; Hecate tries to get closer to Ethan; Angelique and Dorian's romance grows. Back at Sir Malcolm's mansion, Vanessa, Ethan, Sir Malcolm, Sembene and Lyle carry on their evening as something evil lurks within, ready to strike.",
+      "index": 4,
+      "parentIndex": 2,
+      "rating": "7.7",
+      "viewCount": 1,
+      "year": 2015,
+      "thumb": "/library/metadata/4834/thumb/1435550492",
+      "parentThumb": "/library/metadata/4662/thumb/1435550492",
+      "duration": 3055808,
+      "originallyAvailableAt": "2015-05-24",
+      "addedAt": 1432526081,
+      "updatedAt": 1435550492,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 4127,
+          "duration": 3055808,
+          "bitrate": 2367,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4187",
+              "key": "/library/parts/4187/file.mkv",
+              "duration": 3055808,
+              "file": "C:\\Media\\Penny Dreadful s02e04.mkv",
+              "size": 904121316,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Damon Thomas"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4840,
+      "key": "/library/metadata/4840",
+      "parentRatingKey": 4662,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "Above the Vaulted Sky",
+      "parentKey": "/library/metadata/4662",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "Hecate returns to her mother with a gift; Evelyn works on a new totem; the mansion is attacked; the Creature grows impatient with Frankenstein; Rusk interrogates Ethan; Vanessa and the Creature's friendship deepens; Angelique is humiliated while out with Dorian.",
+      "index": 5,
+      "parentIndex": 2,
+      "rating": "7.0",
+      "viewCount": 1,
+      "year": 2015,
+      "thumb": "/library/metadata/4840/thumb/1435550492",
+      "parentThumb": "/library/metadata/4662/thumb/1435550492",
+      "duration": 3365000,
+      "originallyAvailableAt": "2015-05-31",
+      "addedAt": 1433131198,
+      "updatedAt": 1435550492,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 4133,
+          "duration": 3365000,
+          "bitrate": 2382,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4193",
+              "key": "/library/parts/4193/file.mkv",
+              "duration": 3365000,
+              "file": "C:\\Media\\Penny Dreadful s02e05.mkv",
+              "size": 1001988614,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Damon Thomas"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4873,
+      "key": "/library/metadata/4873",
+      "parentRatingKey": 4662,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "Glorious Horrors",
+      "parentKey": "/library/metadata/4662",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "Vanessa and Ethan give Sir Malcolm tragic news; Lavinia Putney is disturbed by an encounter with the Creature; Roper hunts down Ethan; Dorian hosts a lavish ball in Angelique's honor; a glorious night turns to horror for Vanessa.",
+      "index": 6,
+      "parentIndex": 2,
+      "rating": "8.1",
+      "viewCount": 1,
+      "year": 2015,
+      "thumb": "/library/metadata/4873/thumb/1435550492",
+      "parentThumb": "/library/metadata/4662/thumb/1435550492",
+      "duration": 3272576,
+      "originallyAvailableAt": "2015-06-07",
+      "addedAt": 1433735695,
+      "updatedAt": 1435550492,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 4159,
+          "duration": 3272576,
+          "bitrate": 3981,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4219",
+              "key": "/library/parts/4219/file.mkv",
+              "duration": 3272576,
+              "file": "C:\\Media\\Penny Dreadful s02e06.mkv",
+              "size": 1628615666,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4887,
+      "key": "/library/metadata/4887",
+      "parentRatingKey": 4662,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "Little Scorpion",
+      "parentKey": "/library/metadata/4662",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "Not feeling safe in London, Vanessa and Ethan flee to the Cut-Wife’s cottage on the lonely moors. While there, Vanessa and Ethan settle into a domestic life as they draw closer together until a figure from her dark past resurfaces. Meanwhile back in London, Lyle and Frankenstein uncover even more disturbing information from the Verbis Diablo relics. We soon discover that Lily isn’t what she appears to be.",
+      "index": 7,
+      "parentIndex": 2,
+      "rating": "8.0",
+      "viewCount": 1,
+      "year": 2015,
+      "thumb": "/library/metadata/4887/thumb/1435550492",
+      "parentThumb": "/library/metadata/4662/thumb/1435550492",
+      "duration": 2951285,
+      "originallyAvailableAt": "2015-06-14",
+      "addedAt": 1434340765,
+      "updatedAt": 1435550492,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 4168,
+          "duration": 2951285,
+          "bitrate": 2955,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4228",
+              "key": "/library/parts/4228/file.mkv",
+              "duration": 2951285,
+              "file": "C:\\Media\\Penny Dreadful s02e07.mkv",
+              "size": 1090253158,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Brian Kirk"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4896,
+      "key": "/library/metadata/4896",
+      "parentRatingKey": 4662,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "Memento Mori",
+      "parentKey": "/library/metadata/4662",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "The Creature unleashes his rage on Frankenstein over Lily. Inspector Rusk discovers Sir Malcolm’s connection to Ethan Chandler. Malcolm goes to confront Evelyn but quickly finds himself assaulted by another one of her deadly enchantments.",
+      "index": 8,
+      "parentIndex": 2,
+      "rating": "8.3",
+      "viewCount": 1,
+      "year": 2015,
+      "thumb": "/library/metadata/4896/thumb/1435550492",
+      "parentThumb": "/library/metadata/4662/thumb/1435550492",
+      "duration": 3318819,
+      "originallyAvailableAt": "2015-06-21",
+      "addedAt": 1434948902,
+      "updatedAt": 1435550492,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 4177,
+          "duration": 3318819,
+          "bitrate": 2820,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4237",
+              "key": "/library/parts/4237/file.mkv",
+              "duration": 3318819,
+              "file": "C:\\Media\\Penny Dreadful s02e08.mkv",
+              "size": 1169994540,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        },
+        {
+          "_elementType": "Director",
+          "tag": "Kari Skogland"
+        }
+      ]
+    },
+    {
+      "_elementType": "Video",
+      "ratingKey": 4906,
+      "key": "/library/metadata/4906",
+      "parentRatingKey": 4662,
+      "studio": "Showtime",
+      "type": "episode",
+      "title": "And Hell Itself My Only Foe",
+      "parentKey": "/library/metadata/4662",
+      "grandparentTitle": "Penny Dreadful",
+      "contentRating": "TV-MA",
+      "summary": "Back in London, Vanessa and Ethan learn that Sir Malcolm is in danger. Desperate to save him, Vanessa goes alone to battle Evelyn. Ethan heads out to Evelyn’s mansion with Frankenstein, Sembene  and Lyle. Lily reveals her true self to Dorian.",
+      "index": 9,
+      "parentIndex": 2,
+      "viewCount": 1,
+      "year": 2015,
+      "thumb": "/library/metadata/4906/thumb/1435550499",
+      "parentThumb": "/library/metadata/4662/thumb/1435550492",
+      "duration": 3321739,
+      "originallyAvailableAt": "2015-06-28",
+      "addedAt": 1435550487,
+      "updatedAt": 1435550499,
+      "chapterSource": "",
+      "_children": [
+        {
+          "_elementType": "Media",
+          "videoResolution": "720",
+          "id": 4183,
+          "duration": 3321739,
+          "bitrate": 3485,
+          "width": 1280,
+          "height": 720,
+          "aspectRatio": "1.78",
+          "audioChannels": 6,
+          "audioCodec": "ac3",
+          "videoCodec": "h264",
+          "container": "mkv",
+          "videoFrameRate": "24p",
+          "_children": [
+            {
+              "_elementType": "Part",
+              "id": "4243",
+              "key": "/library/parts/4243/file.mkv",
+              "duration": 3321739,
+              "file": "C:\\Media\\Penny Dreadful s02e09.mkv",
+              "size": 1447234672,
+              "container": "mkv",
+              "indexes": "sd"
+            }
+          ]
+        },
+        {
+          "_elementType": "Writer",
+          "tag": "John Logan"
+        }
+      ]
+    }
+  ]
+}
