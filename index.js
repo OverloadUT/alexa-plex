@@ -163,7 +163,6 @@ app.intent('StartShowIntent', function(request,response) {
 function playMedia(mediaKey, clientName) {
     // We need the server machineIdentifier for the final playMedia request
     return getMachineIdentifier().then(function(serverMachineIdentifier) {
-        console.log('machineid', serverMachineIdentifier);
 
         // We need the client's address. Could skip this entire call if we already had it
         // TODO see about having the IP address already on hand
@@ -206,9 +205,6 @@ function getClient(clientname) {
         }
 
         return clientMatch;
-    }).catch(function(error) {
-        console.log("ERROR in getClient, from find() /clients");
-        throw error;
     });
 }
 
@@ -217,10 +213,6 @@ function getMachineIdentifier() {
         return plex.query('/').then(function(res) {
             process.env.PMS_IDENTIFIER = res.machineIdentifier;
             return Q.resolve(process.env.PMS_IDENTIFIER);
-        }).catch(function(error) {
-            console.log('ERROR to get machine identifier on query for /');
-            console.log(error);
-            throw error;
         });
     } else {
         return Q.resolve(process.env.PMS_IDENTIFIER);
