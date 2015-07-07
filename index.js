@@ -21,6 +21,10 @@ var plex = new plexAPI({
     options: plexOptions
 });
 
+// HACK for manually supplying the auth token to plex-api.
+// TODO add this as a feature in plex-api rather than this way
+plex.authToken = process.env.PMS_AUTHTOKEN;
+
 // Connect the alexa-app to AWS Lambda
 //exports.handler = app.lambda();
 exports.handler = function(event, context) {
