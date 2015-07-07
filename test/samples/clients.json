@@ -3,7 +3,7 @@
     "_elementType": "Server",
     "name": "MochaTestClient",
     "host": "192.168.0.2",
-    "address": "192.168.0.2",
+    "address": "STUBBED_CLIENT_ADDRESS_FROM_API_CALL",
     "port": 3005,
     "machineIdentifier": "MOCHATEST_PLAYER_MACHINE_IDENTIFIER",
     "version": "1.4.1.469-47a90f01",

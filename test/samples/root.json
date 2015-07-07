@@ -5,7 +5,7 @@
   "allowSync": "1",
   "certificate": "1",
   "friendlyName": "MOCHATEST_SERVERNAME",
-  "machineIdentifier": "MOCHATEST_SERVER_MACHINE_IDENTIFIER",
+  "machineIdentifier": "STUBBED_SERVER_MACHINE_IDENTIFIER_FROM_API_CALL",
   "multiuser": "1",
   "myPlex": "1",
   "myPlexMappingState": "mapped",

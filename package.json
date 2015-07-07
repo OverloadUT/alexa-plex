@@ -18,6 +18,7 @@
   "homepage": "https://github.com/OverloadUT/alexa-plex",
   "devDependencies": {
     "chai": "^3.0.0",
+    "chai-as-promised": "^5.1.0",
     "coveralls": "^2.11.2",
     "grunt": "^0.4.5",
     "grunt-aws-lambda": "^0.7.0",

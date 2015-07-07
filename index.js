@@ -21,13 +21,9 @@ var plex = new plexAPI({
     options: plexOptions
 });
 
-// TODO this is for debug
-exports.plex = plex;
-
 // Connect the alexa-app to AWS Lambda
 //exports.handler = app.lambda();
 exports.handler = function(event, context) {
-    var appHandler = app.lambda();
 
     console.log("Request:", event.request);
 
@@ -37,7 +33,8 @@ exports.handler = function(event, context) {
         }
     }
 
-    appHandler(event, context);
+    // Send requests to the alexa-app framework for routing
+    app.lambda()(event, context);
 };
 
 // TODO there is no way to do any pre-logic in alexa-app to validate the appID.
@@ -164,11 +161,8 @@ function playMedia(mediaKey, clientName) {
     // We need the server machineIdentifier for the final playMedia request
     return getMachineIdentifier().then(function(serverMachineIdentifier) {
 
-        // We need the client's address. Could skip this entire call if we already had it
-        // TODO see about having the IP address already on hand
-        return getClient(clientName).then(function(client) {
-
-            var clientIP = client.address;
+        // Get the Client's IP, which can also be provided as an env var to skip an API call
+        return getClientIP(clientName).then(function(clientIP) {
             var keyURI = encodeURIComponent('/library/metadata/' + mediaKey);
             // Yes, there is a double-nested URI encode here. Wacky Plex API!
             var libraryURI = encodeURIComponent('library://' + plex.getIdentifier() + '/item/' + keyURI);
@@ -196,26 +190,30 @@ function playMedia(mediaKey, clientName) {
     });
 }
 
-function getClient(clientname) {
-    return plex.find("/clients", {name: clientname}).then(function(clients) {
-        var clientMatch;
+function getClientIP(clientname) {
+    if(process.env.PLEXPLAYER_IP) {
+        return Q.resolve(process.env.PLEXPLAYER_IP);
+    } else {
+        return plex.find("/clients", {name: clientname}).then(function (clients) {
+            var clientMatch;
 
-        if (Array.isArray(clients)) {
-            clientMatch = clients[0];
-        }
+            if (Array.isArray(clients)) {
+                clientMatch = clients[0];
+            }
 
-        return clientMatch;
-    });
+            return Q.resolve(clientMatch.address);
+        });
+    }
 }
 
 function getMachineIdentifier() {
-    if(!process.env.PMS_IDENTIFIER) {
-        return plex.query('/').then(function(res) {
+    if (process.env.PMS_IDENTIFIER) {
+        return Q.resolve(process.env.PMS_IDENTIFIER);
+    } else {
+        return plex.query('/').then(function (res) {
             process.env.PMS_IDENTIFIER = res.machineIdentifier;
             return Q.resolve(process.env.PMS_IDENTIFIER);
         });
-    } else {
-        return Q.resolve(process.env.PMS_IDENTIFIER);
     }
 }
 
@@ -292,4 +290,11 @@ function buildNaturalLangList(items, finalWord, hyphenize) {
 
 function randomInt(low, high) {
     return Math.floor(Math.random() * (high - low) + low);
+}
+
+if (process.env.NODE_ENV === 'test') {
+    exports._private = {
+        getMachineIdentifier: getMachineIdentifier,
+        getClientIP: getClientIP
+    }
 }
