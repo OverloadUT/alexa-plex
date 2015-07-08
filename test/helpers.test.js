@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-//var sinon = require('sinon');
+var sinon = require('sinon');
 
 describe('API Helpers', function() {
     require('./plex-api-stubs.helper.js').plexAPIStubs();
@@ -150,4 +150,62 @@ describe('API Helpers', function() {
         });
     });
 
+    describe('startShow', function() {
+        require('./plex-api-stubs.helper.js').plexAPIResponses();
+
+        before(function() {
+            this.responseStub = {
+                say: sinon.stub(),
+                card: sinon.stub()
+            }
+        });
+
+        afterEach(function() {
+            this.responseStub.say.reset();
+            this.responseStub.card.reset();
+        });
+
+        it("should require a spokenShowName option", function () {
+            return expect(this.lambda._private.startShow({}, this.responseStub))
+                .to.be.rejected;
+        });
+
+        it("should play the next unwatched episode if it's available", function () {
+            var self = this;
+            return expect(this.lambda._private.startShow({spokenShowName:'a show with unwatched episodes'}, this.responseStub))
+                .to.be.fulfilled
+                .then(function(){
+                    expect(self.responseStub.say).to.have.been.calledWithMatch(/next episode of/);
+                });
+        });
+
+        it("should play a random episode if no unwatched show is available", function () {
+            var self = this;
+            return expect(this.lambda._private.startShow({spokenShowName:"A Show I've Finished Watching"}, this.responseStub))
+                .to.be.fulfilled
+                .then(function(){
+                    expect(self.responseStub.say).to.have.been.calledWithMatch(/this episode from season/i);
+                });
+        });
+
+        it("should always play a random episode if forceRandom is set", function () {
+            var self = this;
+            return expect(this.lambda._private.startShow({
+                spokenShowName:'a show with unwatched episodes',
+                forceRandom: true
+            }, this.responseStub))
+                .to.be.fulfilled
+                .then(function(){
+                    expect(self.responseStub.say).to.have.been.calledWithMatch(/this episode from season/i);
+                });
+        });
+
+        it('should reject the promise on a failed API call', function () {
+            this.plexAPIStubs.query.withArgs('/library/sections/1/all')
+                .rejects(new Error("Stub error from Plex API"));
+
+            return expect(this.lambda._private.startShow({spokenShowName:'a show with unwatched episodes'}, this.responseStub))
+                .to.be.rejected;
+        });
+    });
 });

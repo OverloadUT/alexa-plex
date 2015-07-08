@@ -87,19 +87,6 @@ app.intent('OnDeckIntent', function(request,response) {
     return false; // This is how you tell alexa-app that this intent is async.
 });
 
-// This was just for testing. TODO: decide if it's useful?
-//app.intent('ShowInfoIntent', function(request,response) {
-//    plex.query('/library/metadata/4357').then(function(result) {
-//        response.say(result._children[0].summary);
-//        response.card('Plex', '', 'ShowInfoIntent');
-//        response.send();
-//    }).catch(function(err) {
-//        response.say("Error on library metadata request: " + err);
-//        response.send();
-//    });
-//
-//    return false; // This is how you tell alexa-app that this intent is async.
-//});
 app.intent('StartShowIntent', function(request,response) {
     var showName = request.slot('showName', null);
 
@@ -109,21 +96,64 @@ app.intent('StartShowIntent', function(request,response) {
         return response.send();
     }
 
-    // Get all TV shows
-    getListOfTVShows().then(function(listOfTVShows) {
-        var show = findBestMatch(showName, listOfTVShows._children, function (show) {
+    startShow({
+        spokenShowName: showName
+    }, response).then(function() {
+        response.send();
+    }).catch(function () {
+        response.send();
+    });
+
+    return false; // This is how you tell alexa-app that this intent is async.
+});
+
+app.intent('StartRandomShowIntent', function(request,response) {
+    var showName = request.slot('showName', null);
+
+    if(!showName) {
+        // TODO ask for which show
+        response.say("No show specified");
+        return response.send();
+    }
+
+    startShow({
+        spokenShowName: showName,
+        forceRandom: true
+    }, response).then(function() {
+        response.send();
+    }).catch(function () {
+        response.send();
+    });
+
+    return false; // This is how you tell alexa-app that this intent is async.
+});
+
+function startShow(options, response) {
+    if(!options.spokenShowName) {
+        Q.reject(new Error('startShow must be provided with a showSpokenName option'));
+    }
+    var spokenShowName = options.spokenShowName;
+    var forceRandom = options.forceRandom || false;
+
+    return getListOfTVShows().then(function(listOfTVShows) {
+        var show = findBestMatch(spokenShowName, listOfTVShows._children, function (show) {
             return show.title
         });
 
         if(!show) {
             // Show name not found
+            console.log("Show requested not found: " + spokenShowName);
             response.say("Sorry, I couldn't find that show in your library");
-            return Q.reject(response.send());
+            return Q.reject();
         }
 
         return getTVShowMetadata(show).then(function (showMetadata) {
-            //console.log(showMetadata);
-            var episode = getFirstUnwatched(showMetadata._children);
+            var episode;
+
+            if(!forceRandom) {
+                var episode = getFirstUnwatched(showMetadata._children);
+            }
+
             if(episode) {
                 response.say("Enjoy the next episode of " + show.title + ": " + episode.title);
                 response.card('Plex', 'Playing ' + show.title + ': ' + episode.title, 'Playing Next Episode');
@@ -136,18 +166,15 @@ app.intent('StartShowIntent', function(request,response) {
             return episode;
         });
     }).then(function(episode) {
-        return playMedia(episode.key, process.env.PLEXPLAYER_NAME)
-    }).then(function() {
-        return response.send();
+        var test = playMedia(episode.key, process.env.PLEXPLAYER_NAME);
+        return test;
     }).catch(function(err) {
         console.log("Error thrown in promise chain");
         console.log(err.stack);
         response.say("I'm sorry, Plex and I don't seem to be getting along right now");
-        return response.send();
+        return Q.reject(err);
     });
-
-    return false; // This is how you tell alexa-app that this intent is async.
-});
+}
 
 function getListOfTVShows() {
     return plex.query('/library/sections/1/all');
@@ -300,6 +327,7 @@ if (process.env.NODE_ENV === 'test') {
         getMachineIdentifier: getMachineIdentifier,
         getClientIP: getClientIP,
         getListOfTVShows: getListOfTVShows,
-        getTVShowMetadata: getTVShowMetadata
+        getTVShowMetadata: getTVShowMetadata,
+        startShow: startShow
     }
 }

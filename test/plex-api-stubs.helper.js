@@ -41,3 +41,26 @@ exports.plexAPIStubs = function() {
         this.plexAPIUtils.restoreAll();
     });
 };
+
+exports.plexAPIResponses = function() {
+    beforeEach('Set up query, find, and postQuery stubs', function() {
+        this.plexAPIStubs.query.withArgs('/').resolves(require('./samples/root.json'));
+        this.plexAPIStubs.query.withArgs(sinon.match(/\/library\/metadata\/[0-9]+$/))
+            .resolves(require('./samples/library_metadata_item.json'));
+        this.plexAPIStubs.query.withArgs('/library/sections/1/all')
+            .resolves(require('./samples/library_section_allshows.json'));
+        this.plexAPIStubs.query.withArgs('/library/metadata/1/allLeaves')
+            .resolves(require('./samples/library_metadata_showepisodes_withunwatched.json'));
+        this.plexAPIStubs.query.withArgs('/library/metadata/143/allLeaves')
+            .resolves(require('./samples/library_metadata_showepisodes_allwatched.json'));
+
+        this.plexAPIStubs.postQuery.withArgs(sinon.match(/\/playQueues/))
+            .resolves(require('./samples/playqueues.json'));
+
+        this.plexAPIStubs.perform.withArgs(sinon.match(/\/playMedia/))
+            .resolves();
+
+        this.plexAPIStubs.find.withArgs('/clients')
+            .resolves(require('./samples/clients.json'));
+    });
+};

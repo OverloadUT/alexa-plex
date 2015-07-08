@@ -12,6 +12,15 @@
           "type": "LITERAL"
         }
       ]
+    },
+    {
+      "intent": "StartRandomShowIntent",
+      "slots": [
+        {
+          "name": "showName",
+          "type": "LITERAL"
+        }
+      ]
     }
   ]
 }
