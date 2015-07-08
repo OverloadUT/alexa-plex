@@ -110,56 +110,55 @@ app.intent('StartShowIntent', function(request,response) {
     }
 
     // Get all TV shows
-    plex.query('/library/sections/1/all').then(function(libraryResults) {
-
-        var show = findBestMatch(showName, libraryResults._children, function(show) {
+    getListOfTVShows().then(function(listOfTVShows) {
+        var show = findBestMatch(showName, listOfTVShows._children, function (show) {
             return show.title
         });
 
-        if (!show) {
+        if(!show) {
             // Show name not found
             response.say("Sorry, I couldn't find that show in your library");
-            return response.send();
+            return Q.reject(response.send());
         }
 
-        return plex.query('/library/metadata/' + show.ratingKey + '/allLeaves').then(function (showResults) {
-            //console.log(showResults);
-            if (show.viewedLeafCount >= show.leafCount) {
-                // We've seen them all, so pick a random one
-                episode = showResults._children[randomInt(0, showResults._children.length - 1)];
-
-                return playMedia(episode.key, process.env.PLEXPLAYER_NAME).then(function () {
-                    response.say("Enjoy this episode from Season " + episode.parentIndex + ": " + episode.title);
-                    response.card('Plex', 'Playing ' + show.title + ': ' + episode.title, 'Playing Random Episode');
-                    return response.send();
-                });
+        return getTVShowMetadata(show).then(function (showMetadata) {
+            //console.log(showMetadata);
+            var episode = getFirstUnwatched(showMetadata._children);
+            if(episode) {
+                response.say("Enjoy the next episode of " + show.title + ": " + episode.title);
+                response.card('Plex', 'Playing ' + show.title + ': ' + episode.title, 'Playing Next Episode');
             } else {
-                // Play the next unwatched episode
-                var episode = getFirstUnwatched(showResults._children);
-
-                if (!episode) {
-                    // TODO probably should just fall back to random episode eh?
-                    throw new Error("Couldn't find the first unwatched episode of " + show.title);
-                } else {
-
-                    return playMedia(episode.key, process.env.PLEXPLAYER_NAME).then(function () {
-                        response.say("Enjoy the next episode of " + show.title + ": " + episode.title);
-                        response.card('Plex', 'Playing ' + show.title + ': ' + episode.title, 'Playing Next Episode');
-                        return response.send();
-                    });
-                }
+                episode = showMetadata._children[randomInt(0, showMetadata._children.length - 1)];
+                response.say("Enjoy this episode from Season " + episode.parentIndex + ": " + episode.title);
+                response.card('Plex', 'Playing ' + show.title + ': ' + episode.title, 'Playing Random Episode');
             }
+
+            return episode;
         });
+    }).then(function(episode) {
+        return playMedia(episode.key, process.env.PLEXPLAYER_NAME)
+    }).then(function() {
+        return response.send();
     }).catch(function(err) {
         console.log("Error thrown in promise chain");
         console.log(err.stack);
         response.say("I'm sorry, Plex and I don't seem to be getting along right now");
-        response.send();
-        throw err;
+        return response.send();
     });
 
     return false; // This is how you tell alexa-app that this intent is async.
 });
+
+function getListOfTVShows() {
+    return plex.query('/library/sections/1/all');
+}
+
+function getTVShowMetadata(show) {
+    if(typeof show === 'object') {
+        show = show.ratingKey;
+    }
+    return plex.query('/library/metadata/' + show + '/allLeaves');
+}
 
 function playMedia(mediaKey, clientName) {
     // We need the server machineIdentifier for the final playMedia request
@@ -299,6 +298,8 @@ function randomInt(low, high) {
 if (process.env.NODE_ENV === 'test') {
     exports._private = {
         getMachineIdentifier: getMachineIdentifier,
-        getClientIP: getClientIP
+        getClientIP: getClientIP,
+        getListOfTVShows: getListOfTVShows,
+        getTVShowMetadata: getTVShowMetadata
     }
 }

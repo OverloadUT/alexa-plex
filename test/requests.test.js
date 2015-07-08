@@ -275,28 +275,6 @@ describe('Requests', function() {
                 });
             });
 
-            it("should throw an error if it can't find an unwatched episode", function (done) {
-                this.request.request.intent.slots.showName = {name: 'showName', value: 'a show with unwatched episodes'};
-
-                this.plexAPIStubs.query.withArgs('/library/metadata/1/allLeaves')
-                    .resolves(require('./samples/library_metadata_showepisodes_allwatched.json'));
-
-                var self = this;
-                this.lambda.handler(this.request, {
-                    succeed: function(res) {
-                        console.log(res);
-                        expect(res.response.shouldEndSession).to.be.true;
-                        expect(res).to.not.have.deep.property('response.card');
-                        expect(res).to.have.deep.property('response.outputSpeech.text')
-                            .that.matches(/sorry/i);
-                        done();
-                    }, fail: function(res) {
-                        console.log(res);
-                        done(Error('Lambda returned fail()'));
-                    }
-                });
-            });
-
             it("Should complain if no show name was provided", function (done) {
                 this.request.request.intent.slots = {};
 
