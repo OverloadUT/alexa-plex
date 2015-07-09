@@ -21,6 +21,23 @@
           "type": "LITERAL"
         }
       ]
+    },
+    {
+      "intent": "StartSpecificEpisodeIntent",
+      "slots": [
+        {
+          "name": "showName",
+          "type": "LITERAL"
+        },
+        {
+          "name": "episodeNumber",
+          "type": "NUMBER"
+        },
+        {
+          "name": "seasonNumber",
+          "type": "NUMBER"
+        }
+      ]
     }
   ]
 }

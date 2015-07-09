@@ -49,6 +49,7 @@ app.launch(function(request,response) {
     response.shouldEndSession(false);
 });
 
+// TODO: change this message before production release
 //app.error = function(error, request, response) {
 //    console.log(error);
 //    response.say("There was an error in the Plex App: " + error);
@@ -128,17 +129,42 @@ app.intent('StartRandomShowIntent', function(request,response) {
     return false; // This is how you tell alexa-app that this intent is async.
 });
 
+app.intent('StartSpecificEpisodeIntent', function(request,response) {
+    var showName = request.slot('showName', null);
+    var episodeNumber = request.slot('episodeNumber', null);
+    var seasonNumber = request.slot('seasonNumber', null);
+
+    if(!showName) {
+        // TODO ask for which show
+        response.say("No show specified");
+        return response.send();
+    }
+
+    startShow({
+        spokenShowName: showName,
+        episodeNumber: episodeNumber,
+        seasonNumber: seasonNumber
+    }, response).then(function() {
+        response.send();
+    }).catch(function () {
+        response.send();
+    });
+
+    return false; // This is how you tell alexa-app that this intent is async.
+});
+
 function startShow(options, response) {
     if(!options.spokenShowName) {
         Q.reject(new Error('startShow must be provided with a showSpokenName option'));
     }
+
     var spokenShowName = options.spokenShowName;
     var forceRandom = options.forceRandom || false;
+    var episodeNumber = options.episodeNumber || null;
+    var seasonNumber = options.seasonNumber || null;
 
     return getListOfTVShows().then(function(listOfTVShows) {
-        var show = findBestMatch(spokenShowName, listOfTVShows._children, function (show) {
-            return show.title
-        });
+        var show = getShowFromSpokenName(spokenShowName, listOfTVShows._children);
 
         if(!show) {
             // Show name not found
@@ -147,21 +173,45 @@ function startShow(options, response) {
             return Q.reject();
         }
 
-        return getTVShowMetadata(show).then(function (showMetadata) {
+        return getAllEpisodesOfShow(show).then(function (allEpisodes) {
             var episode;
 
-            if(!forceRandom) {
-                var episode = getFirstUnwatched(showMetadata._children);
+            if(episodeNumber || seasonNumber) {
+                if(!seasonNumber && episodeNumber > 100) {
+                    // Allow episode notation of "203" to mean s02e03
+                    seasonNumber = Math.floor(episodeNumber / 100);
+                    episodeNumber = episodeNumber % 100;
+                } else if (!seasonNumber) {
+                    seasonNumber = 1;
+                }
+
+                var seasonEpisodes = allEpisodes._children.filter(function(ep) {return ep.parentIndex==seasonNumber;});
+                if(seasonEpisodes.length === 0) {
+                    response.say("I'm sorry, there does not appear to be a season " + seasonNumber + " of " + show.title);
+                    return Q.reject();
+                }
+                episode = seasonEpisodes.filter(function(ep) {return ep.index==episodeNumber})[0];
+
+                if(!episode) {
+                    response.say("I'm sorry, there does not appear to be an episode " + episodeNumber + ", season " + seasonNumber + " of " + show.title);
+                    return Q.reject();
+                } else {
+                    response.say("Alright, here is s" + seasonNumber + "e" + episodeNumber + " of " + show.title + ": " + episode.title);
+                }
+            } else if(!forceRandom) {
+                episode = getFirstUnwatched(allEpisodes._children);
+
+                if(episode) {
+                    response.say("Enjoy the next episode of " + show.title + ": " + episode.title);
+                }
             }
 
-            if(episode) {
-                response.say("Enjoy the next episode of " + show.title + ": " + episode.title);
-                response.card('Plex', 'Playing ' + show.title + ': ' + episode.title, 'Playing Next Episode');
-            } else {
-                episode = showMetadata._children[randomInt(0, showMetadata._children.length - 1)];
+            if(!episode) {
+                episode = allEpisodes._children[randomInt(0, allEpisodes._children.length - 1)];
                 response.say("Enjoy this episode from Season " + episode.parentIndex + ": " + episode.title);
-                response.card('Plex', 'Playing ' + show.title + ': ' + episode.title, 'Playing Random Episode');
             }
+
+            response.card('Plex', 'Playing ' + show.title + ': ' + episode.title, 'Playing Episode');
 
             return episode;
         });
@@ -180,7 +230,7 @@ function getListOfTVShows() {
     return plex.query('/library/sections/1/all');
 }
 
-function getTVShowMetadata(show) {
+function getAllEpisodesOfShow(show) {
     if(typeof show === 'object') {
         show = show.ratingKey;
     }
@@ -269,6 +319,12 @@ function getFirstUnwatched(shows) {
     return firstepisode;
 }
 
+function getShowFromSpokenName(spokenShowName, listOfShows) {
+    return findBestMatch(spokenShowName, listOfShows, function (show) {
+        return show.title;
+    });
+}
+
 function findBestMatch(phrase, items, mapfunc) {
     var MINIMUM = 0.2;
     var bestmatch = {index: -1, score: -1};
@@ -327,7 +383,7 @@ if (process.env.NODE_ENV === 'test') {
         getMachineIdentifier: getMachineIdentifier,
         getClientIP: getClientIP,
         getListOfTVShows: getListOfTVShows,
-        getTVShowMetadata: getTVShowMetadata,
+        getTVShowMetadata: getAllEpisodesOfShow,
         startShow: startShow
     }
 }

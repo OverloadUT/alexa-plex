@@ -103,7 +103,7 @@ describe('API Helpers', function() {
         });
     });
 
-    describe('getTVShowMetadata', function() {
+    describe('getAllEpisodesOfShow', function() {
 
         it('should work with a provided show key as an integer', function () {
             this.plexAPIStubs.query.withArgs('/library/metadata/5/allLeaves')
