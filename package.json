@@ -37,7 +37,7 @@
     "alexa-app": "OverloadUT/alexa-app#remove-global-trycatch",
     "clj-fuzzy": "^0.2.1",
     "dotenv": "^1.2.0",
-    "plex-api": "OverloadUT/node-plex-api#master-backup",
+    "plex-api": "^3.0.0",
     "q": "^1.4.1"
   }
 }
