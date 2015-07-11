@@ -3,10 +3,28 @@ var expect = require('chai').expect;
 var sinon = require('sinon');
 
 describe('Main App Functionality', function () {
-    //it('should reject invalid AppID', function () {
-    //    var request = require('./LaunchRequestInvalidApp.json');
-    //    // TODO reject invalid AppID
-    //});
+    require('./plex-api-stubs.helper.js').plexAPIStubs();
+
+    before(function() {
+        this.request = JSON.parse(JSON.stringify(require('./RequestTemplate.json')));
+        this.oldAppID = process.env.ALEXA_APP_ID;
+        process.env.ALEXA_APP_ID = 'BAD_APP_ID';
+    });
+
+    after('reset environment variables to default state', function() {
+        process.env.ALEXA_APP_ID = this.oldAppID;
+    });
+
+    it('should reject invalid AppID', function (done) {
+        this.lambda.handler(this.request, {
+            succeed: function (res) {
+                expect(res).to.not.have.deep.property('response.outputSpeech.text');
+                done();
+            }, fail: function(res) {
+                done(new Error('Lambda function failed: ' + err));
+            }
+        });
+    });
 });
 
 describe('Requests', function() {

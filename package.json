@@ -34,7 +34,7 @@
     "sinon-chai": "^2.8.0"
   },
   "dependencies": {
-    "alexa-app": "OverloadUT/alexa-app#remove-global-trycatch",
+    "alexa-app": "^2.1.0",
     "clj-fuzzy": "^0.2.1",
     "dotenv": "^1.2.0",
     "plex-api": "^3.0.0",

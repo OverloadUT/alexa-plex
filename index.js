@@ -41,8 +41,14 @@ exports.handler = function(event, context) {
     app.lambda()(event, context);
 };
 
-// TODO there is no way to do any pre-logic in alexa-app to validate the appID.
-// Need to hack something in or wait for next release.
+app.pre = function (request, response, type) {
+    if(process.env.ALEXA_APP_ID) {
+        if (request.sessionDetails.application.applicationId != "amzn1.echo-sdk-ams.app." + process.env.ALEXA_APP_ID) {
+            // Fail silently
+            response.send();
+        }
+    }
+};
 
 app.launch(function(request,response) {
     response.say("Plex is listening...");

@@ -1,5 +1,4 @@
-process.env.NODE_ENV = 'test';
-//require('dotenv').config({path: './test/.env'});
+require('dotenv').config({path: './test/test.env'});
 
 var chai = require('chai');
 
