@@ -153,6 +153,28 @@ app.intent('StartSpecificEpisodeIntent', function(request,response) {
     return false; // This is how you tell alexa-app that this intent is async.
 });
 
+app.intent('StartHighRatedEpisodeIntent', function(request,response) {
+    var showName = request.slot('showName', null);
+
+    if(!showName) {
+        // TODO ask for which show
+        response.say("No show specified");
+        return response.send();
+    }
+
+    startShow({
+        spokenShowName: showName,
+        forceRandom: true,
+        onlyTopRated: 0.10
+    }, response).then(function() {
+        response.send();
+    }).catch(function () {
+        response.send();
+    });
+
+    return false; // This is how you tell alexa-app that this intent is async.
+});
+
 function startShow(options, response) {
     if(!options.spokenShowName) {
         Q.reject(new Error('startShow must be provided with a showSpokenName option'));
@@ -160,6 +182,7 @@ function startShow(options, response) {
 
     var spokenShowName = options.spokenShowName;
     var forceRandom = options.forceRandom || false;
+    var onlyTopRated = options.onlyTopRated || null;
     var episodeNumber = options.episodeNumber || null;
     var seasonNumber = options.seasonNumber || null;
 
@@ -207,7 +230,8 @@ function startShow(options, response) {
             }
 
             if(!episode) {
-                episode = allEpisodes._children[randomInt(0, allEpisodes._children.length - 1)];
+                episode = getRandomEpisode(allEpisodes._children, onlyTopRated);
+
                 response.say("Enjoy this episode from Season " + episode.parentIndex + ": " + episode.title);
             }
 
@@ -268,6 +292,30 @@ function playMedia(mediaKey, clientName) {
             });
         });
     });
+}
+
+function getRandomEpisode(episodes, onlyTopRated) {
+    if(!onlyTopRated) {
+        return episodes[randomInt(0, episodes.length - 1)];
+    } else {
+        episodes.sort(function(a, b) {
+            if(a.rating && b.rating)
+                return a.rating - b.rating; // Shorthand for sort compare
+            if(a.rating) {
+                return 1;
+            }
+            if(b.rating) {
+                return -1;
+            }
+            return 0;
+        }).reverse();
+
+        var filteredEpisodes = episodes.filter(function(item, i) {
+            return i / episodes.length <= onlyTopRated;
+        });
+
+        return filteredEpisodes[randomInt(0, filteredEpisodes.length - 1)];
+    }
 }
 
 function getClientIP(clientname) {

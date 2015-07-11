@@ -309,6 +309,80 @@ describe('Requests', function() {
             });
         });
 
+        describe('StartHighRatedEpisodeIntent', function() {
+            require('./plex-api-stubs.helper.js').plexAPIResponses();
+
+            beforeEach(function () {
+                this.request.request.intent.name = 'StartHighRatedEpisodeIntent';
+            });
+
+            it('should play a random episode of the requested show', function (done) {
+                // TODO this test doesn't actually veirfy that it's getting a high rated
+                this.request.request.intent.slots.showName = {name: 'showName', value: "a show with unwatched episodes"};
+
+                var self = this;
+                this.lambda.handler(this.request, {
+                    succeed: function(res) {
+                        expect(res.response.shouldEndSession).to.be.true;
+                        expect(res).to.have.deep.property('response.outputSpeech.text')
+                            .that.matches(/enjoy this episode from season/i);
+                        expect(self.plexAPIStubs.perform).to.have.been.calledWithMatch(/playMedia/i);
+                        expect(self.plexAPIStubs.postQuery).to.have.been.calledWithMatch(/playQueues/i);
+                        done();
+                    }, fail: self.lambdaFail(done)
+                });
+            });
+
+            it('should gracefully fail if the show name is not found', function (done) {
+                this.request.request.intent.slots.showName = {name: 'showName', value: 'q'};
+
+                var self = this;
+                this.lambda.handler(this.request, {
+                    succeed: function(res) {
+                        //console.log(res);
+                        expect(res.response.shouldEndSession).to.be.true;
+                        expect(res).to.not.have.deep.property('response.card');
+                        expect(res).to.have.deep.property('response.outputSpeech.text')
+                            .that.matches(/I couldn't find that show in your library/i);
+                        expect(self.plexAPIStubs.perform).to.not.have.been.calledWithMatch(/playMedia/i);
+                        expect(self.plexAPIStubs.postQuery).to.not.have.been.calledWithMatch(/playQueues/i);
+                        done();
+                    }, fail: self.lambdaFail(done)
+                });
+            });
+
+            it("Should complain if no show name was provided", function (done) {
+                this.request.request.intent.slots = {};
+
+                var self = this;
+                this.lambda.handler(this.request, {
+                    succeed: function(res) {
+                        expect(res.response.shouldEndSession).to.be.true;
+                        expect(res).to.not.have.deep.property('response.card');
+                        expect(res).to.have.deep.property('response.outputSpeech.text')
+                            .that.matches(/No show specified/i);
+                        done();
+                    }, fail: self.lambdaFail(done)
+                });
+            });
+
+            it('should handle an error from the API', function (done) {
+                this.request.request.intent.slots.showName = {name: 'showName', value: "a show I've finished watching"};
+
+                this.plexAPIStubs.query.withArgs('/library/sections/1/all')
+                    .rejects(new Error("Stub error from Plex API"));
+
+                var self = this;
+                this.lambda.handler(this.request, {
+                    succeed: function(res) {
+                        expect(res).to.have.deep.property('response.outputSpeech.text')
+                            .that.matches(/sorry/i);
+                        done();
+                    }, fail: self.lambdaFail(done)
+                });
+            });
+        });
+
         describe('StartSpecificEpisodeIntent', function() {
             require('./plex-api-stubs.helper.js').plexAPIResponses();
 

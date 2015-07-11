@@ -23,6 +23,15 @@
       ]
     },
     {
+      "intent": "StartHighRatedEpisodeIntent",
+      "slots": [
+        {
+          "name": "showName",
+          "type": "LITERAL"
+        }
+      ]
+    },
+    {
       "intent": "StartSpecificEpisodeIntent",
       "slots": [
         {
