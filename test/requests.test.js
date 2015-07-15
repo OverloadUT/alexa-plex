@@ -67,6 +67,138 @@ describe('Requests', function() {
             this.request.request.type = 'IntentRequest';
         });
 
+        describe('Prompts', function() {
+            beforeEach(function() {
+                this.request.request.intent.name = 'OnDeckIntent';
+                this.request.session.attributes.promptData = {
+                    yesResponse: "MochaTest YesResponse",
+                    noResponse: "MochaTest NoResponse",
+                    yesAction: "endSession",
+                    noAction: "endSession"
+                };
+            });
+
+            describe('YesIntent', function() {
+                beforeEach(function() {
+                    this.request.request.intent.name = 'YesIntent';
+                });
+
+                describe('yesAction: startEpisode', function() {
+                    require('./plex-api-stubs.helper.js').plexAPIResponses();
+
+                    beforeEach(function() {
+                        this.request.session.attributes.promptData.yesAction = "startEpisode";
+                    });
+
+                    it('should play the episode in promptData', function(done) {
+                        this.request.session.attributes.promptData.mediaKey = "111111";
+
+                        var self = this;
+                        this.lambda.handler(this.request, {
+                            succeed: function(res) {
+                                expect(res).to.have.deep.property('response.outputSpeech.text')
+                                    .that.equals("MochaTest YesResponse");
+                                expect(self.plexAPIStubs.perform)
+                                    .to.have.been.calledWithMatch(/111111/i);
+                                done();
+                            }, fail: self.lambdaFail(done)
+                        });
+                    });
+
+                    it('should gracefully handle a plex error', function(done) {
+                        this.request.session.attributes.promptData.mediaKey = "222222";
+
+                        this.plexAPIStubs.perform.restore();
+                        sinon.stub(this.plexAPIStubs, 'perform')
+                            .rejects(new Error("Stub error from Plex API"));
+
+                        var self = this;
+                        this.lambda.handler(this.request, {
+                            succeed: function(res) {
+                                expect(res).to.have.deep.property('response.outputSpeech.text')
+                                    .that.matches(/sorry/i);
+                                expect(self.plexAPIStubs.perform)
+                                    .to.have.been.calledWithMatch(/222222/i);
+                                done();
+                            }, fail: self.lambdaFail(done)
+                        });
+                    });
+                });
+
+                it('should respond with the yesResponse message', function(done) {
+                    var self = this;
+                    this.lambda.handler(this.request, {
+                        succeed: function(res) {
+                            expect(res).to.have.deep.property('response.outputSpeech.text')
+                                .that.equals("MochaTest YesResponse");
+                            done();
+                        }, fail: self.lambdaFail(done)
+                    });
+                });
+
+                it('should gracefully handle a lack of promptData by closing the session', function(done) {
+                    delete this.request.session.attributes.promptData;
+                    var self = this;
+                    this.lambda.handler(this.request, {
+                        succeed: function(res) {
+                            expect(res).to.not.have.deep.property('response.outputSpeech.text');
+                            done();
+                        }, fail: self.lambdaFail(done)
+                    });
+                });
+
+                it('should gracefully handle an unknown yesAction by closing the session', function(done) {
+                    this.request.session.attributes.promptData.yesAction = "MochaTestUnknownAction";
+                    var self = this;
+                    this.lambda.handler(this.request, {
+                        succeed: function(res) {
+                            expect(res).to.not.have.deep.property('response.outputSpeech.text');
+                            done();
+                        }, fail: self.lambdaFail(done)
+                    });
+                });
+            });
+
+            describe('NoIntent', function() {
+                beforeEach(function() {
+                    this.request.request.intent.name = 'NoIntent';
+                });
+                
+                it('should respond with the noResponse message', function(done) {
+                    var self = this;
+                    this.lambda.handler(this.request, {
+                        succeed: function(res) {
+                            expect(res).to.have.deep.property('response.outputSpeech.text')
+                                .that.equals("MochaTest NoResponse");
+                            done();
+                        }, fail: self.lambdaFail(done)
+                    });
+                });
+
+                it('should gracefully handle a lack of promptData by closing the session', function(done) {
+                    delete this.request.session.attributes.promptData;
+                    var self = this;
+                    this.lambda.handler(this.request, {
+                        succeed: function(res) {
+                            expect(res).to.not.have.deep.property('response.outputSpeech.text');
+                            done();
+                        }, fail: self.lambdaFail(done)
+                    });
+                });
+
+                it('should gracefully handle an unknown noAction by closing the session', function(done) {
+                    this.request.session.attributes.promptData.noAction = "MochaTestUnknownAction";
+                    var self = this;
+                    this.lambda.handler(this.request, {
+                        succeed: function(res) {
+                            expect(res).to.not.have.deep.property('response.outputSpeech.text');
+                            done();
+                        }, fail: self.lambdaFail(done)
+                    });
+                });
+            });
+        });
+
         describe('OnDeckIntent', function() {
             beforeEach(function() {
                 this.request.request.intent.name = 'OnDeckIntent';
@@ -85,10 +217,7 @@ describe('Requests', function() {
                             .that.matches(/penny-dreadful.*game-of-thrones.*brooklyn-nine-nine/i);
                         expect(self.plexAPIStubs.query).to.have.been.calledOnce;
                         done();
-                    }, fail: function(res) {
-                        console.log(res);
-                        done(Error('Lambda returned fail()'));
-                    }
+                    }, fail: self.lambdaFail(done)
                 });
             });
 
@@ -101,17 +230,13 @@ describe('Requests', function() {
 
                 var self = this;
                 this.lambda.handler(this.request, {
-                    succeed: function(res) {
+                    succeed: function (res) {
                         expect(res.response.shouldEndSession).to.be.true;
                         expect(res).to.not.have.deep.property('response.card');
-                        expect(res).to.have.deep.property('response.outputSpeech.text')
-                            .that.matches(/do not have any shows/i);
+                        expect(res).to.have.deep.property('response.outputSpeech.text').that.matches(/do not have any shows/i);
                         expect(self.plexAPIStubs.query).to.have.been.calledOnce;
                         done();
-                    }, fail: function(res) {
-                        console.log(res);
-                        done(Error('Lambda returned fail()'));
-                    }
+                    }, fail: self.lambdaFail(done)
                 });
             });
 
@@ -127,10 +252,7 @@ describe('Requests', function() {
                             .that.matches(/sorry/i);
                         expect(self.plexAPIStubs.query).to.have.been.calledOnce;
                         done();
-                    }, fail: function(res) {
-                        console.log(res);
-                        done(Error('Lambda returned fail()'));
-                    }
+                    }, fail: self.lambdaFail(done)
                 });
             });
         });
@@ -164,12 +286,31 @@ describe('Requests', function() {
                 var self = this;
                 this.lambda.handler(this.request, {
                     succeed: function(res) {
-                        console.log(res);
                         expect(res.response.shouldEndSession).to.be.true;
                         expect(res).to.have.deep.property('response.outputSpeech.text')
                             .that.matches(/next episode/i);
                         expect(self.plexAPIStubs.perform).to.have.been.calledWithMatch(/playMedia/i);
                         expect(self.plexAPIStubs.postQuery).to.have.been.calledWithMatch(/playQueues/i);
+                        done();
+                    }, fail: self.lambdaFail(done)
+                });
+            });
+
+            it('should ask for confirmation if the show name match has low confidence', function (done) {
+                this.request.request.intent.slots.showName = {name: 'showName', value: 'unwat'};
+
+                var self = this;
+                this.lambda.handler(this.request, {
+                    succeed: function(res) {
+                        expect(res.response.shouldEndSession).to.be.false;
+                        expect(res).to.have.deep.property('response.outputSpeech.text')
+                            .that.matches(/is that correct/i);
+                        expect(res).to.have.deep.property('sessionAttributes.promptData.yesResponse')
+                            .that.matches(/next episode/i);
+                        expect(res).to.have.deep.property('sessionAttributes.promptData.mediaKey')
+                            .that.equals('/library/metadata/4079');
+                        expect(self.plexAPIStubs.perform).to.not.have.been.called;
+                        expect(self.plexAPIStubs.postQuery).to.not.have.been.called;
                         done();
                     }, fail: self.lambdaFail(done)
                 });
@@ -189,7 +330,6 @@ describe('Requests', function() {
                 var self = this;
                 this.lambda.handler(this.request, {
                     succeed: function(res) {
-                        console.log(res);
                         expect(res.response.shouldEndSession).to.be.true;
                         expect(res).to.have.deep.property('response.outputSpeech.text')
                             .that.matches(/next episode.*Resurrection/i);
@@ -206,7 +346,6 @@ describe('Requests', function() {
                 var self = this;
                 this.lambda.handler(this.request, {
                     succeed: function(res) {
-                        //console.log(res);
                         expect(res.response.shouldEndSession).to.be.true;
                         expect(res).to.not.have.deep.property('response.card');
                         expect(res).to.have.deep.property('response.outputSpeech.text')
@@ -227,7 +366,6 @@ describe('Requests', function() {
                 var self = this;
                 this.lambda.handler(this.request, {
                     succeed: function(res) {
-                        console.log(res);
                         expect(res.response.shouldEndSession).to.be.true;
                         expect(res).to.not.have.deep.property('response.card');
                         expect(res).to.have.deep.property('response.outputSpeech.text')
@@ -243,7 +381,6 @@ describe('Requests', function() {
                 var self = this;
                 this.lambda.handler(this.request, {
                     succeed: function(res) {
-                        console.log(res);
                         expect(res.response.shouldEndSession).to.be.true;
                         expect(res).to.not.have.deep.property('response.card');
                         expect(res).to.have.deep.property('response.outputSpeech.text')
@@ -543,7 +680,3 @@ describe('Requests', function() {
         });
     });
 });
-
-
-
-

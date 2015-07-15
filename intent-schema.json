@@ -5,6 +5,14 @@
       "slots": []
     },
     {
+      "intent": "YesIntent",
+      "slots": []
+    },
+    {
+      "intent": "NoIntent",
+      "slots": []
+    },
+    {
       "intent": "StartShowIntent",
       "slots": [
         {

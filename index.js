@@ -5,6 +5,8 @@ var alexa = require('alexa-app');
 var app = new alexa.app('plex');
 var plexAPI = require('plex-api');
 
+var CONFIDICE_CONFIRM_THRESHOLD = 0.4;
+
 
 var plexOptions = {
     product: process.env.APP_PRODUCT,
@@ -181,9 +183,55 @@ app.intent('StartHighRatedEpisodeIntent', function(request,response) {
     return false; // This is how you tell alexa-app that this intent is async.
 });
 
+app.intent('YesIntent', function(request,response) {
+    promptData = request.session('promptData');
+
+    if(!promptData) {
+        console.log('Got a YesIntent but no promptData. Ending session.');
+        return response.send();
+    }
+
+    if(promptData.yesAction === 'startEpisode') {
+        playMedia(promptData.mediaKey, process.env.PLEXPLAYER_NAME).then(function() {
+            return response.say(promptData.yesResponse).send();
+        }).catch(function(err) {
+            console.log("Error on playMedia promise: " + err);
+            return response.say("I'm sorry, Plex and I don't seem to be getting along right now").send();
+        });
+    } else if(promptData.yesAction === 'endSession') {
+        return response.say(promptData.yesResponse).send();
+    } else {
+        console.log("Got an unexpected yesAction. PromptData:");
+        console.log(promptData);
+        return response.send();
+    }
+
+    return false; // This is how you tell alexa-app that this intent is async.
+});
+
+app.intent('NoIntent', function(request,response) {
+    promptData = request.session('promptData');
+
+    if(!promptData) {
+        console.log('Got a NoIntent but no promptData. Ending session.');
+        return response.send();
+    }
+
+    if(promptData.noAction === 'endSession') {
+        return response.say(promptData.noResponse).send();
+    } else {
+        console.log("Got an unexpected noAction. PromptData:");
+        console.log(promptData);
+        return response.send();
+    }
+
+    // This method is currently always synchronous
+    //return false; // This is how you tell alexa-app that this intent is async.
+});
+
 function startShow(options, response) {
     if(!options.spokenShowName) {
-        Q.reject(new Error('startShow must be provided with a showSpokenName option'));
+        Q.reject(new Error('startShow must be provided with a spokenShowName option'));
     }
 
     var spokenShowName = options.spokenShowName;
@@ -192,10 +240,15 @@ function startShow(options, response) {
     var episodeNumber = options.episodeNumber || null;
     var seasonNumber = options.seasonNumber || null;
 
-    return getListOfTVShows().then(function(listOfTVShows) {
-        var show = getShowFromSpokenName(spokenShowName, listOfTVShows._children);
+    var responseSpeech;
+    var matchConfidence;
 
-        if(!show) {
+    return getListOfTVShows().then(function(listOfTVShows) {
+        var bestShowMatch = getShowFromSpokenName(spokenShowName, listOfTVShows._children);
+        var show = bestShowMatch.bestMatch;
+        matchConfidence = bestShowMatch.confidence;
+
+        if (!show) {
             // Show name not found
             console.log("Show requested not found: " + spokenShowName);
             response.say("Sorry, I couldn't find that show in your library");
@@ -225,20 +278,20 @@ function startShow(options, response) {
                     response.say("I'm sorry, there does not appear to be an episode " + episodeNumber + ", season " + seasonNumber + " of " + show.title);
                     return Q.reject();
                 } else {
-                    response.say("Alright, here is s" + seasonNumber + "e" + episodeNumber + " of " + show.title + ": " + episode.title);
+                    responseSpeech = "Alright, here is s" + seasonNumber + "e" + episodeNumber + " of " + show.title + ": " + episode.title;
                 }
             } else if(!forceRandom) {
                 episode = getFirstUnwatched(allEpisodes._children);
 
                 if(episode) {
-                    response.say("Enjoy the next episode of " + show.title + ": " + episode.title);
+                    responseSpeech = "Enjoy the next episode of " + show.title + ": " + episode.title;
                 }
             }
 
             if(!episode) {
                 episode = getRandomEpisode(allEpisodes._children, onlyTopRated);
 
-                response.say("Enjoy this episode from Season " + episode.parentIndex + ": " + episode.title);
+                responseSpeech = "Enjoy this episode from Season " + episode.parentIndex + ": " + episode.title;
             }
 
             response.card('Plex', 'Playing ' + show.title + ': ' + episode.title, 'Playing Episode');
@@ -246,8 +299,21 @@ function startShow(options, response) {
             return episode;
         });
     }).then(function(episode) {
-        var test = playMedia(episode.key, process.env.PLEXPLAYER_NAME);
-        return test;
+        if (matchConfidence >= CONFIDICE_CONFIRM_THRESHOLD) {
+            response.say(responseSpeech);
+            return playMedia(episode.key, process.env.PLEXPLAYER_NAME);
+        } else {
+            console.log('confidence: ' , matchConfidence);
+            response.session('promptData', {
+                yesAction  : 'startEpisode',
+                yesResponse: responseSpeech,
+                noResponse : 'Oh. Sorry about that.',
+                noAction   : 'endSession',
+                mediaKey   : episode.key
+            });
+            response.shouldEndSession(false);
+            return response.say('You would like to watch an episode of ' + episode.grandparentTitle + '. Is that correct?');
+        }
     }).catch(function(err) {
         console.log("Error thrown in promise chain");
         console.log(err.stack);
@@ -290,9 +356,11 @@ function playMedia(mediaKey, clientName) {
                     //'&port=' + process.env.PMS_PORT +
                     '&protocol=http' +
                     '&containerKey=' + containerKeyURI +
-                    '&token=transient-9f630d06-956e-410a-847c-ef81962578d4' +
+                    '&token=transient-9f630d06-956e-410a-847c-ef81962578d4' + // TODO !!!! why is this here? Crap, does it work without it?
                     '&commandID=1' +
                     '';
+
+                console.log(playMediaURI);
 
                 return plex.perform(playMediaURI);
             });
@@ -381,6 +449,7 @@ function getShowFromSpokenName(spokenShowName, listOfShows) {
 
 function findBestMatch(phrase, items, mapfunc) {
     var MINIMUM = 0.2;
+
     var bestmatch = {index: -1, score: -1};
     for(i=0; i<items.length; i++) {
         var item = items[i];
@@ -401,7 +470,10 @@ function findBestMatch(phrase, items, mapfunc) {
     if(bestmatch.index === -1) {
         return false;
     } else {
-        return items[bestmatch.index];
+        return {
+            bestMatch: items[bestmatch.index],
+            confidence: bestmatch.score
+        };
     }
 }
 
