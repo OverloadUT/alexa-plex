@@ -26,11 +26,14 @@ exports.plexAPIStubs = function() {
             }
         };
 
-        //var lambda = require('../index.js');
-
-        this.lambda = proxyquire('../index.js', {
-            'plex-api': this.plexAPIUtils.construct
-        });
+        if(process.env.NODE_ENV === 'test') {
+            this.lambda = proxyquire('../index.js', {
+                'plex-api': this.plexAPIUtils.construct
+            });
+        } else if (process.env.NODE_ENV === 'test-live'){
+            this.lambda = require('../index.js');
+            this.plexAPIUtils.construct();
+        }
     });
 
     beforeEach('Reset all plex-api stubs', function() {
