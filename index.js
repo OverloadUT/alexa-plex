@@ -481,6 +481,7 @@ function buildNaturalLangList(items, finalWord, hyphenize) {
     var output = '';
     for(var i = 0; i<items.length; i++) {
         var item = items[i];
+		if (!item) continue;
         if(hyphenize) {
             item = item.replace(/ /g, '-');
         }
