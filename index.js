@@ -89,6 +89,7 @@ app.intent('OnDeckIntent', function(request,response) {
     }).catch(function(err) {
         console.log("ERROR from Plex API on Query /library/onDeck");
         console.log(err);
+        console.log(err.stack);
         response.say("I'm sorry, Plex and I don't seem to be getting along right now");
         response.send();
     });
