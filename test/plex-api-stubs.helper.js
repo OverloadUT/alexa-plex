@@ -54,8 +54,12 @@ exports.plexAPIResponses = function() {
             .resolves(require('./samples/library_section_allshows.json'));
         this.plexAPIStubs.query.withArgs('/library/metadata/1/allLeaves')
             .resolves(require('./samples/library_metadata_showepisodes_withunwatched.json'));
+        this.plexAPIStubs.query.withArgs('/library/metadata/259/allLeaves')
+            .resolves(require('./samples/library_metadata_showepisodes_withunwatched_withpartial.json'));
         this.plexAPIStubs.query.withArgs('/library/metadata/143/allLeaves')
             .resolves(require('./samples/library_metadata_showepisodes_allwatched.json'));
+        this.plexAPIStubs.query.withArgs('/library/metadata/298/allLeaves')
+            .resolves(require('./samples/library_metadata_showepisodes_allwatched_withpartial.json'));
 
         this.plexAPIStubs.postQuery.withArgs(sinon.match(/\/playQueues/))
             .resolves(require('./samples/playqueues.json'));

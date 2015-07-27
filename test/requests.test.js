@@ -90,7 +90,7 @@ describe('Requests', function() {
                         this.request.session.attributes.promptData.yesAction = "startEpisode";
                     });
 
-                    it('should play the episode in promptData', function(done) {
+                    it('should play the episode in promptData from beginning when no offset is provided', function(done) {
                         this.request.session.attributes.promptData.mediaKey = "111111";
 
                         var self = this;
@@ -100,6 +100,24 @@ describe('Requests', function() {
                                     .that.equals("MochaTest YesResponse");
                                 expect(self.plexAPIStubs.perform)
                                     .to.have.been.calledWithMatch(/111111/i);
+                                expect(self.plexAPIStubs.perform)
+                                    .to.have.been.calledWithMatch(/offset=0/i);
+                                done();
+                            }, fail: self.lambdaFail(done)
+                        });
+                    });
+
+                    it('should play using the offset if provided', function(done) {
+                        this.request.session.attributes.promptData.mediaKey = "111111";
+                        this.request.session.attributes.promptData.mediaOffset = "12345";
+
+                        var self = this;
+                        this.lambda.handler(this.request, {
+                            succeed: function(res) {
+                                expect(res).to.have.deep.property('response.outputSpeech.text')
+                                    .that.equals("MochaTest YesResponse");
+                                expect(self.plexAPIStubs.perform)
+                                    .to.have.been.calledWithMatch(/offset=12345/i);
                                 done();
                             }, fail: self.lambdaFail(done)
                         });
@@ -162,6 +180,84 @@ describe('Requests', function() {
             describe('NoIntent', function() {
                 beforeEach(function() {
                     this.request.request.intent.name = 'NoIntent';
+                });
+
+                describe('noAction: startEpisode', function() {
+                    require('./plex-api-stubs.helper.js').plexAPIResponses();
+
+                    beforeEach(function() {
+                        this.request.session.attributes.promptData.noAction = "startEpisode";
+                    });
+
+                    it('should play the episode in promptData from beginning when no offset is provided', function(done) {
+                        this.request.session.attributes.promptData.noMediaKey = "111111";
+
+                        var self = this;
+                        this.lambda.handler(this.request, {
+                            succeed: function(res) {
+                                expect(res).to.have.deep.property('response.outputSpeech.text')
+                                    .that.equals("MochaTest NoResponse");
+                                expect(self.plexAPIStubs.perform)
+                                    .to.have.been.calledWithMatch(/111111/i)
+                                    .and.to.have.been.calledWithMatch(/offset=0/i);
+                                done();
+                            }, fail: self.lambdaFail(done)
+                        });
+                    });
+
+                    it('should play using the offset if provided', function(done) {
+                        this.request.session.attributes.promptData.noMediaKey = "111111";
+                        this.request.session.attributes.promptData.noMediaOffset = "12345";
+
+                        var self = this;
+                        this.lambda.handler(this.request, {
+                            succeed: function(res) {
+                                expect(res).to.have.deep.property('response.outputSpeech.text')
+                                    .that.equals("MochaTest NoResponse");
+                                expect(self.plexAPIStubs.perform)
+                                    .to.have.been.calledWithMatch(/offset=12345/i);
+                                done();
+                            }, fail: self.lambdaFail(done)
+                        });
+                    });
+
+                    it('should use the "no" versions of promptData', function(done) {
+                        this.request.session.attributes.promptData.mediaKey = "111111";
+                        this.request.session.attributes.promptData.mediaOffset = "12345";
+                        this.request.session.attributes.promptData.noMediaKey = "222222";
+                        this.request.session.attributes.promptData.noMediaOffset = "54321";
+
+                        var self = this;
+                        this.lambda.handler(this.request, {
+                            succeed: function(res) {
+                                expect(res).to.have.deep.property('response.outputSpeech.text')
+                                    .that.equals("MochaTest NoResponse");
+                                expect(self.plexAPIStubs.perform)
+                                    .to.have.been.calledWithMatch(/222222/i)
+                                    .and.to.have.been.calledWithMatch(/offset=54321/i);
+                                done();
+                            }, fail: self.lambdaFail(done)
+                        });
+                    });
+
+                    it('should gracefully handle a plex error', function(done) {
+                        this.request.session.attributes.promptData.noMediaKey = "222222";
+
+                        this.plexAPIStubs.perform.restore();
+                        sinon.stub(this.plexAPIStubs, 'perform')
+                            .rejects(new Error("Stub error from Plex API"));
+
+                        var self = this;
+                        this.lambda.handler(this.request, {
+                            succeed: function(res) {
+                                expect(res).to.have.deep.property('response.outputSpeech.text')
+                                    .that.matches(/sorry/i);
+                                expect(self.plexAPIStubs.perform)
+                                    .to.have.been.calledWithMatch(/222222/i);
+                                done();
+                            }, fail: self.lambdaFail(done)
+                        });
+                    });
                 });
                 
                 it('should respond with the noResponse message', function(done) {
@@ -280,6 +376,26 @@ describe('Requests', function() {
                 });
             });
 
+            it('should offer to play a partially-watched episode when looking for a random one', function (done) {
+                this.request.request.intent.slots.showName = {name: 'showName', value: "A fully watched show with a partially watched episode"};
+
+                var self = this;
+                this.lambda.handler(this.request, {
+                    succeed: function(res) {
+                        expect(res.response.shouldEndSession).to.be.false;
+                        expect(res).to.have.deep.property('response.outputSpeech.text')
+                            .that.matches(/would you like to resume/i);
+                        expect(self.plexAPIStubs.perform).to.not.have.been.called;
+                        expect(self.plexAPIStubs.postQuery).to.not.have.been.called;
+                        expect(res).to.have.deep.property('sessionAttributes.promptData.yesResponse')
+                            .that.matches(/resuming this episode/i);
+                        expect(res).to.have.deep.property('sessionAttributes.promptData.mediaKey')
+                            .that.equals('/library/metadata/4079');
+                        done();
+                    }, fail: self.lambdaFail(done)
+                });
+            });
+
             it('should play the next episode if there are any unwatched ones', function (done) {
                 this.request.request.intent.slots.showName = {name: 'showName', value: 'a show with unwatched episodes'};
 
@@ -290,6 +406,22 @@ describe('Requests', function() {
                         expect(res).to.have.deep.property('response.outputSpeech.text')
                             .that.matches(/next episode/i);
                         expect(self.plexAPIStubs.perform).to.have.been.calledWithMatch(/playMedia/i);
+                        expect(self.plexAPIStubs.postQuery).to.have.been.calledWithMatch(/playQueues/i);
+                        done();
+                    }, fail: self.lambdaFail(done)
+                });
+            });
+
+            it('should start from where the user left off if show is partially watched', function (done) {
+                this.request.request.intent.slots.showName = {name: 'showName', value: 'A show with an unwatched partially watched episode'};
+
+                var self = this;
+                this.lambda.handler(this.request, {
+                    succeed: function(res) {
+                        expect(res.response.shouldEndSession).to.be.true;
+                        expect(res).to.have.deep.property('response.outputSpeech.text')
+                            .that.matches(/from where you left off/i);
+                        expect(self.plexAPIStubs.perform).to.have.been.calledWithMatch(/playMedia.*offset=379418/i);
                         expect(self.plexAPIStubs.postQuery).to.have.been.calledWithMatch(/playQueues/i);
                         done();
                     }, fail: self.lambdaFail(done)

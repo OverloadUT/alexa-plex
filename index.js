@@ -192,7 +192,11 @@ app.intent('YesIntent', function(request,response) {
     }
 
     if(promptData.yesAction === 'startEpisode') {
-        playMedia(promptData.mediaKey, process.env.PLEXPLAYER_NAME).then(function() {
+        playMedia({
+            mediaKey: promptData.mediaKey,
+            clientName: process.env.PLEXPLAYER_NAME,
+            offset: promptData.mediaOffset || 0
+        }).then(function() {
             return response.say(promptData.yesResponse).send();
         }).catch(function(err) {
             console.log("Error on playMedia promise: " + err);
@@ -219,14 +223,24 @@ app.intent('NoIntent', function(request,response) {
 
     if(promptData.noAction === 'endSession') {
         return response.say(promptData.noResponse).send();
+    } else if(promptData.noAction === 'startEpisode') {
+        playMedia({
+            mediaKey: promptData.noMediaKey,
+            clientName: process.env.PLEXPLAYER_NAME,
+            offset: promptData.noMediaOffset || 0
+        }).then(function() {
+            return response.say(promptData.noResponse).send();
+        }).catch(function(err) {
+            console.log("Error on playMedia promise: " + err);
+            return response.say("I'm sorry, Plex and I don't seem to be getting along right now").send();
+        });
     } else {
         console.log("Got an unexpected noAction. PromptData:");
         console.log(promptData);
         return response.send();
     }
 
-    // This method is currently always synchronous
-    //return false; // This is how you tell alexa-app that this intent is async.
+    return false; // This is how you tell alexa-app that this intent is async.
 });
 
 function startShow(options, response) {
@@ -257,8 +271,11 @@ function startShow(options, response) {
 
         return getAllEpisodesOfShow(show).then(function (allEpisodes) {
             var episode;
+            var viewOffset = 0;
 
             if(episodeNumber || seasonNumber) {
+                // The user specififed a specific episode
+
                 if(!seasonNumber && episodeNumber > 100) {
                     // Allow episode notation of "203" to mean s02e03
                     seasonNumber = Math.floor(episodeNumber / 100);
@@ -284,36 +301,66 @@ function startShow(options, response) {
                 episode = getFirstUnwatched(allEpisodes._children);
 
                 if(episode) {
-                    responseSpeech = "Enjoy the next episode of " + show.title + ": " + episode.title;
+                    if(episode.viewOffset > 0) {
+                        viewOffset = episode.viewOffset;
+                        responseSpeech = "Continuing the next episode of " + show.title + " from where you left off: " + episode.title;
+                    } else {
+                        responseSpeech = "Enjoy the next episode of " + show.title + ": " + episode.title;
+                    }
+
                 }
             }
 
             if(!episode) {
-                episode = getRandomEpisode(allEpisodes._children, onlyTopRated);
+                // First check to see if there's a partially-watched episode in this show
+                episode = findEpisodeWithOffset(allEpisodes._children, onlyTopRated);
 
+                if(episode) {
+                    // If there is an episode that is partially-watched, ask the user if they'd like to resume that one,
+                    // otherwise they'll get a random episode.
+                    var randomEpisode = getRandomEpisode(allEpisodes._children, onlyTopRated);
+                    console.log('confidence: ' , matchConfidence);
+                    response.session('promptData', {
+                        yesAction  : 'startEpisode',
+                        yesResponse: "Resuming this episode from Season " + episode.parentIndex + ": " + episode.title,
+                        mediaKey   : episode.key,
+                        mediaOffset : episode.viewOffset,
+                        noResponse : "Alright, then enjoy this episode from Season " + randomEpisode.parentIndex + ": " + randomEpisode.title,
+                        noAction   : 'startEpisode',
+                        noMediaKey : randomEpisode.key,
+                        noMediaOffset : 0
+                    });
+                    response.shouldEndSession(false);
+                    return response.say("It looks like you're part-way through the episode" + episode.title + ". Would you like to resume that one?");
+                }
+
+                episode = getRandomEpisode(allEpisodes._children, onlyTopRated);
                 responseSpeech = "Enjoy this episode from Season " + episode.parentIndex + ": " + episode.title;
             }
 
             response.card('Plex', 'Playing ' + show.title + ': ' + episode.title, 'Playing Episode');
 
-            return episode;
+            if (matchConfidence >= CONFIDICE_CONFIRM_THRESHOLD) {
+                response.say(responseSpeech);
+                return playMedia({
+                    mediaKey: episode.key,
+                    clientName: process.env.PLEXPLAYER_NAME,
+                    offset: viewOffset
+                });
+            } else {
+                console.log('confidence: ' , matchConfidence);
+                response.session('promptData', {
+                    yesAction  : 'startEpisode',
+                    yesResponse: responseSpeech,
+                    noResponse : 'Oh. Sorry about that.',
+                    noAction   : 'endSession',
+                    mediaKey   : episode.key,
+                    mediaOffset : viewOffset
+                });
+                response.shouldEndSession(false);
+                return response.say('You would like to watch an episode of ' + episode.grandparentTitle + '. Is that correct?');
+            }
         });
-    }).then(function(episode) {
-        if (matchConfidence >= CONFIDICE_CONFIRM_THRESHOLD) {
-            response.say(responseSpeech);
-            return playMedia(episode.key, process.env.PLEXPLAYER_NAME);
-        } else {
-            console.log('confidence: ' , matchConfidence);
-            response.session('promptData', {
-                yesAction  : 'startEpisode',
-                yesResponse: responseSpeech,
-                noResponse : 'Oh. Sorry about that.',
-                noAction   : 'endSession',
-                mediaKey   : episode.key
-            });
-            response.shouldEndSession(false);
-            return response.say('You would like to watch an episode of ' + episode.grandparentTitle + '. Is that correct?');
-        }
     }).catch(function(err) {
         console.log("Error thrown in promise chain");
         console.log(err.stack);
@@ -333,7 +380,11 @@ function getAllEpisodesOfShow(show) {
     return plex.query('/library/metadata/' + show + '/allLeaves');
 }
 
-function playMedia(mediaKey, clientName) {
+function playMedia(parameters) {
+    var mediaKey = parameters.mediaKey;
+    var clientName = parameters.clientName;
+    var offset = parameters.offset || 0;
+
     // We need the server machineIdentifier for the final playMedia request
     return getMachineIdentifier().then(function(serverMachineIdentifier) {
 
@@ -350,7 +401,7 @@ function playMedia(mediaKey, clientName) {
 
                 var playMediaURI = '/system/players/'+clientIP+'/playback/playMedia' +
                     '?key=' + keyURI +
-                    '&offset=0' +
+                    '&offset=' + offset +
                     '&machineIdentifier=' + serverMachineIdentifier +
                     //'&address=' + process.env.PMS_HOSTNAME + // Address and port aren't needed. Leaving here in case that changes...
                     //'&port=' + process.env.PMS_PORT +
@@ -368,28 +419,44 @@ function playMedia(mediaKey, clientName) {
     });
 }
 
-function getRandomEpisode(episodes, onlyTopRated) {
-    if(!onlyTopRated) {
-        return episodes[randomInt(0, episodes.length - 1)];
-    } else {
-        episodes.sort(function(a, b) {
-            if(a.rating && b.rating)
-                return a.rating - b.rating; // Shorthand for sort compare
-            if(a.rating) {
-                return 1;
-            }
-            if(b.rating) {
-                return -1;
-            }
-            return 0;
-        }).reverse();
+function filterEpisodesByBestRated(episodes, topPercent) {
+    episodes.sort(function(a, b) {
+        if(a.rating && b.rating)
+            return a.rating - b.rating; // Shorthand for sort compare
+        if(a.rating) {
+            return 1;
+        }
+        if(b.rating) {
+            return -1;
+        }
+        return 0;
+    }).reverse();
 
-        var filteredEpisodes = episodes.filter(function(item, i) {
-            return i / episodes.length <= onlyTopRated;
-        });
+    episodes = episodes.filter(function(item, i) {
+        return i / episodes.length <= topPercent;
+    });
 
-        return filteredEpisodes[randomInt(0, filteredEpisodes.length - 1)];
+    return episodes;
+}
+
+function findEpisodeWithOffset(episodes, onlyTopRated) {
+    if (onlyTopRated) {
+        episodes = filterEpisodesByBestRated(episodes, onlyTopRated);
     }
+
+    var episodesWithOffset = episodes.filter(function(item, i) {
+        return item.viewOffset > 0;
+    });
+
+    return episodesWithOffset[0];
+}
+
+function getRandomEpisode(episodes, onlyTopRated) {
+    if (onlyTopRated) {
+        episodes = filterEpisodesByBestRated(episodes, onlyTopRated);
+    }
+
+    return episodes[randomInt(0, episodes.length - 1)];
 }
 
 function getClientIP(clientname) {
