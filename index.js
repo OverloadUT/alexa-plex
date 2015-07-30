@@ -184,7 +184,7 @@ app.intent('StartHighRatedEpisodeIntent', function(request,response) {
 });
 
 app.intent('YesIntent', function(request,response) {
-    promptData = request.session('promptData');
+    var promptData = request.session('promptData');
 
     if(!promptData) {
         console.log('Got a YesIntent but no promptData. Ending session.');
@@ -214,7 +214,7 @@ app.intent('YesIntent', function(request,response) {
 });
 
 app.intent('NoIntent', function(request,response) {
-    promptData = request.session('promptData');
+    var promptData = request.session('promptData');
 
     if(!promptData) {
         console.log('Got a NoIntent but no promptData. Ending session.');
@@ -419,6 +419,12 @@ function playMedia(parameters) {
     });
 }
 
+function filterEpisodesByExists(episodes) {
+    return episodes.filter(function(item, i) {
+        return (!item.deletedAt)
+    });
+}
+
 function filterEpisodesByBestRated(episodes, topPercent) {
     episodes.sort(function(a, b) {
         if(a.rating && b.rating)
@@ -440,6 +446,7 @@ function filterEpisodesByBestRated(episodes, topPercent) {
 }
 
 function findEpisodeWithOffset(episodes, onlyTopRated) {
+    episodes = filterEpisodesByExists(episodes);
     if (onlyTopRated) {
         episodes = filterEpisodesByBestRated(episodes, onlyTopRated);
     }
@@ -452,6 +459,7 @@ function findEpisodeWithOffset(episodes, onlyTopRated) {
 }
 
 function getRandomEpisode(episodes, onlyTopRated) {
+    episodes = filterEpisodesByExists(episodes);
     if (onlyTopRated) {
         episodes = filterEpisodesByBestRated(episodes, onlyTopRated);
     }
