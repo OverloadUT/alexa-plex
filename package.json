@@ -1,6 +1,6 @@
 {
   "name": "alexa-plex",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Alexa (Amazon Echo) app for interacting with a Plex Server and controlling client playback",
   "main": "index.js",
   "scripts": {
