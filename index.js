@@ -245,7 +245,7 @@ app.intent('NoIntent', function(request,response) {
 
 function startShow(options, response) {
     if(!options.spokenShowName) {
-        Q.reject(new Error('startShow must be provided with a spokenShowName option'));
+        return Q.reject(new Error('startShow must be provided with a spokenShowName option'));
     }
 
     var spokenShowName = options.spokenShowName;
