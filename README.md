@@ -3,6 +3,8 @@
 [![Coveralls](https://img.shields.io/coveralls/OverloadUT/alexa-plex.svg?style=flat-square)](https://coveralls.io/r/OverloadUT/alexa-plex)
 
 # alexa-plex
+
+[![Join the chat at https://gitter.im/OverloadUT/alexa-plex](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/OverloadUT/alexa-plex?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Alexa (Amazon Echo) app for interacting with a Plex Server and controlling client playback
 
 This app is a big work in progress and is not ready for public use yet. 
