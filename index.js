@@ -4,6 +4,7 @@ var dice = require('clj-fuzzy').metrics.dice;
 var alexa = require('alexa-app');
 var app = new alexa.app('plex');
 var plexAPI = require('plex-api');
+var AWS = require('aws-sdk');
 
 var CONFIDICE_CONFIRM_THRESHOLD = 0.4;
 

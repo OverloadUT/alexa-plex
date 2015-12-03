@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/OverloadUT/alexa-plex",
   "devDependencies": {
+    "aws-sdk": "^2.2.20",
     "chai": "^3.0.0",
     "chai-as-promised": "^5.1.0",
     "coveralls": "^2.11.2",
@@ -38,6 +39,7 @@
     "clj-fuzzy": "^0.3.1",
     "dotenv": "^1.2.0",
     "plex-api": "^3.0.0",
+    "plex-api-pinauth": "^0.1.0",
     "q": "^1.4.1"
   }
 }
