@@ -50,6 +50,9 @@ app.pre = function (request, response, type) {
             // Fail silently
             response.send();
         }
+
+        // Need to initialize the connection to DynamoDB
+        var dynamodb = new AWS.DynamoDB();
     }
 };
 
