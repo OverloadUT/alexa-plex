@@ -67,6 +67,25 @@ describe('Requests', function() {
             this.request.request.type = 'IntentRequest';
         });
 
+        // HACK: debug code
+        describe('Temp Debug intents', function() {
+            beforeEach(function() {
+                this.request.request.intent.name = 'DBTestIntents';
+            });
+
+            it.only('should connect to DynamoDB', function (done) {
+                this.lambda.handler(this.request, {
+                    succeed: function (res) {
+                        console.log(res);
+                        expect(res).to.not.have.deep.property('response.outputSpeech.text');
+                        done();
+                    }, fail: function(res) {
+                        done(new Error('Lambda function failed: ' + err));
+                    }
+                });
+            });
+        });
+
         describe('Prompts', function() {
             beforeEach(function() {
                 this.request.request.intent.name = 'OnDeckIntent';

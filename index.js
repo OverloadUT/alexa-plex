@@ -8,7 +8,6 @@ var AWS = require('aws-sdk');
 
 var CONFIDICE_CONFIRM_THRESHOLD = 0.4;
 
-
 var plexOptions = {
     product: process.env.APP_PRODUCT,
     version: process.env.APP_VERSION,
@@ -50,9 +49,6 @@ app.pre = function (request, response, type) {
             // Fail silently
             response.send();
         }
-
-        // Need to initialize the connection to DynamoDB
-        var dynamodb = new AWS.DynamoDB();
     }
 };
 
@@ -67,6 +63,60 @@ app.launch(function(request,response) {
 //    response.say("There was an error in the Plex App: " + error);
 //    response.send();
 //};
+
+app.intent('DBTestIntents', function(request, response) {
+    AWS.config.update({
+        region: "us-east-1",
+        endpoint: "http://localhost:8000"
+    });
+
+    var dynamodb = new AWS.DynamoDB();
+
+    var params = {
+        TableName : "AlexaPlexUsers",
+        KeySchema: [
+            { AttributeName: "userid", KeyType: "HASH"},  //Partition key
+        ],
+        AttributeDefinitions: [
+            { AttributeName: "userid", AttributeType: "S" },
+        ],
+        ProvisionedThroughput: {
+            ReadCapacityUnits: 10,
+            WriteCapacityUnits: 10
+        }
+    };
+
+    dynamodb.createTable(params, function(err, data) {
+        if (err) {
+            console.error("Unable to create table. Error JSON:", JSON.stringify(err, null, 2));
+        } else {
+            console.log("Created table. Table description JSON:", JSON.stringify(data, null, 2));
+        }
+
+        var getItemParams = {
+            "TableName": "AlexaPlexUsers",
+            "Key": {
+                "userid": {
+                    "S": request.userId
+                }
+            }
+        };
+
+        dynamodb.getItem(getItemParams, function(err, data) {
+            if (err) {
+                console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+            } else {
+                console.log("Query succeeded.");
+                console.log(data);
+                //data.Items.forEach(function(item) {
+                //    console.log(" -", item.year + ": " + item.title);
+                //});
+            }
+        });
+    });
+
+    return false; // This is how you tell alexa-app that this intent is async.
+});
 
 app.intent('OnDeckIntent', function(request,response) {
     plex.query('/library/onDeck').then(function(result) {
