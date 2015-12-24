@@ -4,7 +4,8 @@ var dice = require('clj-fuzzy').metrics.dice;
 var alexa = require('alexa-app');
 var app = new alexa.app('plex');
 var plexAPI = require('plex-api');
-var AWS = require('aws-sdk');
+var PlexPinAuth = require('plex-api-pinauth');
+var db = require('./lib/db.js');
 
 var CONFIDICE_CONFIRM_THRESHOLD = 0.4;
 
@@ -15,11 +16,14 @@ var plexOptions = {
     deviceName: process.env.APP_DEVICE_NAME,
     identifier: process.env.APP_IDENTIFIER
 };
+
+var pinAuth = new PlexPinAuth();
 var plex = new plexAPI({
     hostname: process.env.PMS_HOSTNAME,
-    username: process.env.PMS_USERNAME,
+    //username: process.env.PMS_USERNAME,
     port: process.env.PMS_PORT,
-    password: process.env.PMS_PASSWORD,
+    //password: process.env.PMS_PASSWORD,
+    authenticator: pinAuth,
     options: plexOptions
 });
 
@@ -28,10 +32,9 @@ var plex = new plexAPI({
 plex.authToken = process.env.PMS_AUTHTOKEN;
 
 // Connect the alexa-app to AWS Lambda
-//exports.handler = app.lambda();
 exports.handler = function(event, context) {
-
-    console.log("Request:", event.request);
+    console.log("Request: ", event.request);
+    console.log("Session: ", event.session);
 
     if(event.request.intent) {
         if(event.request.intent.slots) {
@@ -64,87 +67,49 @@ app.launch(function(request,response) {
 //    response.send();
 //};
 
-app.intent('DBTestIntents', function(request, response) {
-    AWS.config.update({
-        region: "us-east-1",
-        endpoint: "http://localhost:8000"
-    });
-
-    var dynamodb = new AWS.DynamoDB();
-
-    var params = {
-        TableName : "AlexaPlexUsers",
-        KeySchema: [
-            { AttributeName: "userid", KeyType: "HASH"},  //Partition key
-        ],
-        AttributeDefinitions: [
-            { AttributeName: "userid", AttributeType: "S" },
-        ],
-        ProvisionedThroughput: {
-            ReadCapacityUnits: 10,
-            WriteCapacityUnits: 10
-        }
-    };
-
-    dynamodb.createTable(params, function(err, data) {
-        if (err) {
-            console.error("Unable to create table. Error JSON:", JSON.stringify(err, null, 2));
-        } else {
-            console.log("Created table. Table description JSON:", JSON.stringify(data, null, 2));
-        }
-
-        var getItemParams = {
-            "TableName": "AlexaPlexUsers",
-            "Key": {
-                "userid": {
-                    "S": request.userId
-                }
-            }
-        };
-
-        dynamodb.getItem(getItemParams, function(err, data) {
-            if (err) {
-                console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
-            } else {
-                console.log("Query succeeded.");
-                console.log(data);
-                //data.Items.forEach(function(item) {
-                //    console.log(" -", item.year + ": " + item.title);
-                //});
-            }
-        });
-    });
-
-    return false; // This is how you tell alexa-app that this intent is async.
-});
-
 app.intent('OnDeckIntent', function(request,response) {
-    plex.query('/library/onDeck').then(function(result) {
+    db.initializeUserRecord(request.data.session.user.userId).then(function(user) {
+        console.log("All is good!");
+        if(!user.authtoken) {
+            response.say("You do not have an auth token. Please run setup. Note: setup doesn't exist yet!");
+            response.send();
+        } else {
+            // User is authed
 
-        if(result._children.length === 0) {
-            response.say("You do not have any shows On Deck!");
-            return response.send();
+            //pinAuth.token = user.authtoken;
+
+            plex.query('/library/onDeck').then(function(result) {
+                if(result._children.length === 0) {
+                    response.say("You do not have any shows On Deck!");
+                    return response.send();
+                }
+
+                var shows = [];
+
+                for(i = 0; i < result._children.length && i < 6; i++) {
+                    shows.push(result._children[i].grandparentTitle);
+                }
+
+                var showsPhraseHyphenized = buildNaturalLangList(shows, 'and', true);
+                var showsPhrase = buildNaturalLangList(shows, 'and');
+
+                //console.log(result);
+
+                response.say("On deck you've got " + showsPhraseHyphenized + '.');
+                response.card('Plex', showsPhrase + '.', 'On Deck');
+                return response.send();
+            }).catch(function(err) {
+                console.log("ERROR from Plex API on Query /library/onDeck");
+                console.log(err);
+                response.say("I'm sorry, Plex and I don't seem to be getting along right now");
+                return response.send();
+            });
+
         }
-
-        var shows = [];
-
-        for(i = 0; i < result._children.length && i < 6; i++) {
-            shows.push(result._children[i].grandparentTitle);
-        }
-
-        var showsPhraseHyphenized = buildNaturalLangList(shows, 'and', true);
-        var showsPhrase = buildNaturalLangList(shows, 'and');
-
-        //console.log(result);
-
-        response.say("On deck you've got " + showsPhraseHyphenized + '.');
-        response.card('Plex', showsPhrase + '.', 'On Deck');
-        response.send();
     }).catch(function(err) {
-        console.log("ERROR from Plex API on Query /library/onDeck");
-        console.log(err);
-        response.say("I'm sorry, Plex and I don't seem to be getting along right now");
-        response.send();
+        console.error(err);
+        response.say("There was a database error. Try again later!");
+        response.send()
     });
 
     return false; // This is how you tell alexa-app that this intent is async.
