@@ -43,6 +43,8 @@ describe('Requests', function() {
         this.request = JSON.parse(JSON.stringify(require('./RequestTemplate.json')));
     });
 
+    require('./states.test.js')();
+
     describe('Launch', function () {
 
         it('should prompt for a command', function (done) {
@@ -69,7 +71,6 @@ describe('Requests', function() {
 
         describe('Prompts', function() {
             beforeEach(function() {
-                this.request.request.intent.name = 'OnDeckIntent';
                 this.request.session.attributes.promptData = {
                     yesResponse: "MochaTest YesResponse",
                     noResponse: "MochaTest NoResponse",
