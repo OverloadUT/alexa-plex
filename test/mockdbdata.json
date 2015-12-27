@@ -1,0 +1,6 @@
+[
+  {
+    "userid" : "MOCHA_TESTS_USERID",
+    "authtoken": "MOCHA_FAKE_AUTH_TOKEN"
+  }
+]
