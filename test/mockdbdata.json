@@ -1,6 +1,10 @@
 [
   {
     "userid" : "MOCHA_TESTS_USERID",
-    "authtoken": "MOCHA_FAKE_AUTH_TOKEN"
+    "authtoken": "MOCHA_FAKE_AUTH_TOKEN",
+    "pms_hostname": "localhost",
+    "pms_port": 1234,
+    "pms_https": false,
+    "player_name": "MOCHA_PLAYER_NAME"
   }
 ]

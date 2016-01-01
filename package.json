@@ -39,7 +39,7 @@
     "alexa-app": "OverloadUT/alexa-app#develop",
     "clj-fuzzy": "^0.3.1",
     "dotenv": "^1.2.0",
-    "plex-api": "^3.0.0",
+    "plex-api": "OverloadUT/node-plex-api#develop",
     "plex-api-pinauth": "^0.1.0",
     "q": "^1.4.1"
   }

@@ -2,6 +2,7 @@
 var expect = require('chai').expect;
 var sinon = require('sinon');
 
+
 describe('Main App Functionality', function () {
     require('./plex-api-stubs.helper.js').plexAPIStubs();
 
@@ -312,6 +313,7 @@ describe('Requests', function() {
                             .that.matches(/on deck/i);
                         expect(res).to.have.deep.property('response.outputSpeech.text')
                             .that.matches(/penny-dreadful.*game-of-thrones.*brooklyn-nine-nine/i);
+                        // TODO: Remove a lot of the calledOnce checks, as that should be the job of the tests on the plexutils methods?
                         expect(self.plexAPIStubs.query).to.have.been.calledOnce;
                         done();
                     }, fail: self.lambdaFail(done)
@@ -367,6 +369,7 @@ describe('Requests', function() {
                 var self = this;
                 this.lambda.handler(this.request, {
                     succeed: function(res) {
+                        console.log(res);
                         expect(res.response.shouldEndSession).to.be.true;
                         expect(res).to.have.deep.property('response.outputSpeech.text')
                             .that.matches(/enjoy this episode from season/i);
