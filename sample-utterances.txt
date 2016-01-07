@@ -1,22 +1,59 @@
-OnDeckIntent what's on deck
-OnDeckIntent what's new
-OnDeckIntent what is on deck
-OnDeckIntent what is new
-YesIntent yes
-YesIntent yeah
-YesIntent okay
-NoIntent no
-StartShowIntent start {firefly|showName}
-StartShowIntent start {arrested development|showName}
-StartShowIntent play show {firefly|showName}
-StartShowIntent play movie {firefly|showName}
-StartShowIntent start show {firefly|showName}
-StartShowIntent start movie {firefly|showName}
-StartRandomShowIntent start a random episode of {firefly|showName}
-StartRandomShowIntent start random episode of {firefly|showName}
-StartRandomShowIntent play a random episode of {firefly|showName}
-StartRandomShowIntent play random episode of {firefly|showName}
-StartHighRatedEpisodeIntent play the best episode of {firefly|showName}
-StartHighRatedEpisodeIntent start the best episode of {firefly|showName}
-StartSpecificEpisodeIntent play {firefly|showName} season {two|seasonNumber} episode {one|episodeNumber}
-StartSpecificEpisodeIntent start {firefly|showName} season {three|seasonNumber} episode {thirteen|episodeNumber}
+SetupIntent Begin setup
+SetupIntent Continue setup
+SetupIntent Set me up
+SetupIntent Let's get started
+YesIntent Yes
+YesIntent Yep
+YesIntent Affirmative
+YesIntent That's correct
+NoIntent No
+NoIntent Nope
+OnDeckIntent What's new
+OnDeckIntent What is new
+OnDeckIntent What is on deck
+OnDeckIntent What's on deck
+StartShowIntent Put on {It's Always Sunny In Philadelphia|showName}
+StartShowIntent Put on {Game of Thrones|showName}
+StartShowIntent Put on {Last Week Tonight|showName}
+StartShowIntent Put on {Halt and Catch Fire|showName}
+StartShowIntent Put on {Futurama|showName}
+StartShowIntent Play {It's Always Sunny In Philadelphia|showName}
+StartShowIntent Play {Game of Thrones|showName}
+StartShowIntent Play {Last Week Tonight|showName}
+StartShowIntent Play {Halt and Catch Fire|showName}
+StartShowIntent Play {Futurama|showName}
+StartHighRatedEpisodeIntent Put on a good episode of {It's Always Sunny In Philadelphia|showName}
+StartHighRatedEpisodeIntent Put on a good episode of {Game of Thrones|showName}
+StartHighRatedEpisodeIntent Put on a good episode of {Last Week Tonight|showName}
+StartHighRatedEpisodeIntent Put on a good episode of {Halt and Catch Fire|showName}
+StartHighRatedEpisodeIntent Put on a good episode of {Futurama|showName}
+StartHighRatedEpisodeIntent Play a good episode of {It's Always Sunny In Philadelphia|showName}
+StartHighRatedEpisodeIntent Play a good episode of {Game of Thrones|showName}
+StartHighRatedEpisodeIntent Play a good episode of {Last Week Tonight|showName}
+StartHighRatedEpisodeIntent Play a good episode of {Halt and Catch Fire|showName}
+StartHighRatedEpisodeIntent Play a good episode of {Futurama|showName}
+StartHighRatedEpisodeIntent Put on {It's Always Sunny In Philadelphia|showName} and make it a good one
+StartHighRatedEpisodeIntent Put on {Game of Thrones|showName} and make it a good one
+StartHighRatedEpisodeIntent Put on {Last Week Tonight|showName} and make it a good one
+StartHighRatedEpisodeIntent Put on {Halt and Catch Fire|showName} and make it a good one
+StartHighRatedEpisodeIntent Put on {Futurama|showName} and make it a good one
+StartHighRatedEpisodeIntent Play {It's Always Sunny In Philadelphia|showName} and make it a good one
+StartHighRatedEpisodeIntent Play {Game of Thrones|showName} and make it a good one
+StartHighRatedEpisodeIntent Play {Last Week Tonight|showName} and make it a good one
+StartHighRatedEpisodeIntent Play {Halt and Catch Fire|showName} and make it a good one
+StartHighRatedEpisodeIntent Play {Futurama|showName} and make it a good one
+StartSpecificEpisodeIntent Play season {one|seasonNumber} episode {one|episodeNumber} of {Adventure Time|showName}
+StartSpecificEpisodeIntent Play season {two|seasonNumber} episode {two|episodeNumber} of {Adventure Time|showName}
+StartSpecificEpisodeIntent Play season {three|seasonNumber} episode {three|episodeNumber} of {Adventure Time|showName}
+StartSpecificEpisodeIntent Play season {four|seasonNumber} episode {four|episodeNumber} of {Adventure Time|showName}
+StartSpecificEpisodeIntent Play season {five|seasonNumber} episode {five|episodeNumber} of {Adventure Time|showName}
+StartSpecificEpisodeIntent Play season {six|seasonNumber} episode {six|episodeNumber} of {Adventure Time|showName}
+StartSpecificEpisodeIntent Play episode {one oh five|episodeNumber} of {Adventure Time|showName}
+StartSpecificEpisodeIntent Play episode {two oh six|episodeNumber} of {Adventure Time|showName}
+StartSpecificEpisodeIntent Play episode {three oh seven|episodeNumber} of {Adventure Time|showName}
+StartSpecificEpisodeIntent Play episode {four oh eight|episodeNumber} of {Adventure Time|showName}
+StartSpecificEpisodeIntent Play episode {five oh nine|episodeNumber} of {Adventure Time|showName}
+StartSpecificEpisodeIntent Play episode {one|episodeNumber} of {Adventure Time|showName}
+StartSpecificEpisodeIntent Play episode {two|episodeNumber} of {Adventure Time|showName}
+StartSpecificEpisodeIntent Play episode {three|episodeNumber} of {Adventure Time|showName}
+StartSpecificEpisodeIntent Play episode {four|episodeNumber} of {Adventure Time|showName}

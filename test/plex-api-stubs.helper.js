@@ -1,64 +1,52 @@
 var proxyquire = require('proxyquire');
 var sinon = require('sinon');
 
-exports.plexAPIStubs = function() {
-    beforeEach('set up main module with stubs for all plex-api methods', function () {
-        // TODO this is all a huge mess after it was changed to account for the new way PlexAPI is instantiated.
-        // Can probably be made much simpler and easier to understand
+module.exports.plexAPIStubFramework = function() {
+    before('Set up plex api stubbing', function() {
+        var context = this;
 
-        var self = this;
         this.plexAPIStubs = {
-            query: function () {},
-            postQuery: function () {},
-            perform: function () {},
-            find: function () {}
+            query: function () {throw new Error("This placeholder proxyquire function should never get called")},
+            postQuery: function () {throw new Error("This placeholder proxyquire function should never get called")},
+            perform: function () {throw new Error("This placeholder proxyquire function should never get called")},
+            find: function () {throw new Error("This placeholder proxyquire function should never get called")}
         };
 
-        sinon.stub(self.plexAPIStubs, 'query').rejects(new Error('Unhandled URI in query stub'));
-        sinon.stub(self.plexAPIStubs, 'postQuery').rejects(new Error('Unhandled URI in postQuery stub'));
-        sinon.stub(self.plexAPIStubs, 'perform').rejects(new Error('Unhandled URI in perform stub'));
-        sinon.stub(self.plexAPIStubs, 'find').rejects(new Error('Unhandled URI in find stub'));
+        this.restoreAllStubs = function() {
+            this.plexAPIStubs.query.restore();
+            this.plexAPIStubs.postQuery.restore();
+            this.plexAPIStubs.perform.restore();
+            this.plexAPIStubs.find.restore();
+        };
 
-        this.plexAPIUtils = {
-            stubAll      : function () {
-            }, restoreAll: function () {
-                self.plexAPIStubs.query.restore();
-                self.plexAPIStubs.postQuery.restore();
-                self.plexAPIStubs.perform.restore();
-                self.plexAPIStubs.find.restore();
-            }, construct : function (opts) {
-                this.query = self.plexAPIStubs.query;
-                this.postQuery = self.plexAPIStubs.postQuery;
-                this.perform = self.plexAPIStubs.perform;
-                this.find = self.plexAPIStubs.find;
-                this.getIdentifier = sinon.stub().returns('STUBBED-IDENTIFIER');
-
-                self.plexAPIUtils.stubAll();
-            }
+        this.plexAPIStubConstructor = function (opts) {
+            console.log("Constructing Plex API", opts);
+            this.query = context.plexAPIStubs.query;
+            this.postQuery = context.plexAPIStubs.postQuery;
+            this.perform = context.plexAPIStubs.perform;
+            this.find = context.plexAPIStubs.find;
+            this.getIdentifier = sinon.stub().returns('STUBBED-IDENTIFIER');
         };
 
         if(process.env.NODE_ENV === 'test') {
             this.lambda = proxyquire('../index.js', {
-                'plex-api': this.plexAPIUtils.construct
+                'plex-api': this.plexAPIStubConstructor
             });
         } else if (process.env.NODE_ENV === 'test-live'){
             this.lambda = require('../index.js');
-            this.plexAPIUtils.construct();
+            this.plexAPIStubConstructor();
         }
     });
 
-    beforeEach('Reset all plex-api stubs', function() {
-        //this.plexAPIUtils.stubAll();
-    });
+    beforeEach('set up main module with stubs for all plex-api methods', function () {
+        console.log("Setting up all stubs")
+        sinon.stub(this.plexAPIStubs, 'query').rejects(new Error('Unhandled URI in postQuery stub'));
+        sinon.stub(this.plexAPIStubs, 'postQuery').rejects(new Error('Unhandled URI in postQuery stub'));
+        sinon.stub(this.plexAPIStubs, 'perform').rejects(new Error('Unhandled URI in perform stub'));
+        sinon.stub(this.plexAPIStubs, 'find').rejects(new Error('Unhandled URI in find stub'));
 
-    afterEach('Restore all plex-api stubs to blank methods', function() {
-        //this.plexAPIUtils.restoreAll();
-    });
-};
-
-exports.plexAPIResponses = function() {
-    beforeEach('Set up query, find, and postQuery stubs', function() {
-        this.plexAPIStubs.query.withArgs('/').resolves(require('./samples/root.json'));
+        this.plexAPIStubs.query.withArgs('/')
+            .resolves(require('./samples/root.json'));
         this.plexAPIStubs.query.withArgs(sinon.match(/\/library\/metadata\/[0-9]+$/))
             .resolves(require('./samples/library_metadata_item.json'));
         this.plexAPIStubs.query.withArgs('/library/sections/1/all')
@@ -80,5 +68,15 @@ exports.plexAPIResponses = function() {
 
         this.plexAPIStubs.find.withArgs('/clients')
             .resolves(require('./samples/clients.json'));
+    });
+
+    afterEach('Restore all plex-api stubs to blank methods', function() {
+        this.restoreAllStubs();
+    });
+};
+
+exports.plexAPIResponses = function() {
+    beforeEach('Set up query, find, and postQuery stubs', function() {
+        // TODO remove me and all calls to me
     });
 };

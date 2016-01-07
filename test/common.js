@@ -60,10 +60,8 @@ before('Start dynalite (mock DynamoDB server)', function(done) {
                     Item: {
                         "userid": data.userid,
                         "authtoken": data.authtoken || undefined,
-                        "pms_hostname": data.pms_hostname || undefined,
-                        "pms_port": data.pms_port || undefined,
-                        "pms_https": data.pms_https || undefined,
-                        "player_name": data.player_name || undefined
+                        "server": data.server || undefined,
+                        "player": data.player || undefined,
                     }
                 };
 

@@ -1,6 +1,30 @@
 {
   "intents": [
     {
+      "intent": "SetupIntent",
+      "slots": []
+    },
+    {
+      "intent": "ContinueSetupIntent",
+      "slots": []
+    },
+    {
+      "intent": "BeginSetupIntent",
+      "slots": []
+    },
+    {
+      "intent": "AuthorizeMeIntent",
+      "slots": []
+    },
+    {
+      "intent": "WhatsNewIntent",
+      "slots": []
+    },
+    {
+      "intent": "ChangeSettingsIntent",
+      "slots": []
+    },
+    {
       "intent": "OnDeckIntent",
       "slots": []
     },

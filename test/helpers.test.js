@@ -3,7 +3,7 @@ var sinon = require('sinon');
 
 // TODO All of these tests need to have rewritten scaffolding, due to the new way that plex api construction works
 describe.skip('API Helpers', function() {
-    require('./plex-api-stubs.helper.js').plexAPIStubs();
+    require('./plex-api-stubs.helper.js').plexAPIStubFramework();
 
     before('Set up stubs', function() {
         this.plexutils = require('../lib/plexutils.js');

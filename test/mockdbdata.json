@@ -1,10 +1,65 @@
 [
   {
-    "userid" : "MOCHA_TESTS_USERID",
+    "userid": "MOCHA_USER_WITH_NO_PIN",
+    "authtoken": "MOCHA_FAKE_AUTH_TOKEN"
+  },
+  {
+    "userid": "MOCHA_FULLY_SETUP_USER",
     "authtoken": "MOCHA_FAKE_AUTH_TOKEN",
-    "pms_hostname": "localhost",
-    "pms_port": 1234,
-    "pms_https": false,
-    "player_name": "MOCHA_PLAYER_NAME"
+    "server": {
+      "attributes": {
+        "platform": "Windows",
+        "synced": "0",
+        "clientIdentifier": "MOCHA_SERVER_IDENTIFIER",
+        "accessToken": "MOCHA_SERVER_ACCESS_TOKEN",
+        "publicAddressMatches": "1",
+        "provides": "server",
+        "productVersion": "0.9.15.0.1621-344f193",
+        "httpsRequired": "0",
+        "owned": "1",
+        "product": "Plex Media Server",
+        "platformVersion": "10.0 (Build 10240)",
+        "presence": "1",
+        "lastSeenAt": "1452120204",
+        "createdAt": "1358573159",
+        "name": "MOCHA_SERVER_NAME",
+        "device": "PC"
+      },
+      "Connection": [
+        {
+          "attributes": {
+            "port": "32400",
+            "protocol": "https",
+            "address": "192.168.0.2",
+            "local": "1",
+            "uri": "https://secure-local-url:32400"
+          }
+        },
+        {
+          "attributes": {
+            "port": "12345",
+            "protocol": "https",
+            "address": "10.10.100.1",
+            "local": "0",
+            "uri": "https://secure-public-url:12345"
+          }
+        }
+      ]
+    },
+    "player": {
+      "protocolCapabilities": "navigation,playback,timeline,mirror,playqueues",
+      "product": "Plex Home Theater",
+      "port": 3005,
+      "protocol": "plex",
+      "machineIdentifier": "MOCHA_PLAYER_IDENTIFIER",
+      "protocolVersion": "1",
+      "host": "192.168.0.30",
+      "address": "192.168.0.30",
+      "_elementType": "Server",
+      "name": "MOCHA_PLAYER_NAME",
+      "deviceClass": "HTPC",
+      "uri": "/system/players/192.168.0.3",
+      "version": "1.4.1.469-47a90f01"
+    }
   }
 ]
