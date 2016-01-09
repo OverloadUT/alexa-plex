@@ -1,19 +1,14 @@
+/**
+ * @module
+ */
+
 require('dotenv').load();
-var common = require('./lib/common.js');
-var db = require('./lib/db.js');
-var stateMachine = require('./lib/statemachine.js');
+var app = require('./lib/app');
+var db = require('./lib/db');
+var stateMachine = require('./lib/statemachine');
 var User = require('./lib/user');
 var Alexa = require('alexa-app');
-
-//console.error = function(err) {
-//        console.log(err);
-//        console.log(err.stack);
-//};
-
-// HACK this is pretty terrible, but it's the only way I could get it to work with proxyquire in the unit tests :(
-// There is a better way I'm sure. TODO fix it.
-common.PlexAPI = require('plex-api');
-common.PlexPinAuth = require('plex-api-pinauth');
+var Plex = require('./lib/plex');
 
 /**
  * The main AWS Lambda handler.
@@ -29,19 +24,22 @@ exports.handler = function(event, context) {
         }
     }
 
-    common.app = new Alexa.app('plex');
+    app.skill = new Alexa.app('plex');
+    app.plex = new Plex.Plex();
 
     db.initializeUserRecord(event.session.user.userId).then(function(dbuser) {
-        common.user = new User(dbuser);
+        app.user = new User(dbuser);
+        app.plex.pinAuth.token = app.user.authtoken;
 
-        if(!common.user.authtoken) {
+        if(!app.user.authtoken) {
             return stateMachine.initApp('not-authed');
         } else {
             return stateMachine.initApp('authed');
         }
     }).then(function() {
-        common.app.lambda()(event, context);
+        app.skill.lambda()(event, context);
     }).catch(function(err) {
         console.error(err);
+        console.error(err.stack);
     });
 };

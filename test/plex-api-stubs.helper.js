@@ -1,12 +1,18 @@
 var proxyquire = require('proxyquire');
 var sinon = require('sinon');
+//var q = require('Q');
 
 module.exports.plexAPIStubFramework = function() {
     before('Set up plex api stubbing', function() {
         var context = this;
 
+        if (this.plexStubsInit) {
+            throw new Error("plexAPIStubFramework called a second time - this breaks everyting!");
+        }
+        this.plexStubsInit = true;
+
         this.plexAPIStubs = {
-            query: function () {throw new Error("This placeholder proxyquire function should never get called")},
+            query: function (opts) {throw new Error("This placeholder proxyquire function should never get called: " + opts)},
             postQuery: function () {throw new Error("This placeholder proxyquire function should never get called")},
             perform: function () {throw new Error("This placeholder proxyquire function should never get called")},
             find: function () {throw new Error("This placeholder proxyquire function should never get called")}
@@ -20,7 +26,6 @@ module.exports.plexAPIStubFramework = function() {
         };
 
         this.plexAPIStubConstructor = function (opts) {
-            console.log("Constructing Plex API", opts);
             this.query = context.plexAPIStubs.query;
             this.postQuery = context.plexAPIStubs.postQuery;
             this.perform = context.plexAPIStubs.perform;
@@ -29,17 +34,17 @@ module.exports.plexAPIStubFramework = function() {
         };
 
         if(process.env.NODE_ENV === 'test') {
-            this.lambda = proxyquire('../index.js', {
+            proxyquire('../lib/plex', {
                 'plex-api': this.plexAPIStubConstructor
             });
         } else if (process.env.NODE_ENV === 'test-live'){
-            this.lambda = require('../index.js');
             this.plexAPIStubConstructor();
         }
+
+        this.lambda = require('../index.js');
     });
 
     beforeEach('set up main module with stubs for all plex-api methods', function () {
-        console.log("Setting up all stubs")
         sinon.stub(this.plexAPIStubs, 'query').rejects(new Error('Unhandled URI in postQuery stub'));
         sinon.stub(this.plexAPIStubs, 'postQuery').rejects(new Error('Unhandled URI in postQuery stub'));
         sinon.stub(this.plexAPIStubs, 'perform').rejects(new Error('Unhandled URI in perform stub'));
@@ -72,6 +77,9 @@ module.exports.plexAPIStubFramework = function() {
 
     afterEach('Restore all plex-api stubs to blank methods', function() {
         this.restoreAllStubs();
+
+        // HACK HACK HACK very stupid way to deal with the fact that we're basically using globals
+
     });
 };
 

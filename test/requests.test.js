@@ -4,7 +4,6 @@ var sinon = require('sinon');
 
 
 describe('Main App Functionality', function () {
-    require('./plex-api-stubs.helper.js').plexAPIStubFramework();
 
     before(function() {
         this.request = JSON.parse(JSON.stringify(require('./RequestTemplate.json')));
@@ -29,7 +28,6 @@ describe('Main App Functionality', function () {
 });
 
 describe('Requests', function() {
-    require('./plex-api-stubs.helper.js').plexAPIStubFramework();
 
     before(function() {
         this.lambdaFail = function(done) {
@@ -80,9 +78,9 @@ describe('Requests', function() {
                 };
             });
 
-            describe.only('YesIntent', function() {
+            describe('AMAZON.YesIntent', function() {
                 beforeEach(function() {
-                    this.request.request.intent.name = 'YesIntent';
+                    this.request.request.intent.name = 'AMAZON.YesIntent';
                 });
 
                 describe('yesAction: startEpisode', function() {
@@ -100,11 +98,6 @@ describe('Requests', function() {
                             succeed: function(res) {
                                 expect(res).to.have.deep.property('response.outputSpeech.ssml')
                                     .that.matches(/MochaTest YesResponse/i);
-
-                                //console.dir(require('../lib/common').plex.perform);
-                                expect(self.plexAPIStubs.perform).to.deep.equal(require('../lib/common').plex.perform);
-                                expect(self.plexAPIStubs.perform).to.deep.equal(require('../lib/common').plexTV.perform);
-
                                 expect(self.plexAPIStubs.perform)
                                     .to.have.been.calledWithMatch(/111111/i);
                                 expect(self.plexAPIStubs.perform)
@@ -121,10 +114,6 @@ describe('Requests', function() {
                         var self = this;
                         this.lambda.handler(this.request, {
                             succeed: function(res) {
-                                //console.dir(require('../lib/common').plex.perform);
-                                expect(self.plexAPIStubs.perform).to.deep.equal(require('../lib/common').plex.perform);
-                                expect(self.plexAPIStubs.perform).to.deep.equal(require('../lib/common').plexTV.perform);
-
                                 expect(res).to.have.deep.property('response.outputSpeech.ssml')
                                     .that.matches(/MochaTest YesResponse/i);
                                 expect(self.plexAPIStubs.perform)
@@ -154,7 +143,7 @@ describe('Requests', function() {
                     });
                 });
 
-                it.skip('should respond with the yesResponse message', function(done) {
+                it('should respond with the yesResponse message', function(done) {
                     var self = this;
                     this.lambda.handler(this.request, {
                         succeed: function(res) {
@@ -165,7 +154,7 @@ describe('Requests', function() {
                     });
                 });
 
-                it.skip('should gracefully handle a lack of promptData by closing the session', function(done) {
+                it('should gracefully handle a lack of promptData by closing the session', function(done) {
                     delete this.request.session.attributes.promptData;
                     var self = this;
                     this.lambda.handler(this.request, {
@@ -176,7 +165,7 @@ describe('Requests', function() {
                     });
                 });
 
-                it.skip('should gracefully handle an unknown yesAction by closing the session', function(done) {
+                it('should gracefully handle an unknown yesAction by closing the session', function(done) {
                     this.request.session.attributes.promptData.yesAction = "MochaTestUnknownAction";
                     var self = this;
                     this.lambda.handler(this.request, {
@@ -188,9 +177,9 @@ describe('Requests', function() {
                 });
             });
 
-            describe('NoIntent', function() {
+            describe('AMAZON.NoIntent', function() {
                 beforeEach(function() {
-                    this.request.request.intent.name = 'NoIntent';
+                    this.request.request.intent.name = 'AMAZON.NoIntent';
                 });
 
                 describe('noAction: startEpisode', function() {
@@ -207,7 +196,7 @@ describe('Requests', function() {
                         this.lambda.handler(this.request, {
                             succeed: function(res) {
                                 expect(res).to.have.deep.property('response.outputSpeech.ssml')
-                                    .that.equals("MochaTest NoResponse");
+                                    .that.matches(/MochaTest NoResponse/);
                                 expect(self.plexAPIStubs.perform)
                                     .to.have.been.calledWithMatch(/111111/i)
                                     .and.to.have.been.calledWithMatch(/offset=0/i);
@@ -224,7 +213,7 @@ describe('Requests', function() {
                         this.lambda.handler(this.request, {
                             succeed: function(res) {
                                 expect(res).to.have.deep.property('response.outputSpeech.ssml')
-                                    .that.equals("MochaTest NoResponse");
+                                    .that.matches(/MochaTest NoResponse/);
                                 expect(self.plexAPIStubs.perform)
                                     .to.have.been.calledWithMatch(/offset=12345/i);
                                 done();
@@ -242,7 +231,7 @@ describe('Requests', function() {
                         this.lambda.handler(this.request, {
                             succeed: function(res) {
                                 expect(res).to.have.deep.property('response.outputSpeech.ssml')
-                                    .that.equals("MochaTest NoResponse");
+                                    .that.matches(/MochaTest NoResponse/);
                                 expect(self.plexAPIStubs.perform)
                                     .to.have.been.calledWithMatch(/222222/i)
                                     .and.to.have.been.calledWithMatch(/offset=54321/i);
@@ -276,7 +265,7 @@ describe('Requests', function() {
                     this.lambda.handler(this.request, {
                         succeed: function(res) {
                             expect(res).to.have.deep.property('response.outputSpeech.ssml')
-                                .that.equals("MochaTest NoResponse");
+                                .that.matches(/MochaTest NoResponse/);
                             done();
                         }, fail: self.lambdaFail(done)
                     });
@@ -764,6 +753,7 @@ describe('Requests', function() {
                 var self = this;
                 this.lambda.handler(this.request, {
                     succeed: function(res) {
+                        console.warn(res);
                         expect(res).to.have.deep.property('response.outputSpeech.ssml')
                             .that.matches(/No show specified/i);
                         done();
