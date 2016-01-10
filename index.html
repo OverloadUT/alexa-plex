@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
@@ -11,75 +11,136 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <title>Plex for Alexa by OverloadUT</title>
-  </head>
+</head>
 
-  <body>
-    <div id="container">
-      <div class="inner">
+<body>
+<div id="container">
+    <div class="inner">
 
         <header>
-          <h1>Plex for Alexa</h1>
-          <h2>Alexa Skill for interacting with your Plex Media Server and Plex players.</h2>
+            <h1>Plex for Alexa</h1>
+            <h2>Alexa Skill for interacting with your Plex Media Server and Plex players.</h2>
         </header>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/OverloadUT/alexa-plex/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/OverloadUT/alexa-plex/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/OverloadUT/alexa-plex" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        <!--<section id="downloads" class="clearfix">-->
+        <!--<a href="https://github.com/OverloadUT/alexa-plex/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>-->
+        <!--<a href="https://github.com/OverloadUT/alexa-plex/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>-->
+        <!--<a href="https://github.com/OverloadUT/alexa-plex" id="view-on-github" class="button"><span>View on GitHub</span></a>-->
+        <!--</section>-->
+
+        <section id="links" class="clearfix">
+            <a href="https://gitter.im/OverloadUT/alexa-plex" id="gitter" class="button"><span>Gitter Chatroom</span></a>
+            <a href="https://github.com/OverloadUT/alexa-plex" id="view-on-github" class="button"><span>View on GitHub</span></a>
         </section>
 
         <hr>
 
         <section id="main_content">
-          <h3>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h3>
+            <blockquote>
+                <p>"Alexa, ask the home theater what's on deck?"</p>
 
-<blockquote>
-<p>"Alexa, ask the home theater what's on deck?"</p>
+                <p>"Alexa, tell the home theater to put on Always Sunny"</p>
 
-<p>"Alexa, tell the home theater to put on Always Sunny"</p>
+                <p>"Alexa, tell the home theater to put on episode 3 of Band of Brothers"</p>
 
-<p>"Alexa, tell the home theater to put on episode 3 of Band of Brothers"</p>
+                <p>"Alexa, tell the home theater to put on Adventure Time, and make it a good one!"</p>
+            </blockquote>
 
-<p>"Alexa, tell the home theater to put on Adventure Time, and make it a good one!"</p>
-</blockquote>
+            <h3>
+                <a id="features" class="anchor" href="#features" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Features</h3>
 
-<h3>
-<a id="limitations" class="anchor" href="#limitations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limitations</h3>
+            <ul>
+                <li>Ask Alexa what's on deck to see what TV shows you have on deck.
+                    <ul class="examples">
+                        <li>Alexa, ask the home theater what's on deck</li>
+                    </ul>
+                </li>
+                <li>Tell Alexa to start playing a TV show. It'll play the next episode you need to watch, or a random one. You don't need to say the entire name of the show - just enough so that she can figure it out!
+                    <ul class="examples">
+                        <li>Alexa, ask the home theater to play South Park</li>
+                        <li>Alexa, ask the home theater to put on Always Sunny</li>
+                    </ul>
+                </li>
+                <li>Tell Alexa to play a specific TV show. Supports a variety of refering to episodes (although not by episode name)
+                    <ul class="examples">
+                        <li>Alexa, ask the home theater to play episode 208 of True Detective</li>
+                        <li>Alexa, ask the home theater to play season 3 episode 7 of Adventure Time</li>
+                        <li>Alexa, ask the home theater to play episode 4 of Band of Brothers</li>
+                    </ul>
+                </li>
+                <li>Tell Alexa to play a random <em>well-reviewed</em> episode of a show. It'll pick a random episode in the top 10% of user reviews.
+                    <ul class="examples">
+                        <li>Alexa, ask the home theater to play South Park, and make it a good one!</li>
+                    </ul>
+                </li>
+            </ul>
 
-<p>Currently, Plex for Alexa does not have the ability to customize which server and which player you are using. It works best if you have a single Plex server connected to a single player (servers shared with you are ignored currently, so you don't have to worry about them.)</p>
+            <h3>
+                <a id="limitations" class="anchor" href="#limitations" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Limitations</h3>
 
-<p>The ability to use multiple servers at the same time as well as casting to any number of players is currently under development.</p>
+            <ul>
+                <li>Only supports a <strong>single Plex Media Server that you own</strong>. Servers shared with you will be ignored for now.</li>
+                <li><strong>TV Shows only</strong> right now. Movies are coming soon!</li>
+                <li><strong>Only supports a single TV Show "library".</strong> If you have more than one, it will use the oldest one you have.</li>
+                <li>A limited number of players have been tested simply due to me not owning them all. See the Player Compatibility section below.</li>
+                <li><strong>YOU MUST HAVE REMOTE ACCESS ENABLED!</strong> This will always be the case, due to the fact that Alexa skills do not actually
+                run on the Alexa hardware itself, but rather in the cloud. Refer to this article on the Plex Support site for how to verify that your server
+                is properly set up: <a href="https://support.plex.tv/hc/en-us/articles/200484543-Enabling-Remote-Access-for-a-Server" target="_blank">Enabling Remote Access for a Server</a></li>
+            </ul>
 
-<h3>
-<a id="compatibility" class="anchor" href="#compatibility" aria-hidden="true"><span class="octicon octicon-link"></span></a>Compatibility</h3>
+            <h3>
+                <a id="setup" class="anchor" href="#setup" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>How to Set Up</h3>
 
-<p>Right now playback commands have only been tested with the following clients:</p>
+            <p>Once you have the skill activated in your Alexa app and <a href="https://support.plex.tv/hc/en-us/articles/200484543-Enabling-Remote-Access-for-a-Server" target="_blank">
+                verified that your server is set up for remote access</a>, you'll need to link Alexa to your Plex account. Open your web browser
+                to <a href="http://plex.tv/link">http://plex.tv/link</a> and ask Alexa:</p>
 
-<ul>
-<li>Plex Home Theater</li>
-</ul>
+            <blockquote><em>"Alexa, tell the home theater to continue setup"</em></blockquote>
 
-<p>If you have other players and would like to help out with testing, please join the <a href="https://gitter.im/OverloadUT/alexa-plex">Gitter Chatroom</a></p>
+            <p>Alexa will guide you through the steps to link your account. Simply keep saying that same command and it should move to the next step.</p>
+
+            <h3>
+                <a id="compatibility" class="anchor" href="#compatibility" aria-hidden="true"><span
+                        class="octicon octicon-link"></span></a>Player Compatibility</h3>
+
+            <p>Right now playback commands have only been tested with the following clients:</p>
+
+            <h4>Officially Supported</h4>
+            <ul>
+                <li>Plex Home Theater</li>
+            </ul>
+
+            <h4>Known to be Incompatible</h4>
+            <ul>
+                <li>Plex Media Player</li>
+            </ul>
+
+            <p>If you have other players and would like to help out with testing, please join the <a
+                    href="https://gitter.im/OverloadUT/alexa-plex">Gitter Chatroom</a></p>
         </section>
 
         <footer>
-          Plex for Alexa is maintained by <a href="https://github.com/OverloadUT">OverloadUT</a><br>
-          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+            Plex for Alexa is maintained by <a href="https://github.com/OverloadUT">OverloadUT</a><br>
+            This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a
+                href="https://twitter.com/jasonlong">Jason Long</a>.
         </footer>
 
-                  <script type="text/javascript">
+        <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
+        </script>
+        <script type="text/javascript">
             try {
-              var pageTracker = _gat._getTracker("UA-72210331-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+                var pageTracker = _gat._getTracker("UA-72210331-1");
+                pageTracker._trackPageview();
+            } catch (err) {
+            }
+        </script>
 
-      </div>
     </div>
-  </body>
+</div>
+</body>
 </html>
