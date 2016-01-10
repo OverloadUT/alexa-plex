@@ -52,6 +52,17 @@ module.exports = function(grunt) {
                 command: 'deploy.bat'
             }
         },
+        jsdoc : {
+            dist : {
+                src: ['*.js', 'lib/**/*.js', 'test/*.js'],
+                options: {
+                    destination: 'jsdoc',
+                    template : "node_modules/ink-docstrap/template",
+                    configure : "node_modules/ink-docstrap/template/jsdoc.conf.json",
+                    readme: "README.md"
+                }
+            }
+        }
     });
 
     // Coveralls support
@@ -68,6 +79,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-mocha-istanbul');
+    grunt.loadNpmTasks('grunt-jsdoc');
 
     // Default task(s).
     grunt.registerTask('default', ['mocha_istanbul:coverage']);

@@ -1,3 +1,5 @@
+REM Requires AWS CLI installed: https://aws.amazon.com/cli/
+REM Requires 7z installed, and 7z.exe added to your PATH
 @echo off
 rmdir dist\install /S /Q
 mkdir dist\install

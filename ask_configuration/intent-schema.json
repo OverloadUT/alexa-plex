@@ -1,23 +1,45 @@
 {
   "intents": [
     {
+      "intent": "SetupIntent",
+      "slots": []
+    },
+    {
+      "intent": "ContinueSetupIntent",
+      "slots": []
+    },
+    {
+      "intent": "BeginSetupIntent",
+      "slots": []
+    },
+    {
+      "intent": "AuthorizeMeIntent",
+      "slots": []
+    },
+    {
+      "intent": "WhatsNewIntent",
+      "slots": []
+    },
+    {
+      "intent": "ChangeSettingsIntent",
+      "slots": []
+    },
+    {
       "intent": "OnDeckIntent",
       "slots": []
     },
     {
-      "intent": "YesIntent",
-      "slots": []
+      "intent": "AMAZON.YesIntent"
     },
     {
-      "intent": "NoIntent",
-      "slots": []
+      "intent": "AMAZON.NoIntent"
     },
     {
       "intent": "StartShowIntent",
       "slots": [
         {
           "name": "showName",
-          "type": "LITERAL"
+          "type": "SHOWNAME"
         }
       ]
     },
@@ -26,7 +48,7 @@
       "slots": [
         {
           "name": "showName",
-          "type": "LITERAL"
+          "type": "SHOWNAME"
         }
       ]
     },
@@ -35,7 +57,7 @@
       "slots": [
         {
           "name": "showName",
-          "type": "LITERAL"
+          "type": "SHOWNAME"
         }
       ]
     },
@@ -44,7 +66,7 @@
       "slots": [
         {
           "name": "showName",
-          "type": "LITERAL"
+          "type": "SHOWNAME"
         },
         {
           "name": "episodeNumber",

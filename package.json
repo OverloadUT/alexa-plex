@@ -17,14 +17,18 @@
   },
   "homepage": "https://github.com/OverloadUT/alexa-plex",
   "devDependencies": {
+    "aws-sdk": "^2.2.20",
     "chai": "^3.0.0",
     "chai-as-promised": "^5.1.0",
     "coveralls": "^2.11.2",
+    "dynalite": "^0.17.1",
     "grunt": "^0.4.5",
     "grunt-aws-lambda": "^0.11.0",
+    "grunt-jsdoc": "^1.1.0",
     "grunt-mocha-istanbul": "^3.0.1",
     "grunt-mocha-test": "^0.12.7",
     "grunt-shell": "^1.1.2",
+    "ink-docstrap": "^1.1.0",
     "istanbul": "^0.4.0",
     "mocha": "^2.2.5",
     "npm": "^3.3.5",
@@ -34,10 +38,11 @@
     "sinon-chai": "^2.8.0"
   },
   "dependencies": {
-    "alexa-app": "^2.1.0",
+    "alexa-app": "OverloadUT/alexa-app#develop",
     "clj-fuzzy": "^0.3.1",
     "dotenv": "^1.2.0",
-    "plex-api": "^3.0.0",
+    "plex-api": "OverloadUT/node-plex-api#develop",
+    "plex-api-pinauth": "^0.1.0",
     "q": "^1.4.1"
   }
 }

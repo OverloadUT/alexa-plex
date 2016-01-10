@@ -8,7 +8,7 @@
     "sessionId": "session1234",
     "attributes": {},
     "user": {
-      "userId": null
+      "userId": "MOCHA_FULLY_SETUP_USER"
     }
   },
   "request": {
