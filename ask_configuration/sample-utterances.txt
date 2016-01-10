@@ -11,7 +11,11 @@ OnDeckIntent What is new
 OnDeckIntent What is on deck
 OnDeckIntent What's on deck
 StartShowIntent Put on {showName}
+StartShowIntent Put on the next episode of {showName}
+StartShowIntent Put on the next {showName}
 StartShowIntent Play {showName}
+StartShowIntent Play the next episode of {showName}
+StartShowIntent Play the next {showName}
 StartHighRatedEpisodeIntent Put on a good episode of {showName}
 StartHighRatedEpisodeIntent Play a good episode of {showName}
 StartHighRatedEpisodeIntent Put on {showName} and make it a good one
