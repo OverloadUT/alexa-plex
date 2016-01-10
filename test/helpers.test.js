@@ -155,8 +155,6 @@ describe.skip('API Helpers', function() {
     });
 
     describe('startShow', function() {
-        require('./plex-api-stubs.helper.js').plexAPIResponses();
-
         before(function() {
             this.responseStub = {
                 say: sinon.stub(),

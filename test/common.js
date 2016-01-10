@@ -64,6 +64,7 @@ before('Start dynalite (mock DynamoDB server)', function(done) {
                         "authtoken": data.authtoken || undefined,
                         "server": data.server || undefined,
                         "player": data.player || undefined,
+                        "libraries": data.libraries || undefined
                     }
                 };
 

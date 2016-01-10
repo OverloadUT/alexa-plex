@@ -60,6 +60,112 @@
       "deviceClass": "HTPC",
       "uri": "/system/players/192.168.0.3",
       "version": "1.4.1.469-47a90f01"
-    }
+    },
+    "libraries": [
+      {
+        "_children": [
+          {
+            "_elementType": "Location",
+            "id": 6,
+            "path": "X:\\Second Show Library"
+          }
+        ],
+        "_elementType": "Directory",
+        "agent": "com.plexapp.agents.none",
+        "allowSync": "1",
+        "art": "/:/resources/show-fanart.jpg",
+        "composite": "/library/sections/6/composite/1451275405",
+        "createdAt": "1445280422",
+        "filters": "1",
+        "key": "6",
+        "language": "xn",
+        "refreshing": "0",
+        "scanner": "Plex Series Scanner",
+        "thumb": "/:/resources/show.png",
+        "title": "A Second Show Library",
+        "type": "show",
+        "updatedAt": "1451275405",
+        "uri": "/library/sections/6",
+        "uuid": "MOCHA-SECOND-SHOW-LIBRARY"
+      },
+      {
+        "_children": [
+          {
+            "_elementType": "Location",
+            "id": 9,
+            "path": "X:\\Photo Library"
+          }
+        ],
+        "_elementType": "Directory",
+        "agent": "com.plexapp.agents.none",
+        "allowSync": "1",
+        "art": "/:/resources/photo-fanart.jpg",
+        "composite": "/library/sections/8/composite/1451863622",
+        "createdAt": "1451771154",
+        "filters": "1",
+        "key": "8",
+        "language": "xn",
+        "refreshing": "0",
+        "scanner": "Plex Photo Scanner",
+        "thumb": "/:/resources/photo.png",
+        "title": "A Photo Library",
+        "type": "photo",
+        "updatedAt": "1451863622",
+        "uri": "/library/sections/8",
+        "uuid": "MOCHA-PHOTO-LIBRARY"
+      },
+      {
+        "_children": [
+          {
+            "_elementType": "Location",
+            "id": 7,
+            "path": "X:\\Movies"
+          }
+        ],
+        "_elementType": "Directory",
+        "agent": "com.plexapp.agents.imdb",
+        "allowSync": "1",
+        "art": "/:/resources/movie-fanart.jpg",
+        "composite": "/library/sections/7/composite/1452142833",
+        "createdAt": "1451106439",
+        "filters": "1",
+        "key": "7",
+        "language": "en",
+        "refreshing": "0",
+        "scanner": "Plex Movie Scanner",
+        "thumb": "/:/resources/movie.png",
+        "title": "A Movie Library",
+        "type": "movie",
+        "updatedAt": "1452142833",
+        "uri": "/library/sections/7",
+        "uuid": "MOCHA-MOVIE-LIBRARY"
+      },
+      {
+        "_children": [
+          {
+            "_elementType": "Location",
+            "id": 1,
+            "path": "X:\\TV Shows"
+          }
+        ],
+        "_elementType": "Directory",
+        "agent": "com.plexapp.agents.thetvdb",
+        "allowSync": "1",
+        "art": "/:/resources/show-fanart.jpg",
+        "composite": "/library/sections/1/composite/1452295590",
+        "createdAt": "1358402130",
+        "filters": "1",
+        "key": "1",
+        "language": "en",
+        "refreshing": "0",
+        "scanner": "Plex Series Scanner",
+        "thumb": "/:/resources/show.png",
+        "title": "A TV Show Library",
+        "type": "show",
+        "updatedAt": "1452295590",
+        "uri": "/library/sections/1",
+        "uuid": "MOCHA-TV-SHOW-LIBRARY"
+      }
+    ]
   }
 ]

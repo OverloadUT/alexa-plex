@@ -1,6 +1,5 @@
 var proxyquire = require('proxyquire');
 var sinon = require('sinon');
-//var q = require('Q');
 
 module.exports.plexAPIStubFramework = function() {
     before('Set up plex api stubbing', function() {
@@ -45,7 +44,7 @@ module.exports.plexAPIStubFramework = function() {
     });
 
     beforeEach('set up main module with stubs for all plex-api methods', function () {
-        sinon.stub(this.plexAPIStubs, 'query').rejects(new Error('Unhandled URI in postQuery stub'));
+        sinon.stub(this.plexAPIStubs, 'query').rejects(new Error('Unhandled URI in query stub'));
         sinon.stub(this.plexAPIStubs, 'postQuery').rejects(new Error('Unhandled URI in postQuery stub'));
         sinon.stub(this.plexAPIStubs, 'perform').rejects(new Error('Unhandled URI in perform stub'));
         sinon.stub(this.plexAPIStubs, 'find').rejects(new Error('Unhandled URI in find stub'));
@@ -78,13 +77,5 @@ module.exports.plexAPIStubFramework = function() {
     afterEach('Restore all plex-api stubs to blank methods', function() {
         this.restoreAllStubs();
 
-        // HACK HACK HACK very stupid way to deal with the fact that we're basically using globals
-
-    });
-};
-
-exports.plexAPIResponses = function() {
-    beforeEach('Set up query, find, and postQuery stubs', function() {
-        // TODO remove me and all calls to me
     });
 };

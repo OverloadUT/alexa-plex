@@ -69,6 +69,7 @@ describe('Requests', function() {
         });
 
         describe('Prompts', function() {
+
             beforeEach(function() {
                 this.request.session.attributes.promptData = {
                     yesResponse: "MochaTest YesResponse",
@@ -84,8 +85,6 @@ describe('Requests', function() {
                 });
 
                 describe('yesAction: startEpisode', function() {
-                    require('./plex-api-stubs.helper.js').plexAPIResponses();
-
                     beforeEach(function() {
                         this.request.session.attributes.promptData.yesAction = "startEpisode";
                     });
@@ -178,13 +177,12 @@ describe('Requests', function() {
             });
 
             describe('AMAZON.NoIntent', function() {
+
                 beforeEach(function() {
                     this.request.request.intent.name = 'AMAZON.NoIntent';
                 });
 
                 describe('noAction: startEpisode', function() {
-                    require('./plex-api-stubs.helper.js').plexAPIResponses();
-
                     beforeEach(function() {
                         this.request.session.attributes.promptData.noAction = "startEpisode";
                     });
@@ -301,7 +299,7 @@ describe('Requests', function() {
             });
 
             it('should respond with shows that are On Deck', function (done) {
-                this.plexAPIStubs.query.withArgs('/library/onDeck').resolves(require('./samples/library_onDeck.json'));
+                this.plexAPIStubs.query.withArgs('/library/sections/1/onDeck').resolves(require('./samples/library_onDeck.json'));
 
                 var self = this;
                 this.lambda.handler(this.request, {
@@ -319,7 +317,7 @@ describe('Requests', function() {
             });
 
             it('should handle a response with zero shows', function (done) {
-                this.plexAPIStubs.query.withArgs('/library/onDeck').resolves(function(){
+                this.plexAPIStubs.query.withArgs('/library/sections/1/onDeck').resolves(function(){
                     var response = JSON.parse(JSON.stringify(require('./samples/library_onDeck.json')));
                     response._children = [];
                     return response;
@@ -338,7 +336,7 @@ describe('Requests', function() {
             });
 
             it('should handle an error from the Plex API', function (done) {
-                this.plexAPIStubs.query.withArgs('/library/onDeck').rejects(new Error("Stub error from Plex API"));
+                this.plexAPIStubs.query.withArgs('/library/sections/1/onDeck').rejects(new Error("Stub error from Plex API"));
 
                 var self = this;
                 this.lambda.handler(this.request, {
@@ -355,7 +353,6 @@ describe('Requests', function() {
         });
 
         describe('StartShowIntent', function() {
-            require('./plex-api-stubs.helper.js').plexAPIResponses();
 
             beforeEach(function() {
                 this.request.request.intent.name = 'StartShowIntent';
@@ -372,7 +369,6 @@ describe('Requests', function() {
                         expect(res).to.have.deep.property('response.outputSpeech.ssml')
                             .that.matches(/enjoy this episode from season/i);
                         expect(self.plexAPIStubs.perform).to.have.been.calledWithMatch(/playMedia/i);
-                        expect(self.plexAPIStubs.postQuery).to.have.been.calledWithMatch(/playQueues/i);
                         done();
                     }, fail: self.lambdaFail(done)
                 });
@@ -408,7 +404,6 @@ describe('Requests', function() {
                         expect(res).to.have.deep.property('response.outputSpeech.ssml')
                             .that.matches(/next episode/i);
                         expect(self.plexAPIStubs.perform).to.have.been.calledWithMatch(/playMedia/i);
-                        expect(self.plexAPIStubs.postQuery).to.have.been.calledWithMatch(/playQueues/i);
                         done();
                     }, fail: self.lambdaFail(done)
                 });
@@ -424,7 +419,6 @@ describe('Requests', function() {
                         expect(res).to.have.deep.property('response.outputSpeech.ssml')
                             .that.matches(/from where you left off/i);
                         expect(self.plexAPIStubs.perform).to.have.been.calledWithMatch(/playMedia.*offset=379418/i);
-                        expect(self.plexAPIStubs.postQuery).to.have.been.calledWithMatch(/playQueues/i);
                         done();
                     }, fail: self.lambdaFail(done)
                 });
@@ -468,7 +462,6 @@ describe('Requests', function() {
                         expect(res).to.have.deep.property('response.outputSpeech.ssml')
                             .that.matches(/next episode.*Resurrection/i);
                         expect(self.plexAPIStubs.perform).to.have.been.calledWithMatch(/playMedia/i);
-                        expect(self.plexAPIStubs.postQuery).to.have.been.calledWithMatch(/playQueues/i);
                         done();
                     }, fail: self.lambdaFail(done)
                 });
@@ -526,7 +519,6 @@ describe('Requests', function() {
         });
 
         describe('StartRandomShowIntent', function() {
-            require('./plex-api-stubs.helper.js').plexAPIResponses();
 
             beforeEach(function () {
                 this.request.request.intent.name = 'StartRandomShowIntent';
@@ -542,7 +534,6 @@ describe('Requests', function() {
                         expect(res).to.have.deep.property('response.outputSpeech.ssml')
                             .that.matches(/enjoy this episode from season/i);
                         expect(self.plexAPIStubs.perform).to.have.been.calledWithMatch(/playMedia/i);
-                        expect(self.plexAPIStubs.postQuery).to.have.been.calledWithMatch(/playQueues/i);
                         done();
                     }, fail: self.lambdaFail(done)
                 });
@@ -599,7 +590,6 @@ describe('Requests', function() {
         });
 
         describe('StartHighRatedEpisodeIntent', function() {
-            require('./plex-api-stubs.helper.js').plexAPIResponses();
 
             beforeEach(function () {
                 this.request.request.intent.name = 'StartHighRatedEpisodeIntent';
@@ -616,7 +606,6 @@ describe('Requests', function() {
                         expect(res).to.have.deep.property('response.outputSpeech.ssml')
                             .that.matches(/enjoy this episode from season/i);
                         expect(self.plexAPIStubs.perform).to.have.been.calledWithMatch(/playMedia/i);
-                        expect(self.plexAPIStubs.postQuery).to.have.been.calledWithMatch(/playQueues/i);
                         done();
                     }, fail: self.lambdaFail(done)
                 });
@@ -673,7 +662,6 @@ describe('Requests', function() {
         });
 
         describe('StartSpecificEpisodeIntent', function() {
-            require('./plex-api-stubs.helper.js').plexAPIResponses();
 
             beforeEach(function () {
                 this.request.request.intent.name = 'StartSpecificEpisodeIntent';
@@ -690,7 +678,6 @@ describe('Requests', function() {
                         expect(res.response.shouldEndSession).to.be.true;
                         expect(res).to.have.deep.property('response.outputSpeech.ssml')
                             .that.matches(/S2E3/i);
-                        expect(self.plexAPIStubs.postQuery).to.have.been.calledWithMatch(/playQueues/i);
                         expect(self.plexAPIStubs.perform).to.have.been.calledWithMatch(/playMedia/i);
                         done();
                     }, fail: self.lambdaFail(done)
@@ -707,7 +694,6 @@ describe('Requests', function() {
                         expect(res.response.shouldEndSession).to.be.true;
                         expect(res).to.have.deep.property('response.outputSpeech.ssml')
                             .that.matches(/S2E8/i);
-                        expect(self.plexAPIStubs.postQuery).to.have.been.calledWithMatch(/playQueues/i);
                         expect(self.plexAPIStubs.perform).to.have.been.calledWithMatch(/playMedia/i);
                         done();
                     }, fail: self.lambdaFail(done)
@@ -724,7 +710,6 @@ describe('Requests', function() {
                         expect(res.response.shouldEndSession).to.be.true;
                         expect(res).to.have.deep.property('response.outputSpeech.ssml')
                             .that.matches(/S1E4/i);
-                        expect(self.plexAPIStubs.postQuery).to.have.been.calledWithMatch(/playQueues/i);
                         expect(self.plexAPIStubs.perform).to.have.been.calledWithMatch(/playMedia/i);
                         done();
                     }, fail: self.lambdaFail(done)

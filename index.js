@@ -1,14 +1,8 @@
 /**
  * @module
  */
-
 require('dotenv').load();
-var app = require('./lib/app');
-var db = require('./lib/db');
-var stateMachine = require('./lib/statemachine');
-var User = require('./lib/user');
-var Alexa = require('alexa-app');
-var Plex = require('./lib/plex');
+var App = require('./lib/app').App;
 
 /**
  * The main AWS Lambda handler.
@@ -24,22 +18,6 @@ exports.handler = function(event, context) {
         }
     }
 
-    app.skill = new Alexa.app('plex');
-    app.plex = new Plex.Plex();
-
-    db.initializeUserRecord(event.session.user.userId).then(function(dbuser) {
-        app.user = new User(dbuser);
-        app.plex.pinAuth.token = app.user.authtoken;
-
-        if(!app.user.authtoken) {
-            return stateMachine.initApp('not-authed');
-        } else {
-            return stateMachine.initApp('authed');
-        }
-    }).then(function() {
-        app.skill.lambda()(event, context);
-    }).catch(function(err) {
-        console.error(err);
-        console.error(err.stack);
-    });
+    var app = new App();
+    app.execute(event, context);
 };
