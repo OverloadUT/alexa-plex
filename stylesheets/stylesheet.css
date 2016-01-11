@@ -162,7 +162,10 @@ a.button span {
   background: transparent url(../images/octocat-icon.png) 12px 50% no-repeat;
 }
 #gitter span {
-  background: transparent url(../images/gitter-icon.png) 12px 50% no-repeat;
+  background: transparent url(../images/gitter-icon.png) 18px 50% no-repeat;
+}
+#waffle span {
+  background: transparent url(../images/waffle-icon.png) 18px 50% no-repeat;
 }
 #view-on-github {
   margin-right: 0;
