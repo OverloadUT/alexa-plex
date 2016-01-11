@@ -6,6 +6,7 @@ AuthorizeMeIntent Authorize me
 AuthorizeMeIntent Sign in to Plex
 AuthorizeMeIntent Link my account
 WhatsNewIntent Release notes
+PlayIntent play
 OnDeckIntent What's new
 OnDeckIntent What is new
 OnDeckIntent What is on deck

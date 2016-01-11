@@ -29,6 +29,10 @@
       "slots": []
     },
     {
+      "intent": "PlayIntent",
+      "slots": []
+    },
+    {
       "intent": "AMAZON.YesIntent"
     },
     {
