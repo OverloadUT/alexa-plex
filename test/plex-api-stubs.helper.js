@@ -76,6 +76,5 @@ module.exports.plexAPIStubFramework = function() {
 
     afterEach('Restore all plex-api stubs to blank methods', function() {
         this.restoreAllStubs();
-
     });
 };

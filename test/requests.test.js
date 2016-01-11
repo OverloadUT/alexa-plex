@@ -305,8 +305,8 @@ describe('Requests', function() {
                 this.lambda.handler(this.request, {
                     succeed: function(res) {
                         expect(res.response.shouldEndSession).to.be.true;
-                        expect(res).to.have.deep.property('response.card.subtitle')
-                            .that.matches(/on deck/i);
+                        expect(res).to.have.deep.property('response.card.title')
+                            .that.matches(/ready to watch/i);
                         expect(res).to.have.deep.property('response.outputSpeech.ssml')
                             .that.matches(/penny-dreadful.*game-of-thrones.*brooklyn-nine-nine/i);
                         // TODO: Remove a lot of the calledOnce checks, as that should be the job of the tests on the plexutils methods?
