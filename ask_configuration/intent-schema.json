@@ -29,6 +29,15 @@
       "slots": []
     },
     {
+      "intent": "RecentlyAddedIntent",
+      "slots": [
+        {
+          "name": "libraryType",
+          "type": "LIBRARYTYPE"
+        }
+      ]
+    },
+    {
       "intent": "AMAZON.YesIntent"
     },
     {

@@ -6,8 +6,18 @@ AuthorizeMeIntent Authorize me
 AuthorizeMeIntent Sign in to Plex
 AuthorizeMeIntent Link my account
 WhatsNewIntent Release notes
-OnDeckIntent What's new
-OnDeckIntent What is new
+RecentlyAddedIntent What's new
+RecentlyAddedIntent What is new
+RecentlyAddedIntent What's new in {libraryType}
+RecentlyAddedIntent What is new in {libraryType}
+RecentlyAddedIntent What are my new {libraryType}
+RecentlyAddedIntent What are my recently added {libraryType}
+RecentlyAddedIntent What are the new {libraryType}
+RecentlyAddedIntent Latest {libraryType}
+RecentlyAddedIntent About the latest {libraryType}
+RecentlyAddedIntent Recently added {libraryType}
+RecentlyAddedIntent About the recently added {libraryType}
+RecentlyAddedIntent About recently added {libraryType}
 OnDeckIntent What is on deck
 OnDeckIntent What's on deck
 StartShowIntent Put on {showName}
