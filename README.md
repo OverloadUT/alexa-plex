@@ -7,17 +7,17 @@ The final state of this public project will remain here for people to learn from
 
 *(original readme follows)*
 
-# alexa-plex
+# aplexa
 Alexa (Amazon Echo) app for interacting with a Plex Server and controlling client playback
 
-**This page is for developers that want to help develop the app.** If you want to USE the app, check out this page: https://overloadut.github.io/alexa-plex/
+**This page is for developers that want to help develop the app.** If you want to USE the app, check out this page: https://overloadut.github.io/aplexa
 
-Development is being tracked on Waffle.io: https://waffle.io/OverloadUT/alexa-plex
+Development is being tracked on Waffle.io: https://waffle.io/OverloadUT/aplexa
 
 # Demo
 Here's an early proof-of-concept video
 
-[![Video thumbnail](https://raw.githubusercontent.com/OverloadUT/alexa-plex/master/docs/video_thumbnail.jpg)](https://www.youtube.com/watch?v=-jZuSN0YkRM)
+[![Video thumbnail](https://raw.githubusercontent.com/OverloadUT/aplexa/master/docs/video_thumbnail.jpg)](https://www.youtube.com/watch?v=-jZuSN0YkRM)
 
 # Install for Development
 
@@ -25,7 +25,7 @@ Here's an early proof-of-concept video
 2. ```npm test``` to verify that all tests are passing. If they are, you're ready to rock!
 
 ## AWS Lambda
-The app is meant to be deployed as an **AWS Lambda** function. Setting that up is beyond the scope of this readme though. There's a deploy.bat file in this project that will deploy to AWS Lambda if you're on Windows, but you will need to have the AWS toolkit installed and configured, and have an "alexa-plex" function set up.
+The app is meant to be deployed as an **AWS Lambda** function. Setting that up is beyond the scope of this readme though. There's a deploy.bat file in this project that will deploy to AWS Lambda if you're on Windows, but you will need to have the AWS toolkit installed and configured, and have an "aplexa" function set up.
 
 ## Dynamo DB
 This app requires DynamoDB. You'll need to get that set up and create a table named `AlexaPlexUsers` with a primary string key of `userid`
