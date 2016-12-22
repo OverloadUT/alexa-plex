@@ -8,6 +8,8 @@ The final state of this public project will remain here for people to learn from
 *(original readme follows)*
 
 # alexa-plex
+
+[![Join the chat at https://gitter.im/OverloadUT/alexa-plex](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/OverloadUT/alexa-plex?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Alexa (Amazon Echo) app for interacting with a Plex Server and controlling client playback
 
 **This page is for developers that want to help develop the app.** If you want to USE the app, check out this page: https://overloadut.github.io/alexa-plex/
